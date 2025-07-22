@@ -1,0 +1,3 @@
+/home/toavina-jr/Documents/Projects/C++/SFML/Chess/build/CMakeFiles/Chess.dir
+/home/toavina-jr/Documents/Projects/C++/SFML/Chess/build/CMakeFiles/edit_cache.dir
+/home/toavina-jr/Documents/Projects/C++/SFML/Chess/build/CMakeFiles/rebuild_cache.dir
