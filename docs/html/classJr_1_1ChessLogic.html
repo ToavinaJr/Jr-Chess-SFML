@@ -108,13 +108,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a253c319b5992443766b63fb62bea6abb" id="r_a253c319b5992443766b63fb62bea6abb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJr_1_1Piece.html">Piece</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#a253c319b5992443766b63fb62bea6abb">getPieceAtSquare</a> (int square) const</td></tr>
 <tr class="memdesc:a253c319b5992443766b63fb62bea6abb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtient la pièce située à une case donnée.  <br /></td></tr>
 <tr class="separator:a253c319b5992443766b63fb62bea6abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa88200f0181256b91dd30b640a059e2d" id="r_aa88200f0181256b91dd30b640a059e2d"><td class="memItemLeft" align="right" valign="top"><a id="aa88200f0181256b91dd30b640a059e2d" name="aa88200f0181256b91dd30b640a059e2d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ChessLogic</b> ()</td></tr>
-<tr class="memdesc:aa88200f0181256b91dd30b640a059e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur par défaut. Initialise l'état interne pour une partie fraîche. <br /></td></tr>
+<tr class="memitem:aa88200f0181256b91dd30b640a059e2d" id="r_aa88200f0181256b91dd30b640a059e2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#aa88200f0181256b91dd30b640a059e2d">ChessLogic</a> ()</td></tr>
+<tr class="memdesc:aa88200f0181256b91dd30b640a059e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur par défaut. Initialise l'état interne pour une partie fraîche.  <br /></td></tr>
 <tr class="separator:aa88200f0181256b91dd30b640a059e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a424e4a7e07f392783456305bfe833052" id="r_a424e4a7e07f392783456305bfe833052"><td class="memItemLeft" align="right" valign="top"><a id="a424e4a7e07f392783456305bfe833052" name="a424e4a7e07f392783456305bfe833052"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initializeBoard</b> ()</td></tr>
-<tr class="memdesc:a424e4a7e07f392783456305bfe833052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise la position de départ du plateau (placement initial des pièces). Réinitialise aussi toutes les variables d'état (roque, promotion, etc). <br /></td></tr>
+<tr class="memitem:a424e4a7e07f392783456305bfe833052" id="r_a424e4a7e07f392783456305bfe833052"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#a424e4a7e07f392783456305bfe833052">initializeBoard</a> ()</td></tr>
+<tr class="memdesc:a424e4a7e07f392783456305bfe833052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise la position de départ du plateau (placement initial des pièces). Réinitialise aussi toutes les variables d'état (roque, promotion, etc).  <br /></td></tr>
 <tr class="separator:a424e4a7e07f392783456305bfe833052"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43b8e42452b85679c562632d278dcfe9" id="r_a43b8e42452b85679c562632d278dcfe9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#a43b8e42452b85679c562632d278dcfe9">isValidMove</a> (int from, int to) const</td></tr>
 <tr class="memdesc:a43b8e42452b85679c562632d278dcfe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si un mouvement est valide selon les règles du jeu.  <br /></td></tr>
@@ -221,7 +219,28 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 <div class="textblock"><p>Gestion complète de la logique d'un jeu d'échecs. </p>
 <p>Cette classe maintient l'état interne du plateau sous forme de bitboards, gère le tour des joueurs, les règles spéciales (roque, prise en passant, promotion) et valide les coups selon les règles officielles.</p>
 <p>Elle fournit des méthodes pour interagir avec la logique du jeu, comme vérifier la validité d'un coup, générer les coups légaux pour une pièce donnée, et appliquer un mouvement. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa88200f0181256b91dd30b640a059e2d" name="aa88200f0181256b91dd30b640a059e2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa88200f0181256b91dd30b640a059e2d">&#9670;&#160;</a></span>ChessLogic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Jr::ChessLogic::ChessLogic </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur par défaut. Initialise l'état interne pour une partie fraîche. </p>
+<p>Constructeur de la classe <a class="el" href="classJr_1_1ChessLogic.html" title="Gestion complète de la logique d&#39;un jeu d&#39;échecs.">ChessLogic</a>. Initialise l'état du plateau de jeu à sa configuration de départ standard. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a10c6ebea5a9efe93a887fcfc31dc7650" name="a10c6ebea5a9efe93a887fcfc31dc7650"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a10c6ebea5a9efe93a887fcfc31dc7650">&#9670;&#160;</a></span>getCurrentBoardState()</h2>
 
@@ -238,8 +257,11 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Récupère l'état complet du plateau sous forme de map case -&gt; pièce. </p>
+<p>Fournit l'état actuel du plateau de jeu sous une forme facilement utilisable pour l'affichage. Convertit les bitboards internes en une map qui associe chaque case occupée à un objet <a class="el" href="structJr_1_1Piece.html" title="Structure représentant une pièce d&#39;échecs logique (sans aspects graphiques).">Piece</a>.</p>
 <p>Utile pour l'affichage ou l'export du plateau.</p>
-<dl class="section return"><dt>Returns</dt><dd>Map des cases (0-63) associées à la pièce présente. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Map des cases (0-63) associées à la pièce présente.</dd>
+<dd>
+Une std::map&lt;int, Piece&gt; où la clé est l'index de la case (0-63) et la valeur est l'objet <a class="el" href="structJr_1_1Piece.html" title="Structure représentant une pièce d&#39;échecs logique (sans aspects graphiques).">Piece</a>. </dd></dl>
 
 </div>
 </div>
@@ -260,13 +282,21 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Retourne la liste des coups légaux pour la pièce située à la case donnée. </p>
+<p>Récupère tous les coups légaux pour une pièce à partir d'une case donnée. Cette fonction combine les mouvements bruts avec les vérifications d'échec pour s'assurer que seuls les coups valides (qui ne laissent pas le roi en échec) sont retournés. Inclut également la logique spécifique du roque.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">from</td><td>Case de la pièce (0-63). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Vecteur des cases accessibles légalement. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Vecteur des cases accessibles légalement.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>L'index de la case de départ de la pièce. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Un vecteur d'entiers représentant les index des cases cibles légales. </dd></dl>
 
 </div>
 </div>
@@ -287,13 +317,21 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Obtient la pièce située à une case donnée. </p>
+<p>Récupère l'objet <a class="el" href="structJr_1_1Piece.html" title="Structure représentant une pièce d&#39;échecs logique (sans aspects graphiques).">Piece</a> (type et couleur) à une case donnée. Parcourt les bitboards pour identifier quelle pièce se trouve à la position spécifiée.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">square</td><td>Index de la case (0-63) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Objet <a class="el" href="structJr_1_1Piece.html" title="Structure représentant une pièce d&#39;échecs logique (sans aspects graphiques).">Piece</a> représentant la pièce, ou une pièce "vide" si aucune. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Objet <a class="el" href="structJr_1_1Piece.html" title="Structure représentant une pièce d&#39;échecs logique (sans aspects graphiques).">Piece</a> représentant la pièce, ou une pièce "vide" si aucune.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>L'index de la case (0-63). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>L'objet <a class="el" href="structJr_1_1Piece.html" title="Structure représentant une pièce d&#39;échecs logique (sans aspects graphiques).">Piece</a> trouvé à la case. Si la case est vide ou invalide, retourne une <a class="el" href="structJr_1_1Piece.html" title="Structure représentant une pièce d&#39;échecs logique (sans aspects graphiques).">Piece</a> vide. </dd></dl>
 
 </div>
 </div>
@@ -388,6 +426,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Génère les déplacements "bruts" possibles pour une pièce à une case donnée. </p>
+<p>Génère la liste des mouvements "bruts" (non filtrés par les règles d'échec) pour une pièce donnée. Cette fonction calcule toutes les cases où une pièce pourrait se déplacer ou capturer, sans prendre en compte si le mouvement mettrait le roi en échec.</p>
 <p>Ces mouvements ne tiennent pas compte de la mise en échec du roi ni d'autres règles avancées.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -396,7 +435,22 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Vecteur d'indices de cases accessibles. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Vecteur d'indices de cases accessibles.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">piece</td><td>L'objet <a class="el" href="structJr_1_1Piece.html" title="Structure représentant une pièce d&#39;échecs logique (sans aspects graphiques).">Piece</a> (type et couleur) pour laquelle générer les mouvements. </td></tr>
+    <tr><td class="paramname">from</td><td>L'index de la case de départ de la pièce. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Un vecteur d'entiers représentant les index des cases cibles possibles. </dd></dl>
+<p>Lambda fonction utilitaire pour ajouter une case à la liste des mouvements. Vérifie si la case est dans les limites du plateau et si elle est vide ou occupée par une pièce ennemie. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>La rangée de la case cible. </td></tr>
+    <tr><td class="paramname">c</td><td>La colonne de la case cible.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -428,6 +482,26 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 
 </div>
 </div>
+<a id="a424e4a7e07f392783456305bfe833052" name="a424e4a7e07f392783456305bfe833052"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a424e4a7e07f392783456305bfe833052">&#9670;&#160;</a></span>initializeBoard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Jr::ChessLogic::initializeBoard </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise la position de départ du plateau (placement initial des pièces). Réinitialise aussi toutes les variables d'état (roque, promotion, etc). </p>
+<p>Initialise les bitboards et les variables d'état du jeu pour une nouvelle partie. Définit la position de départ de toutes les pièces sur le plateau, et réinitialise les drapeaux de tour, de roque, de prise en passant et de promotion. </p>
+
+</div>
+</div>
 <a id="a174fc9bcebb4078dea570be8ffd8dbb7" name="a174fc9bcebb4078dea570be8ffd8dbb7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a174fc9bcebb4078dea570be8ffd8dbb7">&#9670;&#160;</a></span>isEmpty()</h2>
 
@@ -453,13 +527,21 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Vérifie si la case spécifiée est vide. </p>
+<p>Vérifie si une case spécifique est vide. Utilise le bitboard <code>bitboardPieces</code> qui représente toutes les cases occupées.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sq</td><td>Index de la case (0-63) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true si la case est vide, false sinon. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true si la case est vide, false sinon.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sq</td><td>L'index de la case (0-63). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True si la case est vide, False sinon. </dd></dl>
 
 </div>
 </div>
@@ -498,6 +580,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Vérifie si la pièce à la case donnée est ennemie par rapport à la couleur spécifiée. </p>
+<p>Vérifie si une case contient une pièce ennemie par rapport à une pièce d'une couleur donnée.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sq</td><td>Index de la case (0-63) </td></tr>
@@ -505,7 +588,15 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true si la pièce sur la case est adverse, false sinon. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true si la pièce sur la case est adverse, false sinon.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sq</td><td>L'index de la case (0-63). </td></tr>
+    <tr><td class="paramname">whitePiece</td><td>La couleur de la pièce de référence (True si blanche, False si noire). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True si la case contient une pièce de couleur opposée à <code>whitePiece</code>, False sinon. </dd></dl>
 
 </div>
 </div>
@@ -526,13 +617,21 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Indique si le roi de la couleur spécifiée est en échec. </p>
+<p>Vérifie si un roi est en échec. Détermine si le roi de la couleur spécifiée est attaqué par une pièce adverse.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">whiteKing</td><td>true pour roi blanc, false pour roi noir. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true si le roi est en échec, false sinon. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true si le roi est en échec, false sinon.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">whiteKing</td><td>True pour vérifier le roi blanc, False pour le roi noir. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True si le roi est en échec, False sinon. </dd></dl>
 
 </div>
 </div>
@@ -591,6 +690,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Vérifie si un mouvement est valide selon les règles du jeu. </p>
+<p>Vérifie si un coup est légal avant de l'effectuer. Cette fonction utilise <code>getLegalMoves</code> pour déterminer si la case cible <code>to</code> est une destination valide pour la pièce à <code>from</code>.</p>
 <p>Cette méthode valide la légalité complète, y compris la non-mise en échec du roi.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -599,7 +699,15 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true si le mouvement est légal, false sinon. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true si le mouvement est légal, false sinon.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>L'index de la case de départ. </td></tr>
+    <tr><td class="paramname">to</td><td>L'index de la case d'arrivée. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True si le coup est légal, False sinon. </dd></dl>
 
 </div>
 </div>
@@ -630,6 +738,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Effectue un coup valide et met à jour l'état du jeu. </p>
+<p>Effectue un coup sur le plateau et met à jour l'état du jeu. Avant d'effectuer le coup, il vérifie sa légalité via <code>isValidMove</code>. Gère les captures, la prise en passant, le roque, la promotion des pions et le changement de tour.</p>
 <p>Met à jour les bitboards, le tour, les droits au roque, prise en passant, promotion, etc.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -638,7 +747,15 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true si le mouvement a été effectué avec succès, false sinon (ex: coup illégal). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true si le mouvement a été effectué avec succès, false sinon (ex: coup illégal).</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>L'index de la case de départ de la pièce. </td></tr>
+    <tr><td class="paramname">to</td><td>L'index de la case d'arrivée de la pièce. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True si le coup a été effectué avec succès, False si le coup n'était pas légal. </dd></dl>
 
 </div>
 </div>
@@ -669,10 +786,13 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Effectue la promotion d'un pion à une case donnée vers un nouveau type de pièce. </p>
+<p>Gère la promotion d'un pion à une nouvelle pièce choisie par le joueur. Cette fonction est appelée après qu'un pion ait atteint la dernière rangée et que le joueur ait sélectionné le type de pièce désiré.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">square</td><td>Case où la promotion doit avoir lieu (0-63). </td></tr>
-    <tr><td class="paramname">newType</td><td>Type de pièce choisie pour la promotion (ex: Dame, Tour, Fou, Cavalier). </td></tr>
+    <tr><td class="paramname">newType</td><td>Type de pièce choisie pour la promotion (ex: Dame, Tour, Fou, Cavalier).</td></tr>
+    <tr><td class="paramname">square</td><td>La case où le pion est promu. </td></tr>
+    <tr><td class="paramname">newType</td><td>Le type de pièce vers laquelle le pion doit être promu (Queen, Rook, Bishop, Knight). </td></tr>
   </table>
   </dd>
 </dl>
@@ -712,6 +832,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 </div><div class="memdoc">
 
 <p>Vérifie si un coup hypothétique mettrait le roi en échec. </p>
+<p>Simule un coup pour vérifier si le roi serait en échec après ce coup. Crée une copie temporaire de l'état du plateau, effectue le coup simulé dessus, puis vérifie si le roi de la couleur spécifiée est en échec dans cet état simulé. L'état original du jeu n'est pas modifié.</p>
 <p>Utilisé pour valider la légalité des coups.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -721,12 +842,22 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true si le roi serait en échec après ce coup, false sinon. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true si le roi serait en échec après ce coup, false sinon.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>L'index de la case de départ de la pièce. </td></tr>
+    <tr><td class="paramname">to</td><td>L'index de la case d'arrivée de la pièce. </td></tr>
+    <tr><td class="paramname">whiteKing</td><td>La couleur du roi dont on vérifie l'échec (True si blanc, False si noir). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True si le roi serait en échec après le coup simulé, False sinon. </dd></dl>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="ChessLogic_8hpp_source.html">ChessLogic.hpp</a></li>
+<li>source/<b>ChessLogic.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['render_0',['render',['../classJr_1_1Game.html#aeab5f9bf15e37c6b1a5c1c7ea1844d49',1,'Jr::Game']]],
-  ['run_1',['run',['../classJr_1_1Game.html#a5a67cf7591d460817daef74815216cfa',1,'Jr::Game']]]
+  ['onenter_0',['onenter',['../classJr_1_1AboutState.html#a37c2b94a1f8745b3646f4a01b4886f89',1,'Jr::AboutState::onEnter()'],['../classJr_1_1GameState.html#ab425953ec0410581dfa9f82cda09882a',1,'Jr::GameState::onEnter()'],['../classJr_1_1HelpState.html#aaddd0d4677d864ab4ecd934b121b29df',1,'Jr::HelpState::onEnter()'],['../classJr_1_1MenuState.html#a3cd3663582e78e9217668dac95ccf48b',1,'Jr::MenuState::onEnter()'],['../classJr_1_1PlayingState.html#abf477457f31c32ee7322fbb07eefafd2',1,'Jr::PlayingState::onEnter()']]],
+  ['onexit_1',['onExit',['../classJr_1_1GameState.html#a0534cdc633b78d0ced97bbbbcfff42dc',1,'Jr::GameState']]]
 ];

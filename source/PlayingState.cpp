@@ -1,5 +1,8 @@
 #include "../include/PlayingState.hpp"
-#include "../include/StateManager.hpp" // Pour le popState si nécessaire
+#include "../include/StateManager.hpp"
+#include "../include/ChessLogic.hpp"
+#include "../include/GameOverState.hpp"
+
 #include <iostream>
 
 namespace Jr {
@@ -35,8 +38,44 @@ void PlayingState::handleInput(const sf::Event& event) {
 }
 
 void PlayingState::update(float deltaTime) {
-    // Mettre à jour la logique de jeu si nécessaire (animations, IA, etc.)
+    // Ici tu peux aussi mettre à jour les animations ou l'IA si tu en as
+
+    // Récupérer l'état actuel du jeu via ChessLogic
+    ChessGameStatus state = chessLogic.getGameState();
+
+    switch (state) {
+        case ChessGameStatus::Checkmate:
+            stateManager.changeState<GameOverState>(fontManager, textureManager, "Échec et mat !");
+            std::cout << "Checkmate! Game Over." << std::endl;
+            break;
+
+        case ChessGameStatus::Stalemate:
+            stateManager.changeState<GameOverState>(fontManager, textureManager, "Pat !");
+            break;
+
+        case ChessGameStatus::Draw50Move:
+            stateManager.changeState<GameOverState>(fontManager, textureManager, "Match nul (règle des 50 coups) !");
+            std::cout << "Draw by 50-move rule! Game Over." << std::endl;
+            break;
+
+        case ChessGameStatus::DrawRepetition:
+            stateManager.changeState<GameOverState>(fontManager, textureManager, "Match nul (répétition de position) !");
+            std::cout << "Draw by repetition! Game Over." << std::endl;
+            break;
+
+        case ChessGameStatus::DrawMaterial:
+            stateManager.changeState<GameOverState>(fontManager, textureManager, "Pat !");
+            // std::cout << "Draw by insufficient material! Game Over." << std::endl;
+            break;
+
+        case ChessGameStatus::Playing:
+        default:
+            // Rien à faire, la partie continue
+            // std::cout << "Game is still ongoing." << std::endl;
+            break;
+    }
 }
+
 
 void PlayingState::draw() {
     board.draw(window); // Dessiner le plateau de jeu

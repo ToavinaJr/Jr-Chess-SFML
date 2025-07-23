@@ -1,15 +1,7 @@
 var searchData=
 [
-  ['game_0',['Game',['../classJr_1_1Game.html#ace16156890b416ffab21189c1bcca269',1,'Jr::Game']]],
-  ['gamestate_1',['GameState',['../classJr_1_1GameState.html#a33ec532947277da8b5ecc594002dbda3',1,'Jr::GameState']]],
-  ['getcurrentboardstate_2',['getCurrentBoardState',['../classJr_1_1ChessLogic.html#a10c6ebea5a9efe93a887fcfc31dc7650',1,'Jr::ChessLogic']]],
-  ['getlegalmoves_3',['getLegalMoves',['../classJr_1_1ChessLogic.html#ae69b8bdbe7e4dadf7610533a8c8dd45c',1,'Jr::ChessLogic']]],
-  ['getname_4',['getname',['../structJr_1_1Piece.html#a0b0ff339a9b759900a1f8feed4ad7826',1,'Jr::Piece::getName() const'],['../structJr_1_1Piece.html#a0b0ff339a9b759900a1f8feed4ad7826',1,'Jr::Piece::getName() const']]],
-  ['getpieceatsquare_5',['getPieceAtSquare',['../classJr_1_1ChessLogic.html#a253c319b5992443766b63fb62bea6abb',1,'Jr::ChessLogic']]],
-  ['getpromotionsquare_6',['getPromotionSquare',['../classJr_1_1ChessLogic.html#a3300ac22961352cf51c4c05f539a01dd',1,'Jr::ChessLogic']]],
-  ['getpromotionwhite_7',['getPromotionWhite',['../classJr_1_1ChessLogic.html#a6ba8ced0444457ad1871a9bdfedf965a',1,'Jr::ChessLogic']]],
-  ['getrawmoves_8',['getRawMoves',['../classJr_1_1ChessLogic.html#aa7c5db1773724ef1ea7529daefbb71fb',1,'Jr::ChessLogic']]],
-  ['gettexture_9',['getTexture',['../classJr_1_1TextureManager.html#a96a3cf9b98d57c03745dff640b39d3d7',1,'Jr::TextureManager']]],
-  ['gettexturefilename_10',['gettexturefilename',['../structJr_1_1Piece.html#aede9ad805c7917db47e951fe008ade2d',1,'Jr::Piece::getTextureFileName() const'],['../structJr_1_1Piece.html#aede9ad805c7917db47e951fe008ade2d',1,'Jr::Piece::getTextureFileName() const']]],
-  ['getwhiteturn_11',['getWhiteTurn',['../classJr_1_1ChessLogic.html#a7e13a0213ea6fab80ebbb636bf05e9ff',1,'Jr::ChessLogic']]]
+  ['centertext_0',['centertext',['../classJr_1_1AboutState.html#ac9fdf4f9eccc04cb383c8f504d16ab38',1,'Jr::AboutState::centerText()'],['../classJr_1_1Button.html#a7364fe1e424a95eaa007af4ea313cdb8',1,'Jr::Button::centerText()'],['../classJr_1_1HelpState.html#a24ffcc561497276d2e4355f4257d5f0b',1,'Jr::HelpState::centerText()'],['../classJr_1_1MenuState.html#a24d381d08383132d06fa4e3f0bd7bc43',1,'Jr::MenuState::centerText()']]],
+  ['changestate_1',['changeState',['../classJr_1_1StateManager.html#ad4b485ba7ae2231ff192cd07cc2657d0',1,'Jr::StateManager']]],
+  ['chesslogic_2',['ChessLogic',['../classJr_1_1ChessLogic.html#aa88200f0181256b91dd30b640a059e2d',1,'Jr::ChessLogic']]],
+  ['clear_3',['clear',['../classJr_1_1FontManager.html#a69080e753907219a9d6c332dc95ed3d7',1,'Jr::FontManager::clear()'],['../classJr_1_1TextureManager.html#aa7548cf97a9eaaafcaa159a916270e8a',1,'Jr::TextureManager::clear()']]]
 ];

@@ -1,5 +1,5 @@
 <map id="Jr::Board" name="Jr::Board">
-<area shape="rect" id="Node000001" title=" " alt="" coords="197,93,275,119"/>
+<area shape="rect" id="Node000001" title="Gère l&#39;affichage graphique du plateau d&#39;échecs et les interactions utilisateur." alt="" coords="197,93,275,119"/>
 <area shape="rect" id="Node000002" href="$classJr_1_1TextureManager.html" title="Gestionnaire de textures SFML chargé de gérer le chargement, la mise en cache et la libération des te..." alt="" coords="5,5,149,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,40,123,67,160,85,198,96,196,101,158,90,120,72,91,44"/>
 <area shape="rect" id="Node000003" href="$classJr_1_1FontManager.html" title="Gestion centralisée du chargement et du cache des polices." alt="" coords="174,5,298,31"/>

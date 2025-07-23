@@ -19,6 +19,15 @@ namespace Jr {
      * Elle fournit des méthodes pour interagir avec la logique du jeu, comme vérifier la validité
      * d'un coup, générer les coups légaux pour une pièce donnée, et appliquer un mouvement.
      */
+
+    enum class ChessGameStatus { // ou ChessGameOutcome, GameOutcome, MatchState, etc.
+        Playing,
+        Checkmate,
+        Stalemate,
+        Draw50Move,
+        DrawRepetition,
+        DrawMaterial
+    };
     class ChessLogic {
     private:
         /// Bitboards représentant la position de chaque type de pièce, identifiées par une chaîne (ex: "wP" pour pions blancs)
@@ -86,6 +95,20 @@ namespace Jr {
          */
         std::vector<int> getRawMoves(const Piece& piece, int from) const;
         
+        int fiftyMoveCounter; // Compteur pour la règle des 50 coups
+        std::vector<uint64_t> positionHistory; // Historique des hashs de position pour la répétition
+        uint64_t currentZobristHash; // Hash Zobrist de la position actuelle
+
+        // Fonctions d'aide pour Zobrist Hashing (à implémenter)
+        void generateZobristKeys();
+        uint64_t calculateZobristHash() const;
+        void updateZobristHashForMove(const Piece& movingPiece, int from, int to, const Piece& capturedPiece, int capturedPawnSq, bool isCastling, int rookFrom = -1, int rookTo = -1, PieceType promotionType = PieceType::None);
+
+        std::map<std::string, uint64_t> ZobristPieceKeys[64]; // [square][piece_name] -> hash
+        uint64_t ZobristSideToMoveKey; // hash pour le trait (blanc/noir)
+        uint64_t ZobristCastlingKeys[16]; // hash pour les droits de roque (4 bits, 16 combinaisons)
+        uint64_t ZobristEnPassantKeys[8]; // hash pour la colonne de prise en passant (8 colonnes)
+
     public:
         /**
          * @brief Obtient la pièce située à une case donnée.
@@ -193,5 +216,42 @@ namespace Jr {
          * @return Map des cases (0-63) associées à la pièce présente.
          */
         std::map<int, Piece> getCurrentBoardState() const;
+
+        /**
+         * @brief Vérifie si le jeu est terminé (échec, pat, etc.).
+         * 
+         * Cette méthode évalue l'état du jeu pour déterminer s'il y a un gagnant,
+         * un match nul, ou si le jeu continue.
+         * 
+         * @return L'état actuel du jeu (en cours, échec et mat, pat, etc.).
+         */
+        ChessGameStatus getGameState() const;
+
+        /**
+         * @brief Vérifie si la partie est un match nul par pat (stalemate).
+         * @return True si c'est un pat, False sinon.
+         */
+        bool isStalemate() const;
+
+        /**
+         * @brief Vérifie si la partie est un match nul par matériel insuffisant.
+         * @return True si c'est un draw par matériel, False sinon.
+         */
+        bool isInsufficientMaterial() const;
+
+        /**
+         * @brief Vérifie si la partie est un match nul par la règle des 50 coups sans capture ni mouvement de pion.
+         * @return True si c'est un draw par 50 coups, False sinon.
+         */
+        bool is50MoveRuleDraw() const;
+
+        /**
+         * @brief Vérifie si la partie est un match nul par répétition de position.
+         * @return True si c'est un draw par répétition, False sinon.
+         */
+        bool isThreeFoldRepetitionDraw() const;
+
+        bool noLegalMovesAvailable(bool whiteToMove) const;
+        bool isCheckmate(bool whiteToMove) const;
     };
 }

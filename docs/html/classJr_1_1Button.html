@@ -96,29 +96,34 @@ $(document).ready(function(){initNavTree('classJr_1_1Button.html',''); initResiz
   <div class="headertitle"><div class="title">Jr::Button Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Représente un bouton interactif avec trois états : normal, survolé et pressé.  
+ <a href="classJr_1_1Button.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae95ca5d6ebd6db42b988f73ea13b9d1c" id="r_ae95ca5d6ebd6db42b988f73ea13b9d1c"><td class="memItemLeft" align="right" valign="top"><a id="ae95ca5d6ebd6db42b988f73ea13b9d1c" name="ae95ca5d6ebd6db42b988f73ea13b9d1c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Button</b> (const std::string &amp;textStr, const sf::Font &amp;font, unsigned int charSize, sf::Vector2f size, sf::Color normal, sf::Color hover, sf::Color pressed)</td></tr>
+<tr class="memitem:ae95ca5d6ebd6db42b988f73ea13b9d1c" id="r_ae95ca5d6ebd6db42b988f73ea13b9d1c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1Button.html#ae95ca5d6ebd6db42b988f73ea13b9d1c">Button</a> (const std::string &amp;textStr, const sf::Font &amp;font, unsigned int charSize, sf::Vector2f size, sf::Color normal, sf::Color hover, sf::Color pressed)</td></tr>
+<tr class="memdesc:ae95ca5d6ebd6db42b988f73ea13b9d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur du bouton.  <br /></td></tr>
 <tr class="separator:ae95ca5d6ebd6db42b988f73ea13b9d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92a1d7799495814bdc40d459792f1583" id="r_a92a1d7799495814bdc40d459792f1583"><td class="memItemLeft" align="right" valign="top"><a id="a92a1d7799495814bdc40d459792f1583" name="a92a1d7799495814bdc40d459792f1583"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (sf::Vector2f pos)</td></tr>
+<tr class="memitem:a92a1d7799495814bdc40d459792f1583" id="r_a92a1d7799495814bdc40d459792f1583"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1Button.html#a92a1d7799495814bdc40d459792f1583">setPosition</a> (sf::Vector2f pos)</td></tr>
+<tr class="memdesc:a92a1d7799495814bdc40d459792f1583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Définit la position du bouton et recalcule le centrage du texte.  <br /></td></tr>
 <tr class="separator:a92a1d7799495814bdc40d459792f1583"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7364fe1e424a95eaa007af4ea313cdb8" id="r_a7364fe1e424a95eaa007af4ea313cdb8"><td class="memItemLeft" align="right" valign="top"><a id="a7364fe1e424a95eaa007af4ea313cdb8" name="a7364fe1e424a95eaa007af4ea313cdb8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>centerText</b> ()</td></tr>
+<tr class="memdesc:a7364fe1e424a95eaa007af4ea313cdb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Centre le texte par rapport à la forme du bouton. <br /></td></tr>
 <tr class="separator:a7364fe1e424a95eaa007af4ea313cdb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc32363303bb68cfb687b919c659695f" id="r_acc32363303bb68cfb687b919c659695f"><td class="memItemLeft" align="right" valign="top"><a id="acc32363303bb68cfb687b919c659695f" name="acc32363303bb68cfb687b919c659695f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const sf::Vector2f &amp;mousePos)</td></tr>
+<tr class="memitem:acc32363303bb68cfb687b919c659695f" id="r_acc32363303bb68cfb687b919c659695f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1Button.html#acc32363303bb68cfb687b919c659695f">update</a> (const sf::Vector2f &amp;mousePos)</td></tr>
+<tr class="memdesc:acc32363303bb68cfb687b919c659695f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour l'état visuel du bouton selon la position de la souris.  <br /></td></tr>
 <tr class="separator:acc32363303bb68cfb687b919c659695f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60de9081e1b56b91c68d097cac545130" id="r_a60de9081e1b56b91c68d097cac545130"><td class="memItemLeft" align="right" valign="top"><a id="a60de9081e1b56b91c68d097cac545130" name="a60de9081e1b56b91c68d097cac545130"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isClicked</b> (const sf::Event &amp;event)</td></tr>
+<tr class="memitem:a60de9081e1b56b91c68d097cac545130" id="r_a60de9081e1b56b91c68d097cac545130"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1Button.html#a60de9081e1b56b91c68d097cac545130">isClicked</a> (const sf::Event &amp;event)</td></tr>
+<tr class="memdesc:a60de9081e1b56b91c68d097cac545130"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si le bouton a été cliqué.  <br /></td></tr>
 <tr class="separator:a60de9081e1b56b91c68d097cac545130"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a1a9b4258bbabc062b86ac6a4724d62" id="r_a4a1a9b4258bbabc062b86ac6a4724d62"><td class="memItemLeft" align="right" valign="top"><a id="a4a1a9b4258bbabc062b86ac6a4724d62" name="a4a1a9b4258bbabc062b86ac6a4724d62"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderWindow &amp;window) const</td></tr>
+<tr class="memitem:a4a1a9b4258bbabc062b86ac6a4724d62" id="r_a4a1a9b4258bbabc062b86ac6a4724d62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1Button.html#a4a1a9b4258bbabc062b86ac6a4724d62">draw</a> (sf::RenderWindow &amp;window) const</td></tr>
+<tr class="memdesc:a4a1a9b4258bbabc062b86ac6a4724d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine le bouton sur la fenêtre.  <br /></td></tr>
 <tr class="separator:a4a1a9b4258bbabc062b86ac6a4724d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af34197eda3ba21849dea6efeec5e7ce0" id="r_af34197eda3ba21849dea6efeec5e7ce0"><td class="memItemLeft" align="right" valign="top"><a id="af34197eda3ba21849dea6efeec5e7ce0" name="af34197eda3ba21849dea6efeec5e7ce0"></a>
 sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><b>getGlobalBounds</b> () const</td></tr>
+<tr class="memdesc:af34197eda3ba21849dea6efeec5e7ce0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne les limites globales du bouton (utile pour la détection de collisions). <br /></td></tr>
 <tr class="separator:af34197eda3ba21849dea6efeec5e7ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -139,8 +144,190 @@ sf::Color&#160;</td><td class="memItemRight" valign="bottom"><b>hoverColor</b></
 sf::Color&#160;</td><td class="memItemRight" valign="bottom"><b>pressedColor</b></td></tr>
 <tr class="separator:a87ecc0168e713f1861a359fc4a2a3cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Représente un bouton interactif avec trois états : normal, survolé et pressé. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae95ca5d6ebd6db42b988f73ea13b9d1c" name="ae95ca5d6ebd6db42b988f73ea13b9d1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae95ca5d6ebd6db42b988f73ea13b9d1c">&#9670;&#160;</a></span>Button()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Jr::Button::Button </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>textStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const sf::Font &amp;&#160;</td>
+          <td class="paramname"><em>font</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>charSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Color&#160;</td>
+          <td class="paramname"><em>normal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Color&#160;</td>
+          <td class="paramname"><em>hover</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Color&#160;</td>
+          <td class="paramname"><em>pressed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur du bouton. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">textStr</td><td>Texte affiché sur le bouton. </td></tr>
+    <tr><td class="paramname">font</td><td>Police utilisée pour le texte. </td></tr>
+    <tr><td class="paramname">charSize</td><td>Taille des caractères. </td></tr>
+    <tr><td class="paramname">size</td><td>Taille du bouton. </td></tr>
+    <tr><td class="paramname">normal</td><td>Couleur par défaut. </td></tr>
+    <tr><td class="paramname">hover</td><td>Couleur lors du survol. </td></tr>
+    <tr><td class="paramname">pressed</td><td>Couleur lors du clic. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4a1a9b4258bbabc062b86ac6a4724d62" name="a4a1a9b4258bbabc062b86ac6a4724d62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a1a9b4258bbabc062b86ac6a4724d62">&#9670;&#160;</a></span>draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Jr::Button::draw </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dessine le bouton sur la fenêtre. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>Fenêtre SFML cible. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a60de9081e1b56b91c68d097cac545130" name="a60de9081e1b56b91c68d097cac545130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60de9081e1b56b91c68d097cac545130">&#9670;&#160;</a></span>isClicked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Jr::Button::isClicked </td>
+          <td>(</td>
+          <td class="paramtype">const sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie si le bouton a été cliqué. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Événement SFML (clic souris). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true si le bouton a été cliqué. </dd></dl>
+
+</div>
+</div>
+<a id="a92a1d7799495814bdc40d459792f1583" name="a92a1d7799495814bdc40d459792f1583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92a1d7799495814bdc40d459792f1583">&#9670;&#160;</a></span>setPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Jr::Button::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Définit la position du bouton et recalcule le centrage du texte. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Nouvelle position. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acc32363303bb68cfb687b919c659695f" name="acc32363303bb68cfb687b919c659695f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc32363303bb68cfb687b919c659695f">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Jr::Button::update </td>
+          <td>(</td>
+          <td class="paramtype">const sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>mousePos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Met à jour l'état visuel du bouton selon la position de la souris. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mousePos</td><td>Position actuelle de la souris. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="Button_8hpp_source.html">Button.hpp</a></li>
+<li>source/<b>Button.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

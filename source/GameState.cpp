@@ -1,5 +1,5 @@
 #include "../include/GameState.hpp"
-#include "../include/StateManager.hpp" // Inclus pour la définition complète de StateManager
+#include "../include/StateManager.hpp" 
 
 namespace Jr {
 

@@ -2,8 +2,8 @@ var annotated_dup =
 [
     [ "Jr", null, [
       [ "AboutState", "classJr_1_1AboutState.html", "classJr_1_1AboutState" ],
-      [ "Board", "classJr_1_1Board.html", null ],
-      [ "Button", "classJr_1_1Button.html", null ],
+      [ "Board", "classJr_1_1Board.html", "classJr_1_1Board" ],
+      [ "Button", "classJr_1_1Button.html", "classJr_1_1Button" ],
       [ "ChessLogic", "classJr_1_1ChessLogic.html", "classJr_1_1ChessLogic" ],
       [ "FontManager", "classJr_1_1FontManager.html", "classJr_1_1FontManager" ],
       [ "Game", "classJr_1_1Game.html", "classJr_1_1Game" ],

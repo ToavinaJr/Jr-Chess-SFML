@@ -19,12 +19,7 @@ Game::Game()
         exit(1);
     }
 
-    // CORRECTION ICI : Passer textureManager au MenuState
     stateManager.pushState<MenuState>(fontManager, textureManager);
-    // Le constructeur de MenuState est :
-    // MenuState(StateManager& manager, sf::RenderWindow& win, FontManager& fm, TextureManager& tm);
-    // Les arguments implicites que pushState ajoute sont : *this (StateManager&) et window (sf::RenderWindow&).
-    // Donc, nous devons juste passer fontManager et textureManager.
 }
 
 void Game::loadAssets() {
@@ -43,10 +38,8 @@ void Game::loadAssets() {
         "../assets/images/pieces/chess_maestro_bw/bQ.png",
         "../assets/images/pieces/chess_maestro_bw/bK.png"
     };
-    textureManager.preloadTextures(pieceTexturePaths);
     
-    // Chemin de la police. Utilisez une constante si elle est définie ailleurs
-    // Attention: assurez-vous que ce chemin est correct sur votre système !
+    textureManager.preloadTextures(pieceTexturePaths);
     fontManager.getFont(FONT_PATH); 
 }
 

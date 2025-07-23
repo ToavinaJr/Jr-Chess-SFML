@@ -2,27 +2,29 @@
 #include <algorithm>
 #include <iostream>
 #include <cmath>
+#include <random>
 
 // --- Utilitaires de Bitboard ---
-// Ces macros gèrent la recherche du premier bit défini (count trailing zeros)
-// Ils sont essentiels pour la performance des opérations sur les bitboards.
 
-// Détection du compilateur pour utiliser __builtin_ctzll (GCC/Clang) ou un fallback.
-// __builtin_ctzll est une extension GNU qui compte le nombre de zéros consécutifs à partir du bit le moins significatif.
-// C'est très efficace pour trouver l'index du premier bit "1" dans un uint64_t.
 #ifdef __GNUC__
 #define CUSTOM_CTZLL(x) __builtin_ctzll(x)
+#elif defined(_MSC_VER) // For Microsoft Visual C++
+#include <intrin.h>
+inline int msvc_ctzll(uint64_t n) {
+    unsigned long index;
+    _BitScanForward64(&index, n);
+    return index;
+}
+#define CUSTOM_CTZLL(x) msvc_ctzll(x)
 #else
-// Fallback pour d'autres compilateurs (ex: MSVC).
-// Une implémentation manuelle est fournie, mais elle est moins optimisée.
-// Pour MSVC, il est recommandé d'utiliser des intrinsèques comme _BitScanForward64 pour des performances similaires.
+// Fallback for other compilers
 #warning "__builtin_ctzll is a GCC extension. Consider implementing an alternative for other compilers like MSVC."
 inline int custom_ctzll_fallback(uint64_t n) {
-    if (n == 0) return 64; // Convention: 64 si tous les bits sont zéro
+    if (n == 0) return 64; // Convention: 64 if all bits are zero
     int count = 0;
-    while ((n & 1) == 0) { // Tant que le bit le moins significatif est 0
-        n >>= 1;          // Décale vers la droite
-        count++;          // Incrémente le compteur
+    while ((n & 1) == 0) { // While the least significant bit is 0
+        n >>= 1;          // Shift right
+        count++;          // Increment count
     }
     return count;
 }
@@ -36,6 +38,7 @@ namespace Jr {
      * Initialise l'état du plateau de jeu à sa configuration de départ standard.
      */
     ChessLogic::ChessLogic() {
+        generateZobristKeys();
         initializeBoard();
     }
 
@@ -83,6 +86,11 @@ namespace Jr {
         blackKingMoved = false;
         blackRookKingsideMoved = false;
         blackRookQueensideMoved = false;
+
+        fiftyMoveCounter = 0;       // Réinitialise le compteur de 50 coups
+        positionHistory.clear();    // Efface l'historique des positions
+        currentZobristHash = calculateZobristHash(); // Calcule le hash initial
+        positionHistory.push_back(currentZobristHash);
     }
 
     /**
@@ -277,13 +285,11 @@ namespace Jr {
                 // Le roi se déplace d'une case dans toutes les directions.
                 for (int dr = -1; dr <= 1; dr++) {
                     for (int dc = -1; dc <= 1; dc++) {
-                        if (!(dr == 0 && dc == 0)) { // Exclut la case d'origine du roi.
+                        if (!(dr == 0 && dc == 0)) {
                             addIfValid(row + dr, col + dc);
                         }
                     }
-                }
-                // La logique complète du roque (cases intermédiaires non attaquées, etc.)
-                // est gérée dans `getLegalMoves` et `makeMove` car elle est complexe et dépendante de l'état d'échec.
+                }                
                 break;
             }
             default: break; // PieceType::None (aucune action pour ce type).
@@ -737,13 +743,13 @@ namespace Jr {
         std::map<int, Piece> boardState; // La map qui contiendra l'état du plateau.
         // Parcourt tous les bitboards (un pour chaque type et couleur de pièce).
         for (const auto& pair : bitboards) {
-            const std::string& pieceName = pair.first; // Ex: "wP", "bK"
-            uint64_t bb = pair.second;                 // Le bitboard actuel pour ce type de pièce.
+            const std::string& pieceName = pair.first;
+            uint64_t bb = pair.second;
             
             // Itérer sur chaque bit défini dans le bitboard pour trouver les positions des pièces.
             while (bb != 0) {
-                int square = CUSTOM_CTZLL(bb); // Trouve l'index de la case (bit le moins significatif).
-                bb &= (bb - 1);                // Efface ce bit pour passer au suivant.
+                int square = CUSTOM_CTZLL(bb);
+                bb &= (bb - 1);
                 
                 // Construire l'objet Piece à partir du nom de la pièce et de la case.
                 PieceColor color = (pieceName[0] == 'w') ? PieceColor::White : PieceColor::Black;
@@ -762,5 +768,290 @@ namespace Jr {
         }
         return boardState; // Retourne l'état complet du plateau.
     }
+
+    // Dans ChessLogic.cpp
+
+ChessGameStatus ChessLogic::getGameState() const {
+    bool whiteToMove = whiteTurn;
+
+    // 1) Échec et mat ou Pat
+    if (isKingInCheck(whiteToMove)) {
+        if (noLegalMovesAvailable(whiteToMove)) {
+            return ChessGameStatus::Checkmate;
+        }
+    } else {
+        if (noLegalMovesAvailable(whiteToMove)) {
+            return ChessGameStatus::Stalemate;
+        }
+    }
+
+    // 2) Règle des 50 coups
+    if (is50MoveRuleDraw()) {
+        return ChessGameStatus::Draw50Move;
+    }
+
+    // 3) Nulle par répétition de position
+    if (isThreeFoldRepetitionDraw()) {
+        return ChessGameStatus::DrawRepetition;
+    }
+
+    // 4) Matériel insuffisant
+    if (isInsufficientMaterial()) {
+        return ChessGameStatus::DrawMaterial;
+    }
+
+    // 5) Partie en cours
+    return ChessGameStatus::Playing;
+}
+
+
+bool ChessLogic::isStalemate() const {
+    bool currentKingInCheck = isKingInCheck(whiteTurn);
+    if (currentKingInCheck) {
+        return false; // Si le roi est en échec, ce n'est pas un pat
+    }
+
+    // Vérifie s'il y a des coups légaux
+    for (int from = 0; from < 64; ++from) {
+        Piece piece = getPieceAtSquare(from);
+        if (!piece.isEmpty() && ((piece.color == PieceColor::White) == whiteTurn)) {
+            if (!getLegalMoves(from).empty()) {
+                return false; // Il y a au moins un coup légal, donc pas de pat
+            }
+        }
+    }
+    return true; // Aucun coup légal et pas en échec = Pat
+}
+
+bool ChessLogic::isInsufficientMaterial() const {
+    int whitePieces = 0;
+    int blackPieces = 0;
+    int whiteBishops = 0;
+    int blackBishops = 0;
+    int whiteKnights = 0;
+    int blackKnights = 0;
+    bool hasPawns = false;
+    bool hasRooksQueens = false;
+
+    // Couleur des cases des fous (true = case noire, false = case blanche)
+    std::vector<bool> whiteBishopSquares;
+    std::vector<bool> blackBishopSquares;
+
+    for (const auto& pair : bitboards) {
+        const std::string& pieceName = pair.first;
+        uint64_t bb = pair.second;
+
+        // Pions, tours ou dames → matériel suffisant immédiatement
+        if (pieceName[1] == 'P') hasPawns = true;
+        if (pieceName[1] == 'R' || pieceName[1] == 'Q') hasRooksQueens = true;
+
+        while (bb) {
+            int sq = CUSTOM_CTZLL(bb); // ✅ Utilisation de ton macro portable
+            bb &= (bb - 1);            // Efface le bit le moins significatif
+
+            if (pieceName[0] == 'w') {
+                whitePieces++;
+                if (pieceName[1] == 'B') {
+                    whiteBishops++;
+                    whiteBishopSquares.push_back(((sq / 8) + (sq % 8)) % 2);
+                }
+                if (pieceName[1] == 'N') whiteKnights++;
+            } else {
+                blackPieces++;
+                if (pieceName[1] == 'B') {
+                    blackBishops++;
+                    blackBishopSquares.push_back(((sq / 8) + (sq % 8)) % 2);
+                }
+                if (pieceName[1] == 'N') blackKnights++;
+            }
+        }
+    }
+
+    // 1) Matériel suffisant dès qu'il y a un pion, une tour ou une dame
+    if (hasPawns || hasRooksQueens) {
+        return false;
+    }
+
+    // 2) K vs K
+    if (whitePieces == 1 && blackPieces == 1) return true;
+
+    // 3) K+B vs K ou K+N vs K
+    if ((whitePieces == 2 && (whiteBishops == 1 || whiteKnights == 1) && blackPieces == 1) ||
+        (blackPieces == 2 && (blackBishops == 1 || blackKnights == 1) && whitePieces == 1)) {
+        return true;
+    }
+
+    // 4) K+N+N vs K → Draw (deux cavaliers ne peuvent pas mater seuls)
+    if ((whitePieces == 3 && whiteKnights == 2 && blackPieces == 1) ||
+        (blackPieces == 3 && blackKnights == 2 && whitePieces == 1)) {
+        return true;
+    }
+
+    // 5) K+B vs K+B (Draw uniquement si les deux fous sont sur la même couleur de case)
+    if (whitePieces == 2 && blackPieces == 2 && whiteBishops == 1 && blackBishops == 1) {
+        if (!whiteBishopSquares.empty() && !blackBishopSquares.empty() &&
+            whiteBishopSquares[0] == blackBishopSquares[0]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+void ChessLogic::generateZobristKeys() {
+    std::mt19937_64 rng(std::random_device{}()); // Générateur de nombres aléatoires 64-bit
+
+    // Clés pour les pièces sur chaque case
+    for (int sq = 0; sq < 64; ++sq) {
+        ZobristPieceKeys[sq]["wP"] = rng();
+        ZobristPieceKeys[sq]["wR"] = rng();
+        ZobristPieceKeys[sq]["wN"] = rng();
+        ZobristPieceKeys[sq]["wB"] = rng();
+        ZobristPieceKeys[sq]["wQ"] = rng();
+        ZobristPieceKeys[sq]["wK"] = rng();
+        ZobristPieceKeys[sq]["bP"] = rng();
+        ZobristPieceKeys[sq]["bR"] = rng();
+        ZobristPieceKeys[sq]["bN"] = rng();
+        ZobristPieceKeys[sq]["bB"] = rng();
+        ZobristPieceKeys[sq]["bQ"] = rng();
+        ZobristPieceKeys[sq]["bK"] = rng();
+    }
+
+    // Clé pour le trait
+    ZobristSideToMoveKey = rng();
+
+    // Clés pour les droits de roque (16 combinaisons possibles)
+    for (int i = 0; i < 16; ++i) {
+        ZobristCastlingKeys[i] = rng();
+    }
+
+    // Clés pour la colonne de prise en passant (8 colonnes)
+    for (int i = 0; i < 8; ++i) {
+        ZobristEnPassantKeys[i] = rng();
+    }
+}
+
+uint64_t ChessLogic::calculateZobristHash() const {
+    uint64_t hash = 0ULL;
+
+    // Hash des pièces
+    for (const auto& pair : bitboards) {
+        const std::string& pieceName = pair.first;
+        uint64_t bb = pair.second;
+        while (bb) {
+            int sq = CUSTOM_CTZLL(bb);
+            bb &= (bb - 1);
+            hash ^= ZobristPieceKeys[sq].at(pieceName);
+        }
+    }
+
+    // Hash du trait
+    if (whiteTurn) {
+        hash ^= ZobristSideToMoveKey;
+    }
+
+    // Hash des droits de roque (représentation binaire des 4 droits)
+    int castlingRights = 0;
+    if (!whiteRookKingsideMoved && !whiteKingMoved) castlingRights |= 1;  // K (roi blanc côté roi)
+    if (!whiteRookQueensideMoved && !whiteKingMoved) castlingRights |= 2; // Q (roi blanc côté dame)
+    if (!blackRookKingsideMoved && !blackKingMoved) castlingRights |= 4;  // k (roi noir côté roi)
+    if (!blackRookQueensideMoved && !blackKingMoved) castlingRights |= 8; // q (roi noir côté dame)
+    hash ^= ZobristCastlingKeys[castlingRights];
+
+    // Hash de la case de prise en passant
+    if (enPassantSquare != -1) {
+        hash ^= ZobristEnPassantKeys[enPassantSquare % 8]; // Seule la colonne compte pour Zobrist
+    }
+
+    return hash;
+}
+
+// Cette fonction est appelée APRES les modifications des bitboards mais AVANT de changer le tour
+void ChessLogic::updateZobristHashForMove(const Piece& movingPiece, int from, int to,
+                                       const Piece& capturedPiece, int capturedPawnSq,
+                                       bool isCastling, int rookFrom, int rookTo, PieceType promotionType) {
+    // Retirer la pièce de départ et d'arrivée (si elle capture)
+    currentZobristHash ^= ZobristPieceKeys[from][movingPiece.getName()]; // Retire l'ancienne position
+    if (!capturedPiece.isEmpty()) {
+        currentZobristHash ^= ZobristPieceKeys[to][capturedPiece.getName()]; // Retire la pièce capturée
+    } else if (movingPiece.type == PieceType::Pawn && to == enPassantSquare && capturedPawnSq != -1) {
+        // En Passant, retire le pion capturé de sa case réelle
+        currentZobristHash ^= ZobristPieceKeys[capturedPawnSq][(movingPiece.color == PieceColor::White ? "bP" : "wP")];
+    }
+
+
+    // Mettre à jour la clé du trait (sera inversée par le ^= ZobristSideToMoveKey)
+    currentZobristHash ^= ZobristSideToMoveKey; // Inversion du trait
+
+    // Retirer l'ancienne clé de droits de roque et ajouter la nouvelle
+    // (cela dépend des drapeaux de roque avant et après le coup)
+    int oldCastlingRights = 0;
+    if (!whiteRookKingsideMoved && !whiteKingMoved) oldCastlingRights |= 1;
+    if (!whiteRookQueensideMoved && !whiteKingMoved) oldCastlingRights |= 2;
+    if (!blackRookKingsideMoved && !blackKingMoved) oldCastlingRights |= 4;
+    if (!blackRookQueensideMoved && !blackKingMoved) oldCastlingRights |= 8;
+    currentZobristHash ^= ZobristCastlingKeys[oldCastlingRights];
+
+    // Retirer l'ancienne clé en passant
+    if (enPassantSquare != -1) {
+        currentZobristHash ^= ZobristEnPassantKeys[enPassantSquare % 8];
+    }
+
+    
+    if (promotionType != PieceType::None) {
+        std::string promotedPieceName;
+        if (promotionType == PieceType::Queen) promotedPieceName = movingPiece.color == PieceColor::White ? "wQ" : "bQ";
+        else if (promotionType == PieceType::Rook) promotedPieceName = movingPiece.color == PieceColor::White ? "wR" : "bR";
+        else if (promotionType == PieceType::Bishop) promotedPieceName = movingPiece.color == PieceColor::White ? "wB" : "bB";
+        else if (promotionType == PieceType::Knight) promotedPieceName = movingPiece.color == PieceColor::White ? "wN" : "bN";
+        currentZobristHash ^= ZobristPieceKeys[to][promotedPieceName];
+    } else {
+        currentZobristHash ^= ZobristPieceKeys[to][movingPiece.getName()];
+    }
+
+
+    // Gérer le roque (déplacement de la tour)
+    if (isCastling) {
+        std::string rookName = movingPiece.color == PieceColor::White ? "wR" : "bR";
+        currentZobristHash ^= ZobristPieceKeys[rookFrom][rookName];
+        currentZobristHash ^= ZobristPieceKeys[rookTo][rookName];
+    }
+}
+
+bool ChessLogic::is50MoveRuleDraw() const {
+    return fiftyMoveCounter >= 100;
+}
+
+bool ChessLogic::isThreeFoldRepetitionDraw() const {
+    int count = 0;
+    for (auto hash : positionHistory) {
+        if (hash == currentZobristHash) {
+            ++count;
+            if (count >= 3) return true;
+        }
+    }
+    return false;
+}
+
+
+bool ChessLogic::noLegalMovesAvailable(bool whiteToMove) const {
+    for (int square = 0; square < 64; ++square) {
+        Piece piece = getPieceAtSquare(square);
+        
+        if (piece.isEmpty()) continue;
+
+        // Vérifie si la pièce correspond au joueur courant
+        if ((whiteToMove && piece.color != PieceColor::White) ||
+            (!whiteToMove && piece.color != PieceColor::Black)) {
+            continue;
+        }
+
+        auto moves = getLegalMoves(square);
+        if (!moves.empty()) return false;
+    }
+    return true;
+}
+
 
 } // namespace Jr

@@ -25,6 +25,7 @@ set(SOURCES
     source/HelpState.cpp
     source/AboutState.cpp
     source/Button.cpp
+    source/GameOverState.cpp
 )
 
 # Créer l'exécutable avec toutes les sources définies
