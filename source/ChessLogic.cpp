@@ -311,8 +311,8 @@ namespace Jr {
 
         // Parcourt toutes les pièces sur le plateau pour voir si elles attaquent le roi.
         for (const auto& pair : bitboards) {
-            const std::string& pieceName = pair.first; // Nom de la pièce (ex: "wP", "bR").
-            uint64_t bbOriginal = pair.second;           // Bitboard de ce type de pièce.
+            const std::string& pieceName = pair.first;
+            uint64_t bbOriginal = pair.second;
 
             // Vérifie si la pièce appartient à l'adversaire du roi.
             bool isWhitePiece = (pieceName[0] == 'w');
@@ -320,10 +320,10 @@ namespace Jr {
                 continue; // Ignore les pièces de la même couleur que le roi.
             }
 
-            uint64_t bb = bbOriginal; // Copie du bitboard pour l'itération.
+            uint64_t bb = bbOriginal;
             while (bb) {
-                int from = CUSTOM_CTZLL(bb); // Obtient la position de la pièce attaquante.
-                bb &= bb - 1;                // Efface le bit pour passer à la pièce suivante.
+                int from = CUSTOM_CTZLL(bb);
+                bb &= bb - 1;
 
                 // Récupère l'objet Piece de l'attaquant.
                 Piece attackingPiece = getPieceAtSquare(from);
@@ -337,12 +337,12 @@ namespace Jr {
                 // Vérifie si la case du roi est parmi les mouvements bruts de l'attaquant.
                 for (int sq : moves) {
                     if (sq == kingSquare) {
-                        return true; // Le roi est en échec !
+                        return true;
                     }
                 }
             }
         }
-        return false; // Le roi n'est pas en échec.
+        return false;
     }
 
     /**
@@ -367,16 +367,16 @@ namespace Jr {
         // 1. Trouver la pièce à déplacer.
         std::string movingPieceName;
         Piece movingPiece;
-        for (const auto& pair : backupBitboards) { // Itère sur la COPIE des bitboards.
+        for (const auto& pair : backupBitboards) {
             if ((pair.second & (1ULL << from)) != 0) {
                 movingPieceName = pair.first;
-                movingPiece = getPieceAtSquare(from); // Récupère la struct Piece (type, couleur).
+                movingPiece = getPieceAtSquare(from);
                 break;
             }
         }
 
         if (movingPieceName.empty() || movingPiece.isEmpty()) {
-            return false; // Pas de pièce valide à déplacer, ou erreur.
+            return false;
         }
 
         // 2. Supprimer la pièce de sa position de départ dans la copie des bitboards.
@@ -385,10 +385,10 @@ namespace Jr {
 
         // 3. Gérer la capture si une pièce est sur la case cible (`to`).
         // Cette étape doit être effectuée avant de placer la pièce à `to`.
-        for (auto& pair : backupBitboards) { // Itère sur la copie.
+        for (auto& pair : backupBitboards) {
             if ((pair.second & (1ULL << to)) != 0) {
-                pair.second &= ~(1ULL << to);       // Supprime la pièce capturée du bitboard spécifique.
-                backupBitboardPieces &= ~(1ULL << to); // Supprime la pièce capturée du bitboard général.
+                pair.second &= ~(1ULL << to);
+                backupBitboardPieces &= ~(1ULL << to);
                 break;
             }
         }
@@ -396,12 +396,13 @@ namespace Jr {
         // 4. Gérer la prise en passant pour la simulation.
         // Lors d'une prise en passant, la case 'to' est vide, mais un pion est capturé.
         if (movingPiece.type == PieceType::Pawn && to == enPassantSquare && (backupBitboardPieces & (1ULL << to)) == 0) {
-            int capturedPawnSq = (movingPiece.color == PieceColor::White) ? (to - 8) : (to + 8); // Position du pion adverse capturé.
-            std::string pawnName = (movingPiece.color == PieceColor::White) ? "bP" : "wP";      // Nom du pion capturé.
+            int capturedPawnSq = (movingPiece.color == PieceColor::White) ? (to - 8) : (to + 8);
+            std::string pawnName = (movingPiece.color == PieceColor::White) ? "bP" : "wP";
+
             // Vérifie que le pion à capturer existe bien à cette position dans le backup.
             if ((backupBitboards.count(pawnName) && (backupBitboards[pawnName] & (1ULL << capturedPawnSq)) != 0)) {
-                 backupBitboards[pawnName] &= ~(1ULL << capturedPawnSq);    // Retire le pion capturé.
-                 backupBitboardPieces &= ~(1ULL << capturedPawnSq); // Met à jour le bitboard général.
+                 backupBitboards[pawnName] &= ~(1ULL << capturedPawnSq);
+                 backupBitboardPieces &= ~(1ULL << capturedPawnSq);
             }
         }
 
@@ -412,9 +413,9 @@ namespace Jr {
         // 6. Gérer le roque pour la simulation (déplacement de la tour associé).
         // Ceci est crucial car le roi ne peut pas roquer à travers une case attaquée.
         if (movingPiece.type == PieceType::King && std::abs(fromCol - (to % 8)) == 2) {
-            int fromRow = from / 8; // Rangée du roi.
-            int rookFrom, rookTo;   // Positions de départ et d'arrivée de la tour.
-            std::string rookName = (movingPiece.color == PieceColor::White) ? "wR" : "bR"; // Nom de la tour.
+            int fromRow = from / 8;
+            int rookFrom, rookTo;
+            std::string rookName = (movingPiece.color == PieceColor::White) ? "wR" : "bR";
 
             if ((to % 8) == 6) { // Roque côté roi (court): roi de e à g, tour de h à f.
                 rookFrom = fromRow * 8 + 7; // Position de la tour sur h.
@@ -440,7 +441,6 @@ namespace Jr {
         // Appelle `isKingInCheck` sur l'instance simulée pour vérifier l'échec.
         bool inCheck = simulatedLogic.isKingInCheck(whiteKing);
 
-        // L'état original (`this->bitboards`) n'est pas modifié car nous avons travaillé sur des copies.
         return inCheck;
     }
 
@@ -455,15 +455,15 @@ namespace Jr {
      */
     std::vector<int> ChessLogic::getLegalMoves(int from) const {
         std::vector<int> legalMoves;
-        Piece piece = getPieceAtSquare(from); // Récupère la pièce à la case de départ.
+        Piece piece = getPieceAtSquare(from);
 
         if (piece.isEmpty()) {
-            return legalMoves; // Pas de pièce à la case 'from'.
+            return legalMoves;
         }
 
         bool isWhite = (piece.color == PieceColor::White);
         if (isWhite != whiteTurn) {
-            return legalMoves; // Ce n'est pas le tour de cette pièce.
+            return legalMoves;
         }
 
         // Obtient les mouvements bruts de la pièce.
