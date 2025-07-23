@@ -4,59 +4,227 @@
 
 namespace Jr {
 
-    // Enumérations pour le type et la couleur de la pièce
-    enum class PieceType { Pawn, Knight, Bishop, Rook, Queen, King, None };
-    enum class PieceColor { White, Black, None };
+/**
+ * @enum PieceType
+ * @brief Enumération représentant le type d'une pièce d'échecs.
+ */
+enum class PieceType { 
+    Pawn,   /**< Pion */
+    Knight, /**< Cavalier */
+    Bishop, /**< Fou */
+    Rook,   /**< Tour */
+    Queen,  /**< Dame */
+    King,   /**< Roi */
+    None    /**< Aucune pièce (case vide) */
+};
 
-    // Structure pour représenter une pièce logique (non graphique)
-    struct Piece {
-        PieceType type = PieceType::None;
-        PieceColor color = PieceColor::None;
+/**
+ * @enum PieceColor
+ * @brief Enumération représentant la couleur d'une pièce d'échecs.
+ */
+enum class PieceColor { 
+    White, /**< Pièce blanche */
+    Black, /**< Pièce noire */
+    None   /**< Aucune couleur (case vide) */
+};
 
-        // Constructeur par défaut
-        Piece() = default;
+/**
+ * @struct Piece
+ * @brief Structure représentant une pièce d'échecs logique (sans aspects graphiques).
+ * 
+ * Contient le type et la couleur de la pièce, avec quelques méthodes utilitaires.
+ */
+struct Piece {
+    /// Type de la pièce (Pion, Cavalier, etc.)
+    PieceType type = PieceType::None;
 
-        // Constructeur avec type et couleur
-        Piece(PieceType t, PieceColor c) : type(t), color(c) {}
+    /// Couleur de la pièce (Blanc, Noir, ou None)
+    PieceColor color = PieceColor::None;
 
-        // Vérifie si la pièce est "vide"
-        bool isEmpty() const {
-            return type == PieceType::None || color == PieceColor::None;
+    /**
+     * @brief Constructeur par défaut, crée une pièce vide.
+     */
+    Piece() = default;
+
+    /**
+     * @brief Constructeur avec initialisation du type et de la couleur.
+     * @param t Type de la pièce
+     * @param c Couleur de la pièce
+     */
+    Piece(PieceType t, PieceColor c) : type(t), color(c) {}
+
+    /**
+     * @brief Indique si cette pièce est vide (pas de pièce).
+     * @return true si la pièce est vide, false sinon.
+     */
+    bool isEmpty() const {
+        return type == PieceType::None || color == PieceColor::None;
+    }
+
+    /**
+     * @brief Retourne le nom du fichier de texture associé à la pièce.
+     * 
+     * Le nom est composé d'un préfixe 'w' ou 'b' selon la couleur, suivi d'une lettre 
+     * représentant le type (P, N, B, R, Q, K), et de l'extension ".png".
+     * 
+     * Par exemple : "wP.png" pour un pion blanc, "bK.png" pour un roi noir.
+     * 
+     * @return Nom du fichier texture ou chaîne vide si pièce vide.
+     */
+    std::string getTextureFileName() const {
+        if (isEmpty()) return "";
+
+        std::string s = "";
+        s += (color == PieceColor::White ? 'w' : 'b');
+        switch (type) {
+            case PieceType::Pawn:   s += 'P'; break;
+            case PieceType::Knight: s += 'N'; break;
+            case PieceType::Bishop: s += 'B'; break;
+            case PieceType::Rook:   s += 'R'; break;
+            case PieceType::Queen:  s += 'Q'; break;
+            case PieceType::King:   s += 'K'; break;
+            default: return "";
         }
-
-        // Retourne le nom de fichier de la texture pour cette pièce
-        std::string getTextureFileName() const {
-            if (isEmpty()) return "";
-
-            std::string s = "";
-            s += (color == PieceColor::White ? 'w' : 'b');
-            switch (type) {
-                case PieceType::Pawn:   s += 'P'; break;
-                case PieceType::Knight: s += 'N'; break;
-                case PieceType::Bishop: s += 'B'; break;
-                case PieceType::Rook:   s += 'R'; break;
-                case PieceType::Queen:  s += 'Q'; break;
-                case PieceType::King:   s += 'K'; break;
-                default: return ""; // Ne devrait pas arriver
-            }
-            return s + ".png";
+        return s + ".png";
+    }
+    
+    /**
+     * @brief Retourne une chaîne représentant la pièce, par exemple "wP" ou "bK".
+     * 
+     * Utile pour identifier la pièce dans des maps ou pour le débogage.
+     * 
+     * @return Nom court de la pièce ou chaîne vide si pièce vide.
+     */
+    std::string getName() const {
+        if (isEmpty()) return "";
+        std::string s = "";
+        s += (color == PieceColor::White ? 'w' : 'b');
+        switch (type) {
+            case PieceType::Pawn:   s += 'P'; break;
+            case PieceType::Knight: s += 'N'; break;
+            case PieceType::Bishop: s += 'B'; break;
+            case PieceType::Rook:   s += 'R'; break;
+            case PieceType::Queen:  s += 'Q'; break;
+            case PieceType::King:   s += 'K'; break;
+            default: return "";
         }
-        
-        // Retourne le nom de la pièce (ex: "wP", "bK")
-        std::string getName() const {
-            if (isEmpty()) return "";
-            std::string s = "";
-            s += (color == PieceColor::White ? 'w' : 'b');
-            switch (type) {
-                case PieceType::Pawn:   s += 'P'; break;
-                case PieceType::Knight: s += 'N'; break;
-                case PieceType::Bishop: s += 'B'; break;
-                case PieceType::Rook:   s += 'R'; break;
-                case PieceType::Queen:  s += 'Q'; break;
-                case PieceType::King:   s += 'K'; break;
-                default: return "";
-            }
-            return s;
+        return s;
+    }
+};
+
+}
+#pragma once
+#include <string>
+#include <utility>
+
+namespace Jr {
+
+/**
+ * @enum PieceType
+ * @brief Enumération représentant le type d'une pièce d'échecs.
+ */
+enum class PieceType { 
+    Pawn,   /**< Pion */
+    Knight, /**< Cavalier */
+    Bishop, /**< Fou */
+    Rook,   /**< Tour */
+    Queen,  /**< Dame */
+    King,   /**< Roi */
+    None    /**< Aucune pièce (case vide) */
+};
+
+/**
+ * @enum PieceColor
+ * @brief Enumération représentant la couleur d'une pièce d'échecs.
+ */
+enum class PieceColor { 
+    White, /**< Pièce blanche */
+    Black, /**< Pièce noire */
+    None   /**< Aucune couleur (case vide) */
+};
+
+/**
+ * @struct Piece
+ * @brief Structure représentant une pièce d'échecs logique (sans aspects graphiques).
+ * 
+ * Contient le type et la couleur de la pièce, avec quelques méthodes utilitaires.
+ */
+struct Piece {
+    /// Type de la pièce (Pion, Cavalier, etc.)
+    PieceType type = PieceType::None;
+
+    /// Couleur de la pièce (Blanc, Noir, ou None)
+    PieceColor color = PieceColor::None;
+
+    /**
+     * @brief Constructeur par défaut, crée une pièce vide.
+     */
+    Piece() = default;
+
+    /**
+     * @brief Constructeur avec initialisation du type et de la couleur.
+     * @param t Type de la pièce
+     * @param c Couleur de la pièce
+     */
+    Piece(PieceType t, PieceColor c) : type(t), color(c) {}
+
+    /**
+     * @brief Indique si cette pièce est vide (pas de pièce).
+     * @return true si la pièce est vide, false sinon.
+     */
+    bool isEmpty() const {
+        return type == PieceType::None || color == PieceColor::None;
+    }
+
+    /**
+     * @brief Retourne le nom du fichier de texture associé à la pièce.
+     * 
+     * Le nom est composé d'un préfixe 'w' ou 'b' selon la couleur, suivi d'une lettre 
+     * représentant le type (P, N, B, R, Q, K), et de l'extension ".png".
+     * 
+     * Par exemple : "wP.png" pour un pion blanc, "bK.png" pour un roi noir.
+     * 
+     * @return Nom du fichier texture ou chaîne vide si pièce vide.
+     */
+    std::string getTextureFileName() const {
+        if (isEmpty()) return "";
+
+        std::string s = "";
+        s += (color == PieceColor::White ? 'w' : 'b');
+        switch (type) {
+            case PieceType::Pawn:   s += 'P'; break;
+            case PieceType::Knight: s += 'N'; break;
+            case PieceType::Bishop: s += 'B'; break;
+            case PieceType::Rook:   s += 'R'; break;
+            case PieceType::Queen:  s += 'Q'; break;
+            case PieceType::King:   s += 'K'; break;
+            default: return "";
         }
-    };
+        return s + ".png";
+    }
+    
+    /**
+     * @brief Retourne une chaîne représentant la pièce, par exemple "wP" ou "bK".
+     * 
+     * Utile pour identifier la pièce dans des maps ou pour le débogage.
+     * 
+     * @return Nom court de la pièce ou chaîne vide si pièce vide.
+     */
+    std::string getName() const {
+        if (isEmpty()) return "";
+        std::string s = "";
+        s += (color == PieceColor::White ? 'w' : 'b');
+        switch (type) {
+            case PieceType::Pawn:   s += 'P'; break;
+            case PieceType::Knight: s += 'N'; break;
+            case PieceType::Bishop: s += 'B'; break;
+            case PieceType::Rook:   s += 'R'; break;
+            case PieceType::Queen:  s += 'Q'; break;
+            case PieceType::King:   s += 'K'; break;
+            default: return "";
+        }
+        return s;
+    }
+};
+
 }
