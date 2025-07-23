@@ -130,143 +130,179 @@ namespace Jr {
                 window.draw(highlight);
             }
         }
+
+        if (promotionPending) {
+            window.draw(promotionFrame);
+            for (auto& choice : promotionChoices)
+                window.draw(choice);
+        }
+
     }
 
- std::vector<int> Board::getLegalMoves(const std::string& pieceName, int from, bool forCheck) {
-    std::vector<int> moves;
-    int row = from / 8;
-    int col = from % 8;
-    bool isWhite = (pieceName[0] == 'w');
+    void Board::preparePromotionChoices() {
+        promotionChoices.clear();
 
-    auto isEmpty = [&](int sq) {
-        for (auto& [name, bb] : bitboards)
-            if (bb & (1ULL << sq)) return false;
-        return true;
-    };
+        std::vector<std::string> pieces = promotionWhite
+            ? std::vector<std::string>{"wQ", "wR", "wB", "wN"}
+            : std::vector<std::string>{"bQ", "bR", "bB", "bN"};
 
-    auto isEnemy = [&](int sq, bool whitePiece) {
-        for (auto& [name, bb] : bitboards)
-            if (bb & (1ULL << sq)) return (name[0] == 'w') != whitePiece;
-        return false;
-    };
+        float startX = WINDOW_WIDTH / 2.f - 2 * BOX_SIZE;
+        float startY = WINDOW_HEIGHT / 2.f - BOX_SIZE / 2.f;
 
-    auto addIfValid = [&](int r, int c, bool whitePiece) {
-        if (r >= 0 && r < 8 && c >= 0 && c < 8) {
-            int sq = r * 8 + c;
-            if (isEmpty(sq) || isEnemy(sq, whitePiece)) moves.push_back(sq);
+        // === ✅ Cadre global pour toutes les pièces ===
+        promotionFrame.setSize(sf::Vector2f(4 * BOX_SIZE, BOX_SIZE));
+        promotionFrame.setPosition(startX, startY);
+        promotionFrame.setFillColor(sf::Color(200, 200, 0, 180)); // Jaune semi-transparent
+        promotionFrame.setOutlineThickness(3.f);
+        promotionFrame.setOutlineColor(sf::Color::Black);
+
+        // === ✅ Pièces à dessiner par-dessus ===
+        for (int i = 0; i < 4; i++) {
+            sf::Sprite sprite;
+            sprite.setTexture(pieceTextures[pieces[i]]);
+            sf::Vector2u texSize = pieceTextures[pieces[i]].getSize();
+            sprite.setScale((float)BOX_SIZE / texSize.x, (float)BOX_SIZE / texSize.y);
+            sprite.setPosition(startX + i * BOX_SIZE, startY);
+            promotionChoices.push_back(sprite);
         }
-    };
+    }
 
-    // === PIONS ===
-    if (pieceName == "wP" || pieceName == "bP") {
-        int dir = isWhite ? 1 : -1;
-        int startRow = isWhite ? 1 : 6;
-        int fwd = (row + dir) * 8 + col;
 
-        if (row + dir >= 0 && row + dir < 8 && isEmpty(fwd)) {
-            moves.push_back(fwd);
-            if (row == startRow) {
-                int fwd2 = (row + 2 * dir) * 8 + col;
-                if (isEmpty(fwd2)) moves.push_back(fwd2);
-            }
-        }
+    std::vector<int> Board::getLegalMoves(const std::string& pieceName, int from, bool forCheck) {
+        std::vector<int> moves;
+        int row = from / 8;
+        int col = from % 8;
+        bool isWhite = (pieceName[0] == 'w');
 
-        for (int dc : {-1, 1}) {
-            int r = row + dir, c = col + dc;
+        auto isEmpty = [&](int sq) {
+            for (auto& [name, bb] : bitboards)
+                if (bb & (1ULL << sq)) return false;
+            return true;
+        };
+
+        auto isEnemy = [&](int sq, bool whitePiece) {
+            for (auto& [name, bb] : bitboards)
+                if (bb & (1ULL << sq)) return (name[0] == 'w') != whitePiece;
+            return false;
+        };
+
+        auto addIfValid = [&](int r, int c, bool whitePiece) {
             if (r >= 0 && r < 8 && c >= 0 && c < 8) {
                 int sq = r * 8 + c;
-                if (isEnemy(sq, isWhite)) moves.push_back(sq);
-                if (!forCheck && sq == enPassantSquare) moves.push_back(sq);
+                if (isEmpty(sq) || isEnemy(sq, whitePiece)) moves.push_back(sq);
             }
-        }
-    }
+        };
 
-    // === ROI ===
-    if (pieceName[1] == 'K') {
-        for (int dr = -1; dr <= 1; dr++)
-            for (int dc = -1; dc <= 1; dc++)
-                if (!(dr == 0 && dc == 0)) addIfValid(row + dr, col + dc, isWhite);
+        // === PIONS ===
+        if (pieceName == "wP" || pieceName == "bP") {
+            int dir = isWhite ? 1 : -1;
+            int startRow = isWhite ? 1 : 6;
+            int fwd = (row + dir) * 8 + col;
 
-        if (!forCheck && !isKingInCheck(isWhite)) {
-            int backRank = isWhite ? 0 : 7;
+            if (row + dir >= 0 && row + dir < 8 && isEmpty(fwd)) {
+                moves.push_back(fwd);
+                if (row == startRow) {
+                    int fwd2 = (row + 2 * dir) * 8 + col;
+                    if (isEmpty(fwd2)) moves.push_back(fwd2);
+                }
+            }
 
-            // Roque côté roi (court)
-            if (isWhite) {
-                if (!whiteKingMoved && !whiteRookKingsideMoved) {
-                    if (isEmpty(backRank * 8 + 5) && isEmpty(backRank * 8 + 6)) {
-                        if (!wouldBeInCheck(from, backRank * 8 + 4, isWhite) &&
-                            !wouldBeInCheck(from, backRank * 8 + 5, isWhite) &&
-                            !wouldBeInCheck(from, backRank * 8 + 6, isWhite)) {
-                            moves.push_back(backRank * 8 + 6);
-                        }
-                    }
-                }
-                // Roque côté dame (long)
-                if (!whiteKingMoved && !whiteRookQueensideMoved) {
-                    if (isEmpty(backRank * 8 + 1) && isEmpty(backRank * 8 + 2) && isEmpty(backRank * 8 + 3)) {
-                        if (!wouldBeInCheck(from, backRank * 8 + 4, isWhite) &&
-                            !wouldBeInCheck(from, backRank * 8 + 3, isWhite) &&
-                            !wouldBeInCheck(from, backRank * 8 + 2, isWhite)) {
-                            moves.push_back(backRank * 8 + 2);
-                        }
-                    }
-                }
-            } else {
-                // Noirs
-                if (!blackKingMoved && !blackRookKingsideMoved) {
-                    if (isEmpty(backRank * 8 + 5) && isEmpty(backRank * 8 + 6)) {
-                        if (!wouldBeInCheck(from, backRank * 8 + 4, isWhite) &&
-                            !wouldBeInCheck(from, backRank * 8 + 5, isWhite) &&
-                            !wouldBeInCheck(from, backRank * 8 + 6, isWhite)) {
-                            moves.push_back(backRank * 8 + 6);
-                        }
-                    }
-                }
-                if (!blackKingMoved && !blackRookQueensideMoved) {
-                    if (isEmpty(backRank * 8 + 1) && isEmpty(backRank * 8 + 2) && isEmpty(backRank * 8 + 3)) {
-                        if (!wouldBeInCheck(from, backRank * 8 + 4, isWhite) &&
-                            !wouldBeInCheck(from, backRank * 8 + 3, isWhite) &&
-                            !wouldBeInCheck(from, backRank * 8 + 2, isWhite)) {
-                            moves.push_back(backRank * 8 + 2);
-                        }
-                    }
+            for (int dc : {-1, 1}) {
+                int r = row + dir, c = col + dc;
+                if (r >= 0 && r < 8 && c >= 0 && c < 8) {
+                    int sq = r * 8 + c;
+                    if (isEnemy(sq, isWhite)) moves.push_back(sq);
+                    if (!forCheck && sq == enPassantSquare) moves.push_back(sq);
                 }
             }
         }
-    }
 
-    // === CAVALIER, FOU, TOUR, DAME ===
-    auto slide = [&](std::vector<std::pair<int,int>> dirs) {
-        for (auto [dr, dc] : dirs) {
-            int r = row + dr, c = col + dc;
-            while (r >= 0 && r < 8 && c >= 0 && c < 8) {
-                int sq = r * 8 + c;
-                if (isEmpty(sq)) moves.push_back(sq);
-                else { if (isEnemy(sq, isWhite)) moves.push_back(sq); break; }
-                r += dr; c += dc;
+        // === ROI ===
+        if (pieceName[1] == 'K') {
+            for (int dr = -1; dr <= 1; dr++)
+                for (int dc = -1; dc <= 1; dc++)
+                    if (!(dr == 0 && dc == 0)) addIfValid(row + dr, col + dc, isWhite);
+
+            if (!forCheck && !isKingInCheck(isWhite)) {
+                int backRank = isWhite ? 0 : 7;
+
+                // Roque côté roi (court)
+                if (isWhite) {
+                    if (!whiteKingMoved && !whiteRookKingsideMoved) {
+                        if (isEmpty(backRank * 8 + 5) && isEmpty(backRank * 8 + 6)) {
+                            if (!wouldBeInCheck(from, backRank * 8 + 4, isWhite) &&
+                                !wouldBeInCheck(from, backRank * 8 + 5, isWhite) &&
+                                !wouldBeInCheck(from, backRank * 8 + 6, isWhite)) {
+                                moves.push_back(backRank * 8 + 6);
+                            }
+                        }
+                    }
+                    // Roque côté dame (long)
+                    if (!whiteKingMoved && !whiteRookQueensideMoved) {
+                        if (isEmpty(backRank * 8 + 1) && isEmpty(backRank * 8 + 2) && isEmpty(backRank * 8 + 3)) {
+                            if (!wouldBeInCheck(from, backRank * 8 + 4, isWhite) &&
+                                !wouldBeInCheck(from, backRank * 8 + 3, isWhite) &&
+                                !wouldBeInCheck(from, backRank * 8 + 2, isWhite)) {
+                                moves.push_back(backRank * 8 + 2);
+                            }
+                        }
+                    }
+                } else {
+                    // Noirs
+                    if (!blackKingMoved && !blackRookKingsideMoved) {
+                        if (isEmpty(backRank * 8 + 5) && isEmpty(backRank * 8 + 6)) {
+                            if (!wouldBeInCheck(from, backRank * 8 + 4, isWhite) &&
+                                !wouldBeInCheck(from, backRank * 8 + 5, isWhite) &&
+                                !wouldBeInCheck(from, backRank * 8 + 6, isWhite)) {
+                                moves.push_back(backRank * 8 + 6);
+                            }
+                        }
+                    }
+                    if (!blackKingMoved && !blackRookQueensideMoved) {
+                        if (isEmpty(backRank * 8 + 1) && isEmpty(backRank * 8 + 2) && isEmpty(backRank * 8 + 3)) {
+                            if (!wouldBeInCheck(from, backRank * 8 + 4, isWhite) &&
+                                !wouldBeInCheck(from, backRank * 8 + 3, isWhite) &&
+                                !wouldBeInCheck(from, backRank * 8 + 2, isWhite)) {
+                                moves.push_back(backRank * 8 + 2);
+                            }
+                        }
+                    }
+                }
             }
         }
-    };
 
-    if (pieceName[1] == 'N') {
-        for (auto [dr,dc] : std::vector<std::pair<int,int>>{
-            {2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}})
-            addIfValid(row+dr, col+dc, isWhite);
+        // === CAVALIER, FOU, TOUR, DAME ===
+        auto slide = [&](std::vector<std::pair<int,int>> dirs) {
+            for (auto [dr, dc] : dirs) {
+                int r = row + dr, c = col + dc;
+                while (r >= 0 && r < 8 && c >= 0 && c < 8) {
+                    int sq = r * 8 + c;
+                    if (isEmpty(sq)) moves.push_back(sq);
+                    else { if (isEnemy(sq, isWhite)) moves.push_back(sq); break; }
+                    r += dr; c += dc;
+                }
+            }
+        };
+
+        if (pieceName[1] == 'N') {
+            for (auto [dr,dc] : std::vector<std::pair<int,int>>{
+                {2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}})
+                addIfValid(row+dr, col+dc, isWhite);
+        }
+
+        if (pieceName[1] == 'B') slide({{1,1},{1,-1},{-1,1},{-1,-1}});
+        if (pieceName[1] == 'R') slide({{1,0},{-1,0},{0,1},{0,-1}});
+        if (pieceName[1] == 'Q') slide({{1,1},{1,-1},{-1,1},{-1,-1},{1,0},{-1,0},{0,1},{0,-1}});
+
+        if (!forCheck) {
+            std::vector<int> filtered;
+            for (int sq : moves)
+                if (!wouldBeInCheck(from, sq, isWhite))
+                    filtered.push_back(sq);
+            return filtered;
+        }
+        return moves;
     }
-
-    if (pieceName[1] == 'B') slide({{1,1},{1,-1},{-1,1},{-1,-1}});
-    if (pieceName[1] == 'R') slide({{1,0},{-1,0},{0,1},{0,-1}});
-    if (pieceName[1] == 'Q') slide({{1,1},{1,-1},{-1,1},{-1,-1},{1,0},{-1,0},{0,1},{0,-1}});
-
-    if (!forCheck) {
-        std::vector<int> filtered;
-        for (int sq : moves)
-            if (!wouldBeInCheck(from, sq, isWhite))
-                filtered.push_back(sq);
-        return filtered;
-    }
-    return moves;
-}
 
     
     bool Board::isKingInCheck(bool whiteKing) {
@@ -326,104 +362,120 @@ namespace Jr {
     }
 
     bool Board::movePiece(int from, int to) {
-    if (from < 0 || from >= 64 || to < 0 || to >= 64)
-        return false;
+        if (from < 0 || from >= 64 || to < 0 || to >= 64)
+            return false;
 
-    // Trouver la pièce à déplacer
-    std::string movingPiece;
-    for (auto& [pieceName, bb] : bitboards) {
-        if (bb & (1ULL << from)) {
-            movingPiece = pieceName;
-            break;
-        }
-    }
-    if (movingPiece.empty()) return false;
-
-    // Vérifier que le coup est légal
-    auto legalMoves = getLegalMoves(movingPiece, from);
-    if (std::find(legalMoves.begin(), legalMoves.end(), to) == legalMoves.end())
-        return false;
-
-    // === Gestion de la prise en passant ===
-    if ((movingPiece == "wP" || movingPiece == "bP") && to == enPassantSquare) {
-        int dir = (movingPiece == "wP") ? -8 : 8;
-        int capturedPawnSquare = to + dir;
+        // Trouver la pièce à déplacer
+        std::string movingPiece;
         for (auto& [pieceName, bb] : bitboards) {
-            if (bb & (1ULL << capturedPawnSquare)) {
-                bb &= ~(1ULL << capturedPawnSquare);
+            if (bb & (1ULL << from)) {
+                movingPiece = pieceName;
                 break;
             }
         }
-    }
+        if (movingPiece.empty()) return false;
 
-    // === Retirer la pièce capturée normalement ===
-    for (auto& [pieceName, bb] : bitboards) {
-        if (bb & (1ULL << to)) {
-            bb &= ~(1ULL << to);
+        // Vérifier que le coup est légal
+        auto legalMoves = getLegalMoves(movingPiece, from);
+        if (std::find(legalMoves.begin(), legalMoves.end(), to) == legalMoves.end())
+            return false;
+
+        // === Gestion de la prise en passant ===
+        if ((movingPiece == "wP" || movingPiece == "bP") && to == enPassantSquare) {
+            int dir = (movingPiece == "wP") ? -8 : 8;
+            int capturedPawnSquare = to + dir;
+            for (auto& [pieceName, bb] : bitboards) {
+                if (bb & (1ULL << capturedPawnSquare)) {
+                    bb &= ~(1ULL << capturedPawnSquare);
+                    break;
+                }
+            }
         }
-    }
 
-    // === Détection et gestion du roque ===
-    if (movingPiece[1] == 'K') {
-        int fromRow = from / 8;
-        int fromCol = from % 8;
-        int toRow = to / 8;
-        int toCol = to % 8;
-
-        // Roque côté roi (court)
-        if (toCol == 6 && fromRow == toRow) {
-            int rookFrom = fromRow * 8 + 7;
-            int rookTo = fromRow * 8 + 5;
-
-            std::string rookName = (movingPiece[0] == 'w') ? "wR" : "bR";
-            bitboards[rookName] &= ~(1ULL << rookFrom);
-            bitboards[rookName] |= (1ULL << rookTo);
+        // === Retirer la pièce capturée normalement ===
+        for (auto& [pieceName, bb] : bitboards) {
+            if (bb & (1ULL << to)) {
+                bb &= ~(1ULL << to);
+            }
         }
-        // Roque côté dame (long)
-        else if (toCol == 2 && fromRow == toRow) {
-            int rookFrom = fromRow * 8 + 0;
-            int rookTo = fromRow * 8 + 3;
 
-            std::string rookName = (movingPiece[0] == 'w') ? "wR" : "bR";
-            bitboards[rookName] &= ~(1ULL << rookFrom);
-            bitboards[rookName] |= (1ULL << rookTo);
+        // === Détection et gestion du roque ===
+        if (movingPiece[1] == 'K') {
+            int fromRow = from / 8;
+            int fromCol = from % 8;
+            int toRow = to / 8;
+            int toCol = to % 8;
+
+            // Roque côté roi (court)
+            if (toCol == 6 && fromRow == toRow) {
+                int rookFrom = fromRow * 8 + 7;
+                int rookTo = fromRow * 8 + 5;
+
+                std::string rookName = (movingPiece[0] == 'w') ? "wR" : "bR";
+                bitboards[rookName] &= ~(1ULL << rookFrom);
+                bitboards[rookName] |= (1ULL << rookTo);
+            }
+            // Roque côté dame (long)
+            else if (toCol == 2 && fromRow == toRow) {
+                int rookFrom = fromRow * 8 + 0;
+                int rookTo = fromRow * 8 + 3;
+
+                std::string rookName = (movingPiece[0] == 'w') ? "wR" : "bR";
+                bitboards[rookName] &= ~(1ULL << rookFrom);
+                bitboards[rookName] |= (1ULL << rookTo);
+            }
         }
+
+        // === Déplacer la pièce ===
+        bitboards[movingPiece] &= ~(1ULL << from);
+        bitboards[movingPiece] |= (1ULL << to);
+
+        // === Mettre à jour enPassantSquare ===
+        if (movingPiece == "wP" && from / 8 == 1 && to / 8 == 3) {
+            enPassantSquare = from + 8;
+        } else if (movingPiece == "bP" && from / 8 == 6 && to / 8 == 4) {
+            enPassantSquare = from - 8;
+        } else {
+            enPassantSquare = -1;
+        }
+
+        // === Mettre à jour le flag "moved" du roi ou des tours ===
+        if (movingPiece == "wK") whiteKingMoved = true;
+        if (movingPiece == "bK") blackKingMoved = true;
+
+        if (movingPiece == "wR") {
+            if (from == 7) whiteRookKingsideMoved = true;
+            else if (from == 0) whiteRookQueensideMoved = true;
+        }
+        if (movingPiece == "bR") {
+            if (from == 63) blackRookKingsideMoved = true;
+            else if (from == 56) blackRookQueensideMoved = true;
+        }
+
+        // === Détection de promotion ===
+        if (movingPiece == "wP" && to / 8 == 7) {
+            promotionPending = true;
+            promotionWhite = true;
+            promotionSquare = to;
+            preparePromotionChoices();
+        } else if (movingPiece == "bP" && to / 8 == 0) {
+            promotionPending = true;
+            promotionWhite = false;
+            promotionSquare = to;
+            preparePromotionChoices();
+        }
+
+        // Changer le tour
+        if (!promotionPending) {
+            whiteTurn = !whiteTurn;
+        }
+        
+
+        // Mettre à jour les sprites
+        updateSpritesFromBitboards();
+
+        return true;
     }
-
-    // === Déplacer la pièce ===
-    bitboards[movingPiece] &= ~(1ULL << from);
-    bitboards[movingPiece] |= (1ULL << to);
-
-    // === Mettre à jour enPassantSquare ===
-    if (movingPiece == "wP" && from / 8 == 1 && to / 8 == 3) {
-        enPassantSquare = from + 8;
-    } else if (movingPiece == "bP" && from / 8 == 6 && to / 8 == 4) {
-        enPassantSquare = from - 8;
-    } else {
-        enPassantSquare = -1;
-    }
-
-    // === Mettre à jour le flag "moved" du roi ou des tours ===
-    if (movingPiece == "wK") whiteKingMoved = true;
-    if (movingPiece == "bK") blackKingMoved = true;
-
-    if (movingPiece == "wR") {
-        if (from == 7) whiteRookKingsideMoved = true;
-        else if (from == 0) whiteRookQueensideMoved = true;
-    }
-    if (movingPiece == "bR") {
-        if (from == 63) blackRookKingsideMoved = true;
-        else if (from == 56) blackRookQueensideMoved = true;
-    }
-
-    // Changer le tour
-    whiteTurn = !whiteTurn;
-
-    // Mettre à jour les sprites
-    updateSpritesFromBitboards();
-
-    return true;
-}
 
     void Board::handleClick(int mouseX, int mouseY) {
         // Conversion des coordonnées de la souris en case (0..63)
@@ -433,6 +485,32 @@ namespace Jr {
         if (col < 0 || col >= 8 || row < 0 || row >= 8) return;
 
         int clickedSquare = row * 8 + col;
+
+        if (promotionPending) {
+            for (int i = 0; i < (int)promotionChoices.size(); i++) {
+                if (promotionChoices[i].getGlobalBounds().contains(mouseX, mouseY)) {
+                    // === Choix de la nouvelle pièce ===
+                    std::string newPiece = promotionWhite
+                        ? std::vector<std::string>{"wQ", "wR", "wB", "wN"}[i]
+                        : std::vector<std::string>{"bQ", "bR", "bB", "bN"}[i];
+
+                    std::string pawn = promotionWhite ? "wP" : "bP";
+
+                    bitboards[pawn] &= ~(1ULL << promotionSquare);
+                    bitboards[newPiece] |= (1ULL << promotionSquare);
+
+                    promotionPending = false;
+                    promotionChoices.clear();
+                    promotionSquare = -1;
+
+                    whiteTurn = !whiteTurn;
+
+                    updateSpritesFromBitboards();
+                    return;
+                }
+            }
+            return; // ✅ On bloque tout autre clic tant que la promotion n'est pas finie
+        }
 
         if (selectedSquare == -1) {
             // === Sélection d'une pièce ===

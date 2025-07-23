@@ -18,6 +18,7 @@ namespace Jr {
             std::map<std::string, uint64_t>                     bitboards; 
             uint64_t                                            bitboardPieces;
             
+            // Variables pour savoir, la case choisie, les cases de destination, le tour de role et la prise en passant 
             int                                                 selectedSquare = -1;
             std::vector<int>                                    highlightedSquares;
             bool                                                whiteTurn = true;
@@ -28,6 +29,7 @@ namespace Jr {
             bool                                                whiteRookKingsideMoved     =    false;
             bool                                                whiteRookQueensideMoved    =    false;
 
+            // Variables pour savoir pour gerer les rois et les tours afin de roquer
             bool                                                blackKingMoved             =    false;
             bool                                                blackRookKingsideMoved     =    false;
             bool                                                blackRookQueensideMoved    =    false;
@@ -37,7 +39,8 @@ namespace Jr {
             bool                                                promotionWhite             = true;
             int                                                 promotionSquare            = -1;
             std::vector<sf::Sprite>                             promotionChoices;
-
+            sf::RectangleShape                                  promotionFrame;
+            
             void                                                loadTextures();
             void                                                updateSpritesFromBitboards();
             bool                                                movePiece(int from, int to);
@@ -45,6 +48,7 @@ namespace Jr {
 
             bool                                                isKingInCheck(bool whiteKing);
             bool                                                wouldBeInCheck(int from, int to, bool whiteKing);
+            void                                                preparePromotionChoices();
 
         public:
             Board();
