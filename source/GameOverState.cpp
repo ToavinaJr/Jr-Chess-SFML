@@ -22,16 +22,18 @@ GameOverState::GameOverState(StateManager& manager, sf::RenderWindow& win,
     replayButton = std::make_unique<Button>(
         "Rejouer", fontManager.getFont(FONT_PATH), 18,
         sf::Vector2f(200.f, 50.f),
-        sf::Color(100, 100, 250),
-        sf::Color(150, 150, 255),
-        sf::Color(50, 50, 200));
+        sf::Color(50, 50, 60, 200),
+        sf::Color(80, 80, 90, 220),
+        sf::Color(30, 30, 40, 255)
+    );
 
     menuButton = std::make_unique<Button>(
         "Menu", fontManager.getFont(FONT_PATH), 18,
         sf::Vector2f(200.f, 50.f),
-        sf::Color(100, 250, 100),
-        sf::Color(150, 255, 150),
-        sf::Color(50, 200, 50));
+        sf::Color(50, 50, 60, 200),
+        sf::Color(80, 80, 90, 220),
+        sf::Color(30, 30, 40, 255)
+    );
 
     replayButton->setPosition({window.getSize().x / 2.f - replayButton.get()->getGlobalBounds().width / 2, window.getSize().y / 2.f});
     replayButton->centerText();
