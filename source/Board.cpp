@@ -1,5 +1,5 @@
 #include "../include/Board.hpp"
-#include "../include/constants.hpp" // Pour les constantes globales
+#include "../include/constants.hpp"
 #include <iostream>
 
 namespace Jr {

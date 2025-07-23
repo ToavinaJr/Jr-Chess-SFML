@@ -1,4 +1,4 @@
-#include "../include/ChessLogicManager.hpp"
+#include "../include/ChessLogic.hpp"
 #include <algorithm>
 #include <iostream>
 #include <cmath>

@@ -17,4 +17,6 @@ namespace Jr {
     inline const sf::Color BOX_COLOR_LIGHT = sf::Color(240, 217, 181);
     inline const sf::Color BOX_COLOR_DARK  = sf::Color(181, 136, 99);
     inline const sf::Color BACKGROUND_COLOR = sf::Color(200, 200, 200);
+
+    constexpr const char* FONT_PATH = "../assets/fonts/SpaceMono-Regular.ttf";
 }

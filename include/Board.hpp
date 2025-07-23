@@ -7,7 +7,7 @@
 #include "constants.hpp"
 #include "TextureManager.hpp"
 #include "FontManager.hpp"
-#include "ChessLogicManager.hpp" // Board a besoin de la logique pour savoir quoi dessiner
+#include "ChessLogic.hpp" // Board a besoin de la logique pour savoir quoi dessiner
 
 namespace Jr {
 
