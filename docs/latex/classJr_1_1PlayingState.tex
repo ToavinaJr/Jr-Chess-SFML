@@ -1,0 +1,186 @@
+\doxysection{Jr\+::Playing\+State Class Reference}
+\hypertarget{classJr_1_1PlayingState}{}\label{classJr_1_1PlayingState}\index{Jr::PlayingState@{Jr::PlayingState}}
+
+
+État du jeu représentant une partie d\textquotesingle{}échecs en cours.  
+
+
+
+
+{\ttfamily \#include $<$Playing\+State.\+hpp$>$}
+
+
+
+Inheritance diagram for Jr\+::Playing\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{classJr_1_1PlayingState__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Jr\+::Playing\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classJr_1_1PlayingState__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJr_1_1PlayingState_a17517dc7b598e96d35352c7d997dd03c}{Playing\+State}} (\mbox{\hyperlink{classJr_1_1StateManager}{State\+Manager}} \&manager, sf\+::\+Render\+Window \&win, \mbox{\hyperlink{classJr_1_1TextureManager}{Texture\+Manager}} \&tm, \mbox{\hyperlink{classJr_1_1FontManager}{Font\+Manager}} \&fm)
+\begin{DoxyCompactList}\small\item\em Constructeur de \doxylink{classJr_1_1PlayingState}{Playing\+State}. \end{DoxyCompactList}\item 
+\Hypertarget{classJr_1_1PlayingState_abfde04868d4d060a057623e0b9651a22}\label{classJr_1_1PlayingState_abfde04868d4d060a057623e0b9651a22} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Playing\+State} () override=default
+\begin{DoxyCompactList}\small\item\em Destructeur virtuel par défaut. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJr_1_1PlayingState_a312c4c94bc0e1db665e98ea664a97952}{handle\+Input}} (const sf\+::\+Event \&event) override
+\begin{DoxyCompactList}\small\item\em Traite les entrées utilisateur spécifiques à la partie en cours. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJr_1_1PlayingState_a902739fb440de4aecb7912fb7463fa64}{update}} (float delta\+Time) override
+\begin{DoxyCompactList}\small\item\em Met à jour la logique du jeu (animations, état des pièces, règles). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJr_1_1PlayingState_a9705c64f38d904be73c1aee039f376e0}{draw}} () override
+\begin{DoxyCompactList}\small\item\em Dessine le plateau et tous les éléments graphiques liés à la partie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJr_1_1PlayingState_abf477457f31c32ee7322fbb07eefafd2}{on\+Enter}} () override
+\begin{DoxyCompactList}\small\item\em Méthode appelée lors de l\textquotesingle{}entrée dans l\textquotesingle{}état \doxylink{classJr_1_1PlayingState}{Playing\+State}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classJr_1_1GameState}{Jr\+::\+Game\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJr_1_1GameState_a33ec532947277da8b5ecc594002dbda3}{Game\+State}} (\mbox{\hyperlink{classJr_1_1StateManager}{State\+Manager}} \&manager, sf\+::\+Render\+Window \&win)
+\begin{DoxyCompactList}\small\item\em Constructeur de \doxylink{classJr_1_1GameState}{Game\+State}. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Game\+State} ()=default
+\begin{DoxyCompactList}\small\item\em Destructeur virtuel pour assurer la bonne destruction des classes dérivées. \end{DoxyCompactList}\item 
+virtual void {\bfseries on\+Exit} ()
+\begin{DoxyCompactList}\small\item\em Appelé lors de la sortie de cet état. Peut être utilisé pour nettoyer des ressources spécifiques à l\textquotesingle{}état. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJr_1_1PlayingState_a5bdba68607122041b6ffb0a51fc596dc}\label{classJr_1_1PlayingState_a5bdba68607122041b6ffb0a51fc596dc} 
+\mbox{\hyperlink{classJr_1_1TextureManager}{Texture\+Manager}} \& {\bfseries texture\+Manager}
+\begin{DoxyCompactList}\small\item\em Référence au gestionnaire de textures partagé pour charger et dessiner les sprites. \end{DoxyCompactList}\item 
+\Hypertarget{classJr_1_1PlayingState_af560475df64d6e8a9d4e4681cb04872f}\label{classJr_1_1PlayingState_af560475df64d6e8a9d4e4681cb04872f} 
+\mbox{\hyperlink{classJr_1_1FontManager}{Font\+Manager}} \& {\bfseries font\+Manager}
+\begin{DoxyCompactList}\small\item\em Référence au gestionnaire de polices partagé pour gérer les polices de texte. \end{DoxyCompactList}\item 
+\Hypertarget{classJr_1_1PlayingState_a92b12818ff1adb2686502baf73af9a0e}\label{classJr_1_1PlayingState_a92b12818ff1adb2686502baf73af9a0e} 
+\mbox{\hyperlink{classJr_1_1ChessLogic}{Chess\+Logic}} {\bfseries chess\+Logic}
+\begin{DoxyCompactList}\small\item\em Instance de la logique d\textquotesingle{}échecs propre à cette partie. \end{DoxyCompactList}\item 
+\Hypertarget{classJr_1_1PlayingState_a0110aae70334468f0e58bab6a59b558c}\label{classJr_1_1PlayingState_a0110aae70334468f0e58bab6a59b558c} 
+\mbox{\hyperlink{classJr_1_1Board}{Board}} {\bfseries board}
+\begin{DoxyCompactList}\small\item\em Instance du plateau graphique associé à la partie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classJr_1_1GameState}{Jr\+::\+Game\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJr_1_1StateManager}{State\+Manager}} \& {\bfseries state\+Manager}
+\item 
+sf\+::\+Render\+Window \& {\bfseries window}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+État du jeu représentant une partie d\textquotesingle{}échecs en cours. 
+
+Cette classe dérive de \doxylink{classJr_1_1GameState}{Game\+State} et gère la logique et l\textquotesingle{}affichage du plateau d\textquotesingle{}échecs pendant une partie active. Elle coordonne les interactions utilisateur, la mise à jour de la logique de jeu, et le rendu graphique via les gestionnaires de textures et polices. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classJr_1_1PlayingState_a17517dc7b598e96d35352c7d997dd03c}\label{classJr_1_1PlayingState_a17517dc7b598e96d35352c7d997dd03c} 
+\index{Jr::PlayingState@{Jr::PlayingState}!PlayingState@{PlayingState}}
+\index{PlayingState@{PlayingState}!Jr::PlayingState@{Jr::PlayingState}}
+\doxysubsubsection{\texorpdfstring{PlayingState()}{PlayingState()}}
+{\footnotesize\ttfamily Jr\+::\+Playing\+State\+::\+Playing\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJr_1_1StateManager}{State\+Manager}} \&}]{manager,  }\item[{sf\+::\+Render\+Window \&}]{win,  }\item[{\mbox{\hyperlink{classJr_1_1TextureManager}{Texture\+Manager}} \&}]{tm,  }\item[{\mbox{\hyperlink{classJr_1_1FontManager}{Font\+Manager}} \&}]{fm }\end{DoxyParamCaption})}
+
+
+
+Constructeur de \doxylink{classJr_1_1PlayingState}{Playing\+State}. 
+
+Initialise les références aux gestionnaires, crée la logique et le plateau, et prépare l\textquotesingle{}état pour une nouvelle partie.
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Référence au \doxylink{classJr_1_1StateManager}{State\+Manager} pour gérer les transitions d\textquotesingle{}état. \\
+\hline
+{\em win} & Référence à la fenêtre SFML pour le rendu. \\
+\hline
+{\em tm} & Référence au gestionnaire de textures. \\
+\hline
+{\em fm} & Référence au gestionnaire de polices. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classJr_1_1PlayingState_a9705c64f38d904be73c1aee039f376e0}\label{classJr_1_1PlayingState_a9705c64f38d904be73c1aee039f376e0} 
+\index{Jr::PlayingState@{Jr::PlayingState}!draw@{draw}}
+\index{draw@{draw}!Jr::PlayingState@{Jr::PlayingState}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Jr\+::\+Playing\+State\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Dessine le plateau et tous les éléments graphiques liés à la partie. 
+
+
+
+Implements \mbox{\hyperlink{classJr_1_1GameState_a47dabc886961a9ca3a485d34936f6a1c}{Jr\+::\+Game\+State}}.
+
+\Hypertarget{classJr_1_1PlayingState_a312c4c94bc0e1db665e98ea664a97952}\label{classJr_1_1PlayingState_a312c4c94bc0e1db665e98ea664a97952} 
+\index{Jr::PlayingState@{Jr::PlayingState}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!Jr::PlayingState@{Jr::PlayingState}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily void Jr\+::\+Playing\+State\+::handle\+Input (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Traite les entrées utilisateur spécifiques à la partie en cours. 
+
+Gère les clics, mouvements de souris, et autres événements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & Événement SFML à traiter. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classJr_1_1GameState_a1076922e6e180caf79017124c40f31fd}{Jr\+::\+Game\+State}}.
+
+\Hypertarget{classJr_1_1PlayingState_abf477457f31c32ee7322fbb07eefafd2}\label{classJr_1_1PlayingState_abf477457f31c32ee7322fbb07eefafd2} 
+\index{Jr::PlayingState@{Jr::PlayingState}!onEnter@{onEnter}}
+\index{onEnter@{onEnter}!Jr::PlayingState@{Jr::PlayingState}}
+\doxysubsubsection{\texorpdfstring{onEnter()}{onEnter()}}
+{\footnotesize\ttfamily void Jr\+::\+Playing\+State\+::on\+Enter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Méthode appelée lors de l\textquotesingle{}entrée dans l\textquotesingle{}état \doxylink{classJr_1_1PlayingState}{Playing\+State}. 
+
+Permet d\textquotesingle{}initialiser ou réinitialiser la partie, le plateau et la logique. 
+
+Reimplemented from \mbox{\hyperlink{classJr_1_1GameState_ab425953ec0410581dfa9f82cda09882a}{Jr\+::\+Game\+State}}.
+
+\Hypertarget{classJr_1_1PlayingState_a902739fb440de4aecb7912fb7463fa64}\label{classJr_1_1PlayingState_a902739fb440de4aecb7912fb7463fa64} 
+\index{Jr::PlayingState@{Jr::PlayingState}!update@{update}}
+\index{update@{update}!Jr::PlayingState@{Jr::PlayingState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Jr\+::\+Playing\+State\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Met à jour la logique du jeu (animations, état des pièces, règles). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & Temps écoulé depuis la dernière mise à jour (en secondes). \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classJr_1_1GameState_a73366a87afd55dbeb225ca95f2f9a95d}{Jr\+::\+Game\+State}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Playing\+State.\+hpp\end{DoxyCompactItemize}

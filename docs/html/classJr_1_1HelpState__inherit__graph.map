@@ -1,0 +1,5 @@
+<map id="Jr::HelpState" name="Jr::HelpState">
+<area shape="rect" id="Node000001" title="État du jeu affichant l&#39;écran d&#39;aide ou de tutoriel." alt="" coords="10,79,113,104"/>
+<area shape="rect" id="Node000002" href="$classJr_1_1GameState.html" title="Classe de base abstraite pour tous les états du jeu." alt="" coords="5,5,117,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,44,64,79,59,79,59,44"/>
+</map>

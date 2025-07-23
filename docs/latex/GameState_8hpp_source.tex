@@ -1,0 +1,39 @@
+\doxysection{Game\+State.\+hpp}
+\hypertarget{GameState_8hpp_source}{}\label{GameState_8hpp_source}\index{include/GameState.hpp@{include/GameState.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}\ \textcolor{comment}{//\ Pour\ std::unique\_ptr}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }Jr\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Déclaration\ anticipée\ du\ StateManager\ pour\ éviter\ les\ dépendances\ circulaires}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }StateManager;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJr_1_1GameState}{GameState}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Référence\ au\ StateManager\ pour\ permettre\ aux\ états\ de\ changer\ d'état.}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classJr_1_1StateManager}{StateManager}}\&\ stateManager;}
+\DoxyCodeLine{00021\ \ \ \ \ sf::RenderWindow\&\ window;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classJr_1_1GameState_a33ec532947277da8b5ecc594002dbda3}{GameState}}(\mbox{\hyperlink{classJr_1_1StateManager}{StateManager}}\&\ manager,\ sf::RenderWindow\&\ win);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classJr_1_1GameState_a99c1745e6d3eadddbff7334a4988bcc8}{\string~GameState}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1GameState_a1076922e6e180caf79017124c40f31fd}{handleInput}}(\textcolor{keyword}{const}\ sf::Event\&\ event)\ =\ 0;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1GameState_a73366a87afd55dbeb225ca95f2f9a95d}{update}}(\textcolor{keywordtype}{float}\ deltaTime)\ =\ 0;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1GameState_a47dabc886961a9ca3a485d34936f6a1c}{draw}}()\ =\ 0;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1GameState_ab425953ec0410581dfa9f82cda09882a}{onEnter}}()\ \{\}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1GameState_a0534cdc633b78d0ced97bbbbcfff42dc}{onExit}}()\ \{\}}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \}\ \textcolor{comment}{//\ namespace\ Jr}}
+
+\end{DoxyCode}

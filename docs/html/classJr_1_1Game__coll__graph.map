@@ -1,0 +1,9 @@
+<map id="Jr::Game" name="Jr::Game">
+<area shape="rect" id="Node000001" title="Classe principale orchestrant l&#39;exécution du jeu d&#39;échecs." alt="" coords="197,93,275,119"/>
+<area shape="rect" id="Node000002" href="$classJr_1_1TextureManager.html" title="Gestionnaire de textures SFML chargé de gérer le chargement, la mise en cache et la libération des te..." alt="" coords="5,5,149,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,40,123,67,160,85,197,96,196,101,158,90,120,72,91,44"/>
+<area shape="rect" id="Node000003" href="$classJr_1_1FontManager.html" title="Gestion centralisée du chargement et du cache des polices." alt="" coords="174,5,298,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="239,45,239,93,233,93,233,45"/>
+<area shape="rect" id="Node000004" href="$classJr_1_1StateManager.html" title="Gère la pile des états du jeu (menu, partie, aide, etc.)." alt="" coords="323,5,453,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="369,43,331,72,276,96,274,91,328,67,365,38"/>
+</map>

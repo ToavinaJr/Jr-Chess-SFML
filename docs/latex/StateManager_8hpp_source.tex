@@ -1,0 +1,56 @@
+\doxysection{State\+Manager.\+hpp}
+\hypertarget{StateManager_8hpp_source}{}\label{StateManager_8hpp_source}\index{include/StateManager.hpp@{include/StateManager.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}\ \textcolor{comment}{//\ Pour\ std::unique\_ptr}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}GameState.hpp"{}}\ \textcolor{comment}{//\ Déclaration\ de\ GameState}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }Jr\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJr_1_1StateManager}{StateManager}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ std::vector<std::unique\_ptr<GameState>>\ \mbox{\hyperlink{classJr_1_1StateManager_aeac2eae96b8c06d71435f92816b6b513}{states}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ sf::RenderWindow\&\ \mbox{\hyperlink{classJr_1_1StateManager_a6e1b66326ddbafd219dfd14f5039d1c5}{window}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classJr_1_1StateManager_a1df239af44c7301f83a3dbc1247c7c83}{StateManager}}(sf::RenderWindow\&\ win);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TType,\ \textcolor{keyword}{typename}...\ TArgs>}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1StateManager_a1fd6881daca6bb7e09c9f6db958ce32a}{pushState}}(TArgs\&\&...\ args)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classJr_1_1StateManager_aeac2eae96b8c06d71435f92816b6b513}{states}}.empty())\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJr_1_1StateManager_aeac2eae96b8c06d71435f92816b6b513}{states}}.back()-\/>onExit();\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJr_1_1StateManager_aeac2eae96b8c06d71435f92816b6b513}{states}}.push\_back(std::make\_unique<TType>(*\textcolor{keyword}{this},\ \mbox{\hyperlink{classJr_1_1StateManager_a6e1b66326ddbafd219dfd14f5039d1c5}{window}},\ std::forward<TArgs>(args)...));}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJr_1_1StateManager_aeac2eae96b8c06d71435f92816b6b513}{states}}.back()-\/>onEnter();\ }
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1StateManager_aafe997f726df37662ad03b5131358157}{popState}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TType,\ \textcolor{keyword}{typename}...\ TArgs>}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1StateManager_ad4b485ba7ae2231ff192cd07cc2657d0}{changeState}}(TArgs\&\&...\ args)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classJr_1_1StateManager_aeac2eae96b8c06d71435f92816b6b513}{states}}.empty())\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJr_1_1StateManager_aeac2eae96b8c06d71435f92816b6b513}{states}}.back()-\/>onExit();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJr_1_1StateManager_aeac2eae96b8c06d71435f92816b6b513}{states}}.pop\_back();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJr_1_1StateManager_aeac2eae96b8c06d71435f92816b6b513}{states}}.push\_back(std::make\_unique<TType>(*\textcolor{keyword}{this},\ \mbox{\hyperlink{classJr_1_1StateManager_a6e1b66326ddbafd219dfd14f5039d1c5}{window}},\ std::forward<TArgs>(args)...));}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJr_1_1StateManager_aeac2eae96b8c06d71435f92816b6b513}{states}}.back()-\/>onEnter();}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1StateManager_a99b60718e968d357ce901637418fa7ab}{handleInput}}(\textcolor{keyword}{const}\ sf::Event\&\ event);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1StateManager_a4fde9e9f3a6b19fe00a6b448862c1c72}{update}}(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1StateManager_a4b598ca95893fcc2aa0bdb127a44cd2b}{draw}}();}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classJr_1_1StateManager_a666e371b1da6cacf4d73c403a2396a05}{isEmpty}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00102\ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \}\ \textcolor{comment}{//\ namespace\ Jr}}
+
+\end{DoxyCode}

@@ -1,0 +1,46 @@
+\doxysection{Menu\+State.\+hpp}
+\hypertarget{MenuState_8hpp_source}{}\label{MenuState_8hpp_source}\index{include/MenuState.hpp@{include/MenuState.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}GameState.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}FontManager.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}TextureManager.hpp"{}}\ \textcolor{comment}{//\ Reste\ nécessaire\ pour\ PlayingState}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Button.hpp"{}}\ \textcolor{comment}{//\ NOUVEAU\ :\ Inclure\ la\ classe\ Button}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}\ \textcolor{comment}{//\ Pour\ std::unique\_ptr\ pour\ les\ boutons}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }Jr\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJr_1_1MenuState}{MenuState}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classJr_1_1GameState}{GameState}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ sf::Text\ \mbox{\hyperlink{classJr_1_1MenuState_a836c68984f4bed001441f2f1a63e218e}{titleText}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ std::vector<std::unique\_ptr<Button>>\ \mbox{\hyperlink{classJr_1_1MenuState_a0fe48b5ad9109cfa3576166103fcadcc}{menuButtons}};}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classJr_1_1FontManager}{FontManager}}\&\ \mbox{\hyperlink{classJr_1_1MenuState_ab1657e5f1525f959a3dbd55b8832c073}{fontManager}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classJr_1_1TextureManager}{TextureManager}}\&\ \mbox{\hyperlink{classJr_1_1MenuState_acc1786565e57dcb801fdca785ea77c9b}{textureManager}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1MenuState_af4e1bc1037857ec09f374fcdaeb67bbb}{setupButtons}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1MenuState_a24d381d08383132d06fa4e3f0bd7bc43}{centerText}}(sf::Text\&\ text,\ \textcolor{keywordtype}{float}\ yOffset);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classJr_1_1MenuState_a5479d57eac5624f760ef18c38b944f1d}{MenuState}}(\mbox{\hyperlink{classJr_1_1StateManager}{StateManager}}\&\ manager,\ sf::RenderWindow\&\ win,\ \mbox{\hyperlink{classJr_1_1FontManager}{FontManager}}\&\ fm,\ \mbox{\hyperlink{classJr_1_1TextureManager}{TextureManager}}\&\ tm);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classJr_1_1MenuState_a5eded0d2df975e5c051e04be3ef460a5}{\string~MenuState}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1MenuState_abe28eda830276795882e84a27c65d30c}{handleInput}}(\textcolor{keyword}{const}\ sf::Event\&\ event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1MenuState_ada01c689db3223ffe8f7cdb8b5cf6b2d}{update}}(\textcolor{keywordtype}{float}\ deltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1MenuState_aacd6870d01bbcc3482ca8a46fb385e90}{draw}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1MenuState_a3cd3663582e78e9217668dac95ccf48b}{onEnter}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \}\ \textcolor{comment}{//\ namespace\ Jr}}
+
+\end{DoxyCode}

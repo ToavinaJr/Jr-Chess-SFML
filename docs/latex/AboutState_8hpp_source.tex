@@ -1,0 +1,45 @@
+\doxysection{About\+State.\+hpp}
+\hypertarget{AboutState_8hpp_source}{}\label{AboutState_8hpp_source}\index{include/AboutState.hpp@{include/AboutState.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}GameState.hpp"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}FontManager.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Button.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }Jr\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJr_1_1AboutState}{AboutState}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classJr_1_1GameState}{GameState}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00013\ \ \ \ \ sf::Text\ titleText;}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{classJr_1_1FontManager}{FontManager}}\&\ fontManager;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ sf::RectangleShape\ backgroundShape;}
+\DoxyCodeLine{00017\ \ \ \ \ sf::RectangleShape\ titleSeparator;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ std::unique\_ptr<Button>\ backButton;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Textes\ en\ bas\ de\ page\ (footer)}}
+\DoxyCodeLine{00022\ \ \ \ \ sf::Text\ footer1;\ }
+\DoxyCodeLine{00023\ \ \ \ \ sf::Text\ footer2;\ }
+\DoxyCodeLine{00024\ \ \ \ \ sf::Text\ footer3;\ }
+\DoxyCodeLine{00025\ \ \ \ \ sf::Text\ footer4;\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ centerText(sf::Text\&\ text,\ \textcolor{keywordtype}{float}\ yOffset);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classJr_1_1AboutState}{AboutState}}(\mbox{\hyperlink{classJr_1_1StateManager}{StateManager}}\&\ manager,\ sf::RenderWindow\&\ win,\ \mbox{\hyperlink{classJr_1_1FontManager}{FontManager}}\&\ fm);}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classJr_1_1AboutState}{\string~AboutState}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1AboutState_addcb0949ab2dbd4505fdee918cab4dc3}{handleInput}}(\textcolor{keyword}{const}\ sf::Event\&\ event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1AboutState_a40fbe68fb78fd60f7571ad3036b582f6}{update}}(\textcolor{keywordtype}{float}\ deltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1AboutState_a00c05c7ce9043e8f4d1743135a5c33cc}{draw}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classJr_1_1AboutState_a37c2b94a1f8745b3646f4a01b4886f89}{onEnter}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \}\ \textcolor{comment}{//\ namespace\ Jr}}
+
+\end{DoxyCode}

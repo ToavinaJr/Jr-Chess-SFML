@@ -1,0 +1,146 @@
+\doxysection{Piece.\+hpp}
+\hypertarget{Piece_8hpp_source}{}\label{Piece_8hpp_source}\index{include/Piece.hpp@{include/Piece.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }Jr\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{enum\ class}\ PieceType\ \{\ }
+\DoxyCodeLine{00012\ \ \ \ \ Pawn,\ \ \ }
+\DoxyCodeLine{00013\ \ \ \ \ Knight,\ }
+\DoxyCodeLine{00014\ \ \ \ \ Bishop,\ }
+\DoxyCodeLine{00015\ \ \ \ \ Rook,\ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ Queen,\ \ }
+\DoxyCodeLine{00017\ \ \ \ \ King,\ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ None\ \ \ \ }
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{enum\ class}\ PieceColor\ \{\ }
+\DoxyCodeLine{00026\ \ \ \ \ White,\ }
+\DoxyCodeLine{00027\ \ \ \ \ Black,\ }
+\DoxyCodeLine{00028\ \ \ \ \ None\ \ \ }
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structJr_1_1Piece}{Piece}}\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ PieceType\ \mbox{\hyperlink{structJr_1_1Piece_a7e32b9e79b3d28f8fa0a3bc25cfe8b93}{type}}\ =\ PieceType::None;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ PieceColor\ \mbox{\hyperlink{structJr_1_1Piece_a7c325c834a73c1c85a5ba1ea28af2fec}{color}}\ =\ PieceColor::None;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{structJr_1_1Piece_ac7d43be8b9be4f92d05b52097d01acb2}{Piece}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{structJr_1_1Piece_a191f2fbff7efbd04e8797d6c180fcc39}{Piece}}(PieceType\ t,\ PieceColor\ c)\ :\ \mbox{\hyperlink{structJr_1_1Piece_a7e32b9e79b3d28f8fa0a3bc25cfe8b93}{type}}(t),\ \mbox{\hyperlink{structJr_1_1Piece_a7c325c834a73c1c85a5ba1ea28af2fec}{color}}(c)\ \{\}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structJr_1_1Piece_a43074e7ac38f804984d03e891a03e38f}{isEmpty}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structJr_1_1Piece_a7e32b9e79b3d28f8fa0a3bc25cfe8b93}{type}}\ ==\ PieceType::None\ ||\ \mbox{\hyperlink{structJr_1_1Piece_a7c325c834a73c1c85a5ba1ea28af2fec}{color}}\ ==\ PieceColor::None;}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00074\ \ \ \ \ std::string\ \mbox{\hyperlink{structJr_1_1Piece_aede9ad805c7917db47e951fe008ade2d}{getTextureFileName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structJr_1_1Piece_a43074e7ac38f804984d03e891a03e38f}{isEmpty}}())\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ std::string\ s\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ s\ +=\ (\mbox{\hyperlink{structJr_1_1Piece_a7c325c834a73c1c85a5ba1ea28af2fec}{color}}\ ==\ PieceColor::White\ ?\ \textcolor{charliteral}{'w'}\ :\ \textcolor{charliteral}{'b'});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{structJr_1_1Piece_a7e32b9e79b3d28f8fa0a3bc25cfe8b93}{type}})\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Pawn:\ \ \ s\ +=\ \textcolor{charliteral}{'P'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Knight:\ s\ +=\ \textcolor{charliteral}{'N'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Bishop:\ s\ +=\ \textcolor{charliteral}{'B'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Rook:\ \ \ s\ +=\ \textcolor{charliteral}{'R'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Queen:\ \ s\ +=\ \textcolor{charliteral}{'Q'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::King:\ \ \ s\ +=\ \textcolor{charliteral}{'K'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s\ +\ \textcolor{stringliteral}{"{}.png"{}};}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ std::string\ \mbox{\hyperlink{structJr_1_1Piece_a0b0ff339a9b759900a1f8feed4ad7826}{getName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structJr_1_1Piece_a43074e7ac38f804984d03e891a03e38f}{isEmpty}}())\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ std::string\ s\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ s\ +=\ (\mbox{\hyperlink{structJr_1_1Piece_a7c325c834a73c1c85a5ba1ea28af2fec}{color}}\ ==\ PieceColor::White\ ?\ \textcolor{charliteral}{'w'}\ :\ \textcolor{charliteral}{'b'});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{structJr_1_1Piece_a7e32b9e79b3d28f8fa0a3bc25cfe8b93}{type}})\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Pawn:\ \ \ s\ +=\ \textcolor{charliteral}{'P'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Knight:\ s\ +=\ \textcolor{charliteral}{'N'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Bishop:\ s\ +=\ \textcolor{charliteral}{'B'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Rook:\ \ \ s\ +=\ \textcolor{charliteral}{'R'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Queen:\ \ s\ +=\ \textcolor{charliteral}{'Q'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::King:\ \ \ s\ +=\ \textcolor{charliteral}{'K'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{namespace\ }Jr\ \{}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{enum\ class}\ PieceType\ \{\ }
+\DoxyCodeLine{00127\ \ \ \ \ Pawn,\ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ Knight,\ }
+\DoxyCodeLine{00129\ \ \ \ \ Bishop,\ }
+\DoxyCodeLine{00130\ \ \ \ \ Rook,\ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ Queen,\ \ }
+\DoxyCodeLine{00132\ \ \ \ \ King,\ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ None\ \ \ \ }
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{enum\ class}\ PieceColor\ \{\ }
+\DoxyCodeLine{00141\ \ \ \ \ White,\ }
+\DoxyCodeLine{00142\ \ \ \ \ Black,\ }
+\DoxyCodeLine{00143\ \ \ \ \ None\ \ \ }
+\DoxyCodeLine{00144\ \};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{struct\ }Piece\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ PieceType\ \mbox{\hyperlink{structJr_1_1Piece_a7e32b9e79b3d28f8fa0a3bc25cfe8b93}{type}}\ =\ PieceType::None;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00157\ \ \ \ \ PieceColor\ \mbox{\hyperlink{structJr_1_1Piece_a7c325c834a73c1c85a5ba1ea28af2fec}{color}}\ =\ PieceColor::None;}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{structJr_1_1Piece_ac7d43be8b9be4f92d05b52097d01acb2}{Piece}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{structJr_1_1Piece_a191f2fbff7efbd04e8797d6c180fcc39}{Piece}}(PieceType\ t,\ PieceColor\ c)\ :\ \mbox{\hyperlink{structJr_1_1Piece_a7e32b9e79b3d28f8fa0a3bc25cfe8b93}{type}}(t),\ \mbox{\hyperlink{structJr_1_1Piece_a7c325c834a73c1c85a5ba1ea28af2fec}{color}}(c)\ \{\}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structJr_1_1Piece_a43074e7ac38f804984d03e891a03e38f}{isEmpty}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structJr_1_1Piece_a7e32b9e79b3d28f8fa0a3bc25cfe8b93}{type}}\ ==\ PieceType::None\ ||\ \mbox{\hyperlink{structJr_1_1Piece_a7c325c834a73c1c85a5ba1ea28af2fec}{color}}\ ==\ PieceColor::None;}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00189\ \ \ \ \ std::string\ \mbox{\hyperlink{structJr_1_1Piece_aede9ad805c7917db47e951fe008ade2d}{getTextureFileName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structJr_1_1Piece_a43074e7ac38f804984d03e891a03e38f}{isEmpty}}())\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ std::string\ s\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ s\ +=\ (\mbox{\hyperlink{structJr_1_1Piece_a7c325c834a73c1c85a5ba1ea28af2fec}{color}}\ ==\ PieceColor::White\ ?\ \textcolor{charliteral}{'w'}\ :\ \textcolor{charliteral}{'b'});}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{structJr_1_1Piece_a7e32b9e79b3d28f8fa0a3bc25cfe8b93}{type}})\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Pawn:\ \ \ s\ +=\ \textcolor{charliteral}{'P'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Knight:\ s\ +=\ \textcolor{charliteral}{'N'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Bishop:\ s\ +=\ \textcolor{charliteral}{'B'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Rook:\ \ \ s\ +=\ \textcolor{charliteral}{'R'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Queen:\ \ s\ +=\ \textcolor{charliteral}{'Q'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::King:\ \ \ s\ +=\ \textcolor{charliteral}{'K'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s\ +\ \textcolor{stringliteral}{"{}.png"{}};}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ }
+\DoxyCodeLine{00213\ \ \ \ \ std::string\ \mbox{\hyperlink{structJr_1_1Piece_a0b0ff339a9b759900a1f8feed4ad7826}{getName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structJr_1_1Piece_a43074e7ac38f804984d03e891a03e38f}{isEmpty}}())\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ std::string\ s\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ s\ +=\ (\mbox{\hyperlink{structJr_1_1Piece_a7c325c834a73c1c85a5ba1ea28af2fec}{color}}\ ==\ PieceColor::White\ ?\ \textcolor{charliteral}{'w'}\ :\ \textcolor{charliteral}{'b'});}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{structJr_1_1Piece_a7e32b9e79b3d28f8fa0a3bc25cfe8b93}{type}})\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Pawn:\ \ \ s\ +=\ \textcolor{charliteral}{'P'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Knight:\ s\ +=\ \textcolor{charliteral}{'N'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Bishop:\ s\ +=\ \textcolor{charliteral}{'B'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Rook:\ \ \ s\ +=\ \textcolor{charliteral}{'R'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::Queen:\ \ s\ +=\ \textcolor{charliteral}{'Q'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PieceType::King:\ \ \ s\ +=\ \textcolor{charliteral}{'K'};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{00227\ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \};}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \}}
+
+\end{DoxyCode}

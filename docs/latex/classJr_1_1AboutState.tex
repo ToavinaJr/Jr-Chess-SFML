@@ -1,0 +1,163 @@
+\doxysection{Jr\+::About\+State Class Reference}
+\hypertarget{classJr_1_1AboutState}{}\label{classJr_1_1AboutState}\index{Jr::AboutState@{Jr::AboutState}}
+
+
+Inheritance diagram for Jr\+::About\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classJr_1_1AboutState__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Jr\+::About\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{classJr_1_1AboutState__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJr_1_1AboutState_a1e981b33662bb366eaebf38295e0478b}\label{classJr_1_1AboutState_a1e981b33662bb366eaebf38295e0478b} 
+{\bfseries About\+State} (\mbox{\hyperlink{classJr_1_1StateManager}{State\+Manager}} \&manager, sf\+::\+Render\+Window \&win, \mbox{\hyperlink{classJr_1_1FontManager}{Font\+Manager}} \&fm)
+\item 
+void \mbox{\hyperlink{classJr_1_1AboutState_addcb0949ab2dbd4505fdee918cab4dc3}{handle\+Input}} (const sf\+::\+Event \&event) override
+\begin{DoxyCompactList}\small\item\em Gère les événements spécifiques à cet état. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJr_1_1AboutState_a40fbe68fb78fd60f7571ad3036b582f6}{update}} (float delta\+Time) override
+\begin{DoxyCompactList}\small\item\em Met à jour la logique de l\textquotesingle{}état. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJr_1_1AboutState_a00c05c7ce9043e8f4d1743135a5c33cc}{draw}} () override
+\begin{DoxyCompactList}\small\item\em Dessine les éléments de l\textquotesingle{}état sur la fenêtre. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJr_1_1AboutState_a37c2b94a1f8745b3646f4a01b4886f89}{on\+Enter}} () override
+\begin{DoxyCompactList}\small\item\em Appelé lors de l\textquotesingle{}entrée dans cet état. Peut être utilisé pour initialiser des ressources spécifiques à l\textquotesingle{}état. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classJr_1_1GameState}{Jr\+::\+Game\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJr_1_1GameState_a33ec532947277da8b5ecc594002dbda3}{Game\+State}} (\mbox{\hyperlink{classJr_1_1StateManager}{State\+Manager}} \&manager, sf\+::\+Render\+Window \&win)
+\begin{DoxyCompactList}\small\item\em Constructeur de \doxylink{classJr_1_1GameState}{Game\+State}. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Game\+State} ()=default
+\begin{DoxyCompactList}\small\item\em Destructeur virtuel pour assurer la bonne destruction des classes dérivées. \end{DoxyCompactList}\item 
+virtual void {\bfseries on\+Exit} ()
+\begin{DoxyCompactList}\small\item\em Appelé lors de la sortie de cet état. Peut être utilisé pour nettoyer des ressources spécifiques à l\textquotesingle{}état. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJr_1_1AboutState_ac9fdf4f9eccc04cb383c8f504d16ab38}\label{classJr_1_1AboutState_ac9fdf4f9eccc04cb383c8f504d16ab38} 
+void {\bfseries center\+Text} (sf\+::\+Text \&text, float y\+Offset)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJr_1_1AboutState_afa11ffb05d2575aa9e1319a9a56fa1b6}\label{classJr_1_1AboutState_afa11ffb05d2575aa9e1319a9a56fa1b6} 
+sf\+::\+Text {\bfseries title\+Text}
+\item 
+\Hypertarget{classJr_1_1AboutState_a5a6fece0574c76dc86b6e0bdeaea4f19}\label{classJr_1_1AboutState_a5a6fece0574c76dc86b6e0bdeaea4f19} 
+\mbox{\hyperlink{classJr_1_1FontManager}{Font\+Manager}} \& {\bfseries font\+Manager}
+\item 
+\Hypertarget{classJr_1_1AboutState_aa6877f5e3216bd3029c8ec5b8b4e7244}\label{classJr_1_1AboutState_aa6877f5e3216bd3029c8ec5b8b4e7244} 
+sf\+::\+Rectangle\+Shape {\bfseries background\+Shape}
+\item 
+\Hypertarget{classJr_1_1AboutState_a712bc36bf33919abe565a5f821b6539e}\label{classJr_1_1AboutState_a712bc36bf33919abe565a5f821b6539e} 
+sf\+::\+Rectangle\+Shape {\bfseries title\+Separator}
+\item 
+\Hypertarget{classJr_1_1AboutState_adeed406e575c358a6d0d275ed97870bc}\label{classJr_1_1AboutState_adeed406e575c358a6d0d275ed97870bc} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classJr_1_1Button}{Button}} $>$ {\bfseries back\+Button}
+\item 
+\Hypertarget{classJr_1_1AboutState_a4c6123ace6979832b6cd64d634d22217}\label{classJr_1_1AboutState_a4c6123ace6979832b6cd64d634d22217} 
+sf\+::\+Text {\bfseries footer1}
+\item 
+\Hypertarget{classJr_1_1AboutState_ad813ee384c2838709cd41061968f3bd7}\label{classJr_1_1AboutState_ad813ee384c2838709cd41061968f3bd7} 
+sf\+::\+Text {\bfseries footer2}
+\item 
+\Hypertarget{classJr_1_1AboutState_a2c312a61b78565bf2a963da47f181c67}\label{classJr_1_1AboutState_a2c312a61b78565bf2a963da47f181c67} 
+sf\+::\+Text {\bfseries footer3}
+\item 
+\Hypertarget{classJr_1_1AboutState_a78938be0735b1e9e629a39f8738cd0f4}\label{classJr_1_1AboutState_a78938be0735b1e9e629a39f8738cd0f4} 
+sf\+::\+Text {\bfseries footer4}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classJr_1_1GameState}{Jr\+::\+Game\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJr_1_1StateManager}{State\+Manager}} \& {\bfseries state\+Manager}
+\item 
+sf\+::\+Render\+Window \& {\bfseries window}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classJr_1_1AboutState_a00c05c7ce9043e8f4d1743135a5c33cc}\label{classJr_1_1AboutState_a00c05c7ce9043e8f4d1743135a5c33cc} 
+\index{Jr::AboutState@{Jr::AboutState}!draw@{draw}}
+\index{draw@{draw}!Jr::AboutState@{Jr::AboutState}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Jr\+::\+About\+State\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Dessine les éléments de l\textquotesingle{}état sur la fenêtre. 
+
+
+
+Implements \mbox{\hyperlink{classJr_1_1GameState_a47dabc886961a9ca3a485d34936f6a1c}{Jr\+::\+Game\+State}}.
+
+\Hypertarget{classJr_1_1AboutState_addcb0949ab2dbd4505fdee918cab4dc3}\label{classJr_1_1AboutState_addcb0949ab2dbd4505fdee918cab4dc3} 
+\index{Jr::AboutState@{Jr::AboutState}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!Jr::AboutState@{Jr::AboutState}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily void Jr\+::\+About\+State\+::handle\+Input (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gère les événements spécifiques à cet état. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & L\textquotesingle{}événement SFML à traiter. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classJr_1_1GameState_a1076922e6e180caf79017124c40f31fd}{Jr\+::\+Game\+State}}.
+
+\Hypertarget{classJr_1_1AboutState_a37c2b94a1f8745b3646f4a01b4886f89}\label{classJr_1_1AboutState_a37c2b94a1f8745b3646f4a01b4886f89} 
+\index{Jr::AboutState@{Jr::AboutState}!onEnter@{onEnter}}
+\index{onEnter@{onEnter}!Jr::AboutState@{Jr::AboutState}}
+\doxysubsubsection{\texorpdfstring{onEnter()}{onEnter()}}
+{\footnotesize\ttfamily void Jr\+::\+About\+State\+::on\+Enter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Appelé lors de l\textquotesingle{}entrée dans cet état. Peut être utilisé pour initialiser des ressources spécifiques à l\textquotesingle{}état. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classJr_1_1GameState_ab425953ec0410581dfa9f82cda09882a}{Jr\+::\+Game\+State}}.
+
+\Hypertarget{classJr_1_1AboutState_a40fbe68fb78fd60f7571ad3036b582f6}\label{classJr_1_1AboutState_a40fbe68fb78fd60f7571ad3036b582f6} 
+\index{Jr::AboutState@{Jr::AboutState}!update@{update}}
+\index{update@{update}!Jr::AboutState@{Jr::AboutState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Jr\+::\+About\+State\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Met à jour la logique de l\textquotesingle{}état. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & Le temps écoulé depuis la dernière mise à jour. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classJr_1_1GameState_a73366a87afd55dbeb225ca95f2f9a95d}{Jr\+::\+Game\+State}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/About\+State.\+hpp\end{DoxyCompactItemize}

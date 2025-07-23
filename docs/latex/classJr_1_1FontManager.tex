@@ -1,0 +1,39 @@
+\doxysection{Jr\+::Font\+Manager Class Reference}
+\hypertarget{classJr_1_1FontManager}{}\label{classJr_1_1FontManager}\index{Jr::FontManager@{Jr::FontManager}}
+
+
+Gestion centralisée du chargement et du cache des polices.  
+
+
+
+
+{\ttfamily \#include $<$Font\+Manager.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJr_1_1FontManager_a517d9653587e8133e895b4d82c5c04b1}\label{classJr_1_1FontManager_a517d9653587e8133e895b4d82c5c04b1} 
+const sf\+::\+Font \& {\bfseries get\+Font} (const std\+::string \&filename)
+\item 
+\Hypertarget{classJr_1_1FontManager_ab72290a69399e2493fd39d7ade94bf01}\label{classJr_1_1FontManager_ab72290a69399e2493fd39d7ade94bf01} 
+void {\bfseries preload\+Fonts} (const std\+::vector$<$ std\+::string $>$ \&files)
+\item 
+\Hypertarget{classJr_1_1FontManager_a69080e753907219a9d6c332dc95ed3d7}\label{classJr_1_1FontManager_a69080e753907219a9d6c332dc95ed3d7} 
+void {\bfseries clear} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJr_1_1FontManager_ab5475da9932a62375e6b82d9806ce176}\label{classJr_1_1FontManager_ab5475da9932a62375e6b82d9806ce176} 
+std\+::unordered\+\_\+map$<$ std\+::string, sf\+::\+Font $>$ {\bfseries fonts}
+\begin{DoxyCompactList}\small\item\em Cache des polices chargées. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gestion centralisée du chargement et du cache des polices. 
+
+Fournit un système de cache pour éviter de recharger les polices plusieurs fois. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Font\+Manager.\+hpp\end{DoxyCompactItemize}
