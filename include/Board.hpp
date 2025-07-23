@@ -1,60 +1,54 @@
-#ifndef BOARD_HPP
-#define BOARD_HPP
-
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <array>
-#include <map>
-#include <string>
 #include <vector>
+#include <string>
+
+#include "constants.hpp"
+#include "TextureManager.hpp"
+#include "FontManager.hpp"
+#include "ChessLogicManager.hpp" // Board a besoin de la logique pour savoir quoi dessiner
 
 namespace Jr {
+
     class Board {
-        private:
-            std::array<std::array<sf::RectangleShape, 8>, 8>    boxes;
-            std::array<sf::Text, 32>                            labels;
-            std::map<std::string, sf::Texture>                  pieceTextures;
-            std::vector<sf::Sprite>                             pieceSprites;
-            sf::Font                                            font;
-            std::map<std::string, uint64_t>                     bitboards; 
-            uint64_t                                            bitboardPieces;
-            
-            // Variables pour savoir, la case choisie, les cases de destination, le tour de role et la prise en passant 
-            int                                                 selectedSquare = -1;
-            std::vector<int>                                    highlightedSquares;
-            bool                                                whiteTurn = true;
-            int                                                 enPassantSquare = -1;
+    private:
+        // Références aux managers
+        TextureManager& textureManager;
+        FontManager& fontManager;
+        ChessLogic& chessLogic; // Référence au manager de logique
 
-            // Variables pour savoirs la possibilité de roquer
-            bool                                                whiteKingMoved             =    false;
-            bool                                                whiteRookKingsideMoved     =    false;
-            bool                                                whiteRookQueensideMoved    =    false;
+        // Éléments graphiques statiques (le plateau, les labels)
+        std::array<std::array<sf::RectangleShape, 8>, 8> boxes;
+        std::array<sf::Text, 32> labels; // Pour les coordonnées A-H, 1-8
 
-            // Variables pour savoir pour gerer les rois et les tours afin de roquer
-            bool                                                blackKingMoved             =    false;
-            bool                                                blackRookKingsideMoved     =    false;
-            bool                                                blackRookQueensideMoved    =    false;
+        // Éléments graphiques dynamiques (les sprites des pièces, les highlight)
+        std::vector<sf::Sprite> pieceSprites; // Sprites des pièces actuellement sur le plateau
+        
+        // États graphiques pour l'interaction utilisateur
+        int selectedSquare = -1; // Case sélectionnée par le joueur
+        std::vector<int> highlightedSquares; // Cases légales à surligner
 
-            // Variables pour la promotion des pièces
-            bool                                                promotionPending           = false;
-            bool                                                promotionWhite             = true;
-            int                                                 promotionSquare            = -1;
-            std::vector<sf::Sprite>                             promotionChoices;
-            sf::RectangleShape                                  promotionFrame;
-            
-            void                                                loadTextures();
-            void                                                updateSpritesFromBitboards();
-            bool                                                movePiece(int from, int to);
-            std::vector<int>                                    getLegalMoves(const std::string& pieceName, int from, bool forCheck = false);
+        // Éléments pour la promotion
+        std::vector<sf::Sprite> promotionChoicesSprites;
+        sf::RectangleShape promotionFrame;
 
-            bool                                                isKingInCheck(bool whiteKing);
-            bool                                                wouldBeInCheck(int from, int to, bool whiteKing);
-            void                                                preparePromotionChoices();
+        // Méthodes privées pour le rendu
+        void setupBoardSquares(); // Configure les sf::RectangleShape pour le plateau
+        void setupLabels(); // Configure les sf::Text pour les coordonnées
+        void updatePieceSprites(); // Met à jour pieceSprites en fonction de ChessLogic
+        void preparePromotionDisplay(); // Prépare l'affichage des choix de promotion
 
-        public:
-            Board();
-            void                                                draw(sf::RenderWindow& window);
-            void                                                handleClick(int mouseX, int mouseY);
+    public:
+        // Le constructeur prend les références aux managers nécessaires
+        Board(TextureManager& tm, FontManager& fm, ChessLogic& cl);
+
+        // Méthodes publiques d'interaction
+        void draw(sf::RenderWindow& window);
+        void handleMouseClick(int mouseX, int mouseY); // Gère le clic de souris
+
+        // Getters pour l'état graphique (si d'autres classes en ont besoin)
+        int getSelectedSquare() const { return selectedSquare; }
+        const std::vector<int>& getHighlightedSquares() const { return highlightedSquares; }
     };
 }
-
-#endif
