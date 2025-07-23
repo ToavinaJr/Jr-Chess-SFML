@@ -17,7 +17,7 @@ namespace Jr {
 AboutState::AboutState(StateManager& manager, sf::RenderWindow& win, FontManager& fm)
     : GameState(manager, win), fontManager(fm) {
     backgroundShape.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
-    backgroundShape.setFillColor(sf::Color(20, 20, 30)); ///< Bleu nuit pour le fond
+    backgroundShape.setFillColor(sf::Color(0, 0, 0));
 }
 
 /**
