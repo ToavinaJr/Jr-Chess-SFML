@@ -56,7 +56,7 @@ void GameOverState::handleInput(const sf::Event& event) {
         event.mouseButton.button == sf::Mouse::Left) {
 
         if (replayButton->isClicked(event)) {
-            stateManager.changeState<PlayingState>(textureManager, fontManager);
+            stateManager.pushState<PlayingState>(textureManager, fontManager);
         }
 
         if (menuButton->isClicked(event)) {
