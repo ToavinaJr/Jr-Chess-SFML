@@ -4,10 +4,11 @@
 #include <vector>
 #include <string>
 
+
 #include "constants.hpp"
 #include "TextureManager.hpp"
 #include "FontManager.hpp"
-#include "ChessLogic.hpp" // Board a besoin de la logique pour savoir quoi dessiner
+#include "ChessLogic.hpp"
 
 namespace Jr {
 
@@ -34,10 +35,10 @@ namespace Jr {
         sf::RectangleShape promotionFrame;
 
         // Méthodes privées pour le rendu
-        void setupBoardSquares(); // Configure les sf::RectangleShape pour le plateau
-        void setupLabels(); // Configure les sf::Text pour les coordonnées
-        void updatePieceSprites(); // Met à jour pieceSprites en fonction de ChessLogic
-        void preparePromotionDisplay(); // Prépare l'affichage des choix de promotion
+        void setupBoardSquares();
+        void setupLabels();
+        void updatePieceSprites();
+        void preparePromotionDisplay();
 
     public:
         // Le constructeur prend les références aux managers nécessaires
