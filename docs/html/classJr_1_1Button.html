@@ -125,6 +125,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>centerText</b> ()</td
 sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><b>getGlobalBounds</b> () const</td></tr>
 <tr class="memdesc:af34197eda3ba21849dea6efeec5e7ce0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne les limites globales du bouton (utile pour la détection de collisions). <br /></td></tr>
 <tr class="separator:af34197eda3ba21849dea6efeec5e7ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab03d4981ec267f556d57d8492ad8fb2f" id="r_ab03d4981ec267f556d57d8492ad8fb2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1Button.html#ab03d4981ec267f556d57d8492ad8fb2f">setSelected</a> (bool <a class="el" href="classJr_1_1Button.html#a73de1367ce85d7a5f41e0eaedbea3332">isSelected</a>)</td></tr>
+<tr class="memdesc:ab03d4981ec267f556d57d8492ad8fb2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Définit l'état de sélection du bouton (modifie la couleur de fond).  <br /></td></tr>
+<tr class="separator:ab03d4981ec267f556d57d8492ad8fb2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73de1367ce85d7a5f41e0eaedbea3332" id="r_a73de1367ce85d7a5f41e0eaedbea3332"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1Button.html#a73de1367ce85d7a5f41e0eaedbea3332">isSelected</a> () const</td></tr>
+<tr class="memdesc:a73de1367ce85d7a5f41e0eaedbea3332"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne si le bouton est actuellement sélectionné.  <br /></td></tr>
+<tr class="separator:a73de1367ce85d7a5f41e0eaedbea3332"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -143,6 +149,9 @@ sf::Color&#160;</td><td class="memItemRight" valign="bottom"><b>hoverColor</b></
 <tr class="memitem:a87ecc0168e713f1861a359fc4a2a3cff" id="r_a87ecc0168e713f1861a359fc4a2a3cff"><td class="memItemLeft" align="right" valign="top"><a id="a87ecc0168e713f1861a359fc4a2a3cff" name="a87ecc0168e713f1861a359fc4a2a3cff"></a>
 sf::Color&#160;</td><td class="memItemRight" valign="bottom"><b>pressedColor</b></td></tr>
 <tr class="separator:a87ecc0168e713f1861a359fc4a2a3cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeddea7690b3604182e721aeff81fa073" id="r_aeddea7690b3604182e721aeff81fa073"><td class="memItemLeft" align="right" valign="top"><a id="aeddea7690b3604182e721aeff81fa073" name="aeddea7690b3604182e721aeff81fa073"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>selected</b> = false</td></tr>
+<tr class="separator:aeddea7690b3604182e721aeff81fa073"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Représente un bouton interactif avec trois états : normal, survolé et pressé. </p>
@@ -273,6 +282,26 @@ sf::Color&#160;</td><td class="memItemRight" valign="bottom"><b>pressedColor</b>
 
 </div>
 </div>
+<a id="a73de1367ce85d7a5f41e0eaedbea3332" name="a73de1367ce85d7a5f41e0eaedbea3332"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73de1367ce85d7a5f41e0eaedbea3332">&#9670;&#160;</a></span>isSelected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Jr::Button::isSelected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retourne si le bouton est actuellement sélectionné. </p>
+<dl class="section return"><dt>Returns</dt><dd>true si le bouton est sélectionné. </dd></dl>
+
+</div>
+</div>
 <a id="a92a1d7799495814bdc40d459792f1583" name="a92a1d7799495814bdc40d459792f1583"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a92a1d7799495814bdc40d459792f1583">&#9670;&#160;</a></span>setPosition()</h2>
 
@@ -293,6 +322,32 @@ sf::Color&#160;</td><td class="memItemRight" valign="bottom"><b>pressedColor</b>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pos</td><td>Nouvelle position. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab03d4981ec267f556d57d8492ad8fb2f" name="ab03d4981ec267f556d57d8492ad8fb2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab03d4981ec267f556d57d8492ad8fb2f">&#9670;&#160;</a></span>setSelected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Jr::Button::setSelected </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isSelected</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Définit l'état de sélection du bouton (modifie la couleur de fond). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isSelected</td><td>true si le bouton doit être marqué comme sélectionné. </td></tr>
   </table>
   </dd>
 </dl>

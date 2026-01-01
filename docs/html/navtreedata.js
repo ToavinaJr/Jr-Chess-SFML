@@ -43,7 +43,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AboutState_8hpp_source.html"
+"AIPlayer_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

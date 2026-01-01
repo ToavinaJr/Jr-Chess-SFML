@@ -126,6 +126,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a640b31ec2a6cfd7297e1b75a5a2f9a1e" id="r_a640b31ec2a6cfd7297e1b75a5a2f9a1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1Board.html#a640b31ec2a6cfd7297e1b75a5a2f9a1e">handleMouseClick</a> (int mouseX, int mouseY)</td></tr>
 <tr class="memdesc:a640b31ec2a6cfd7297e1b75a5a2f9a1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère les clics de souris pour sélectionner ou déplacer une pièce.  <br /></td></tr>
 <tr class="separator:a640b31ec2a6cfd7297e1b75a5a2f9a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa632de5873bbf479e48b99d3c0f39c64" id="r_aa632de5873bbf479e48b99d3c0f39c64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1Board.html#aa632de5873bbf479e48b99d3c0f39c64">updatePieceSprites</a> ()</td></tr>
+<tr class="memdesc:aa632de5873bbf479e48b99d3c0f39c64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour les sprites des pièces selon l'état actuel du jeu.  <br /></td></tr>
+<tr class="separator:aa632de5873bbf479e48b99d3c0f39c64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29a548f0bea2782a8e84dc09d671ffa4" id="r_a29a548f0bea2782a8e84dc09d671ffa4"><td class="memItemLeft" align="right" valign="top"><a id="a29a548f0bea2782a8e84dc09d671ffa4" name="a29a548f0bea2782a8e84dc09d671ffa4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>clearSelection</b> ()</td></tr>
+<tr class="separator:a29a548f0bea2782a8e84dc09d671ffa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fc1f852b229094e074173c4a96b7549" id="r_a2fc1f852b229094e074173c4a96b7549"><td class="memItemLeft" align="right" valign="top"><a id="a2fc1f852b229094e074173c4a96b7549" name="a2fc1f852b229094e074173c4a96b7549"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getSelectedSquare</b> () const</td></tr>
 <tr class="separator:a2fc1f852b229094e074173c4a96b7549"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,9 +149,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setupBoardSquares</b>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setupLabels</b> ()</td></tr>
 <tr class="memdesc:a9651ca57ec267cb477a2cb2eede262c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute les labels des coordonnées (A-H, 1-8) autour du plateau. <br /></td></tr>
 <tr class="separator:a9651ca57ec267cb477a2cb2eede262c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa632de5873bbf479e48b99d3c0f39c64" id="r_aa632de5873bbf479e48b99d3c0f39c64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1Board.html#aa632de5873bbf479e48b99d3c0f39c64">updatePieceSprites</a> ()</td></tr>
-<tr class="memdesc:aa632de5873bbf479e48b99d3c0f39c64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour les sprites des pièces selon l'état actuel du jeu.  <br /></td></tr>
-<tr class="separator:aa632de5873bbf479e48b99d3c0f39c64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a614a00c6097b6f145ad5ffd81e96bb0a" id="r_a614a00c6097b6f145ad5ffd81e96bb0a"><td class="memItemLeft" align="right" valign="top"><a id="a614a00c6097b6f145ad5ffd81e96bb0a" name="a614a00c6097b6f145ad5ffd81e96bb0a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>preparePromotionDisplay</b> ()</td></tr>
 <tr class="memdesc:a614a00c6097b6f145ad5ffd81e96bb0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prépare l'affichage des choix de promotion. <br /></td></tr>
@@ -300,9 +303,6 @@ sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>promoti
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Jr::Board::updatePieceSprites </td>
@@ -311,11 +311,6 @@ sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>promoti
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Met à jour les sprites des pièces selon l'état actuel du jeu. </p>

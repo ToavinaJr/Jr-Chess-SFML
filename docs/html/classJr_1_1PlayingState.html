@@ -90,6 +90,7 @@ $(document).ready(function(){initNavTree('classJr_1_1PlayingState.html',''); ini
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classJr_1_1PlayingState-members.html">List of all members</a>  </div>
@@ -135,11 +136,24 @@ Collaboration diagram for Jr::PlayingState:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a1f6dfea4b01a0a5a6a6cf14e233f8fd7" id="r_a1f6dfea4b01a0a5a6a6cf14e233f8fd7"><td class="memItemLeft" align="right" valign="top"><a id="a1f6dfea4b01a0a5a6a6cf14e233f8fd7" name="a1f6dfea4b01a0a5a6a6cf14e233f8fd7"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>GameMode</b> { <b>HumanVsHuman</b>
+, <b>HumanVsAI</b>
+, <b>AIvsAI</b>
+ }</td></tr>
+<tr class="separator:a1f6dfea4b01a0a5a6a6cf14e233f8fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea2f9930366574f845f613086bab5e83" id="r_aea2f9930366574f845f613086bab5e83"><td class="memItemLeft" align="right" valign="top"><a id="aea2f9930366574f845f613086bab5e83" name="aea2f9930366574f845f613086bab5e83"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>PlayerSide</b> { <b>White</b>
+, <b>Black</b>
+, <b>Random</b>
+ }</td></tr>
+<tr class="separator:aea2f9930366574f845f613086bab5e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a17517dc7b598e96d35352c7d997dd03c" id="r_a17517dc7b598e96d35352c7d997dd03c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1PlayingState.html#a17517dc7b598e96d35352c7d997dd03c">PlayingState</a> (<a class="el" href="classJr_1_1StateManager.html">StateManager</a> &amp;manager, sf::RenderWindow &amp;win, <a class="el" href="classJr_1_1TextureManager.html">TextureManager</a> &amp;tm, <a class="el" href="classJr_1_1FontManager.html">FontManager</a> &amp;fm)</td></tr>
-<tr class="memdesc:a17517dc7b598e96d35352c7d997dd03c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de <a class="el" href="classJr_1_1PlayingState.html" title="État du jeu représentant une partie d&#39;échecs en cours.">PlayingState</a>.  <br /></td></tr>
-<tr class="separator:a17517dc7b598e96d35352c7d997dd03c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acadeb24576fec23972bfcaba2368b96f" id="r_acadeb24576fec23972bfcaba2368b96f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1PlayingState.html#acadeb24576fec23972bfcaba2368b96f">PlayingState</a> (<a class="el" href="classJr_1_1StateManager.html">StateManager</a> &amp;manager, sf::RenderWindow &amp;win, <a class="el" href="classJr_1_1TextureManager.html">TextureManager</a> &amp;tm, <a class="el" href="classJr_1_1FontManager.html">FontManager</a> &amp;fm, GameMode mode=GameMode::HumanVsHuman, PlayerSide side=PlayerSide::White, int aiDepth=3, float clockSeconds=600.0f)</td></tr>
+<tr class="memdesc:acadeb24576fec23972bfcaba2368b96f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de <a class="el" href="classJr_1_1PlayingState.html" title="État du jeu représentant une partie d&#39;échecs en cours.">PlayingState</a>.  <br /></td></tr>
+<tr class="separator:acadeb24576fec23972bfcaba2368b96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfde04868d4d060a057623e0b9651a22" id="r_abfde04868d4d060a057623e0b9651a22"><td class="memItemLeft" align="right" valign="top"><a id="abfde04868d4d060a057623e0b9651a22" name="abfde04868d4d060a057623e0b9651a22"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>~PlayingState</b> () override=default</td></tr>
 <tr class="memdesc:abfde04868d4d060a057623e0b9651a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur virtuel par défaut. <br /></td></tr>
@@ -156,6 +170,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abf477457f31c32ee7322fbb07eefafd2" id="r_abf477457f31c32ee7322fbb07eefafd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1PlayingState.html#abf477457f31c32ee7322fbb07eefafd2">onEnter</a> () override</td></tr>
 <tr class="memdesc:abf477457f31c32ee7322fbb07eefafd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode appelée lors de l'entrée dans l'état <a class="el" href="classJr_1_1PlayingState.html" title="État du jeu représentant une partie d&#39;échecs en cours.">PlayingState</a>.  <br /></td></tr>
 <tr class="separator:abf477457f31c32ee7322fbb07eefafd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7614ee20063b0ab2b6ca467c69d560f2" id="r_a7614ee20063b0ab2b6ca467c69d560f2"><td class="memItemLeft" align="right" valign="top"><a id="a7614ee20063b0ab2b6ca467c69d560f2" name="a7614ee20063b0ab2b6ca467c69d560f2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setGameMode</b> (GameMode mode)</td></tr>
+<tr class="separator:a7614ee20063b0ab2b6ca467c69d560f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d54b2830aca87226e215740cc51164c" id="r_a3d54b2830aca87226e215740cc51164c"><td class="memItemLeft" align="right" valign="top"><a id="a3d54b2830aca87226e215740cc51164c" name="a3d54b2830aca87226e215740cc51164c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPlayerSide</b> (PlayerSide side)</td></tr>
+<tr class="separator:a3d54b2830aca87226e215740cc51164c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa16862c7fd830e9f758653084476f5fc" id="r_aa16862c7fd830e9f758653084476f5fc"><td class="memItemLeft" align="right" valign="top"><a id="aa16862c7fd830e9f758653084476f5fc" name="aa16862c7fd830e9f758653084476f5fc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setAIDepth</b> (int depth)</td></tr>
+<tr class="separator:aa16862c7fd830e9f758653084476f5fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58e29bc328cba6d6f08dfc0adae2f795" id="r_a58e29bc328cba6d6f08dfc0adae2f795"><td class="memItemLeft" align="right" valign="top"><a id="a58e29bc328cba6d6f08dfc0adae2f795" name="a58e29bc328cba6d6f08dfc0adae2f795"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setClockTime</b> (float seconds)</td></tr>
+<tr class="separator:a58e29bc328cba6d6f08dfc0adae2f795"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classJr_1_1GameState"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJr_1_1GameState')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJr_1_1GameState.html">Jr::GameState</a></td></tr>
 <tr class="memitem:a33ec532947277da8b5ecc594002dbda3 inherit pub_methods_classJr_1_1GameState" id="r_a33ec532947277da8b5ecc594002dbda3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1GameState.html#a33ec532947277da8b5ecc594002dbda3">GameState</a> (<a class="el" href="classJr_1_1StateManager.html">StateManager</a> &amp;manager, sf::RenderWindow &amp;win)</td></tr>
 <tr class="memdesc:a33ec532947277da8b5ecc594002dbda3 inherit pub_methods_classJr_1_1GameState"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de <a class="el" href="classJr_1_1GameState.html" title="Classe de base abstraite pour tous les états du jeu.">GameState</a>.  <br /></td></tr>
@@ -187,6 +213,81 @@ Private Attributes</h2></td></tr>
 <a class="el" href="classJr_1_1Board.html">Board</a>&#160;</td><td class="memItemRight" valign="bottom"><b>board</b></td></tr>
 <tr class="memdesc:a0110aae70334468f0e58bab6a59b558c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instance du plateau graphique associé à la partie. <br /></td></tr>
 <tr class="separator:a0110aae70334468f0e58bab6a59b558c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8fddd70dcf40df14106efced4046448" id="r_ae8fddd70dcf40df14106efced4046448"><td class="memItemLeft" align="right" valign="top"><a id="ae8fddd70dcf40df14106efced4046448" name="ae8fddd70dcf40df14106efced4046448"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>whiteTimeLeft</b> = 600.0f</td></tr>
+<tr class="separator:ae8fddd70dcf40df14106efced4046448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a796db23c4404a918c4c6b30c0367aa47" id="r_a796db23c4404a918c4c6b30c0367aa47"><td class="memItemLeft" align="right" valign="top"><a id="a796db23c4404a918c4c6b30c0367aa47" name="a796db23c4404a918c4c6b30c0367aa47"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>blackTimeLeft</b> = 600.0f</td></tr>
+<tr class="separator:a796db23c4404a918c4c6b30c0367aa47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad60fbbb4e94e3c95b3f3a0c4dd454678" id="r_ad60fbbb4e94e3c95b3f3a0c4dd454678"><td class="memItemLeft" align="right" valign="top"><a id="ad60fbbb4e94e3c95b3f3a0c4dd454678" name="ad60fbbb4e94e3c95b3f3a0c4dd454678"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>clockRunning</b> = false</td></tr>
+<tr class="separator:ad60fbbb4e94e3c95b3f3a0c4dd454678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a889a15d3c8570bb7dda93b30457a3a24" id="r_a889a15d3c8570bb7dda93b30457a3a24"><td class="memItemLeft" align="right" valign="top"><a id="a889a15d3c8570bb7dda93b30457a3a24" name="a889a15d3c8570bb7dda93b30457a3a24"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>sidebarBg</b></td></tr>
+<tr class="separator:a889a15d3c8570bb7dda93b30457a3a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7448c6a03f71b8685d812244d89edcac" id="r_a7448c6a03f71b8685d812244d89edcac"><td class="memItemLeft" align="right" valign="top"><a id="a7448c6a03f71b8685d812244d89edcac" name="a7448c6a03f71b8685d812244d89edcac"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>capturePanel</b></td></tr>
+<tr class="separator:a7448c6a03f71b8685d812244d89edcac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa95ce4bff9dc2cfedfa81e9224e9efdd" id="r_aa95ce4bff9dc2cfedfa81e9224e9efdd"><td class="memItemLeft" align="right" valign="top"><a id="aa95ce4bff9dc2cfedfa81e9224e9efdd" name="aa95ce4bff9dc2cfedfa81e9224e9efdd"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>clockPanel</b></td></tr>
+<tr class="separator:aa95ce4bff9dc2cfedfa81e9224e9efdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad922070e9105656f124ed4d8bbe619a6" id="r_ad922070e9105656f124ed4d8bbe619a6"><td class="memItemLeft" align="right" valign="top"><a id="ad922070e9105656f124ed4d8bbe619a6" name="ad922070e9105656f124ed4d8bbe619a6"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>historyPanel</b></td></tr>
+<tr class="separator:ad922070e9105656f124ed4d8bbe619a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5be6a7897846c681c256f1e709a8c954" id="r_a5be6a7897846c681c256f1e709a8c954"><td class="memItemLeft" align="right" valign="top"><a id="a5be6a7897846c681c256f1e709a8c954" name="a5be6a7897846c681c256f1e709a8c954"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>navButtonBack</b></td></tr>
+<tr class="separator:a5be6a7897846c681c256f1e709a8c954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93284981e48eff10e7e74f088fbd6138" id="r_a93284981e48eff10e7e74f088fbd6138"><td class="memItemLeft" align="right" valign="top"><a id="a93284981e48eff10e7e74f088fbd6138" name="a93284981e48eff10e7e74f088fbd6138"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>navButtonForward</b></td></tr>
+<tr class="separator:a93284981e48eff10e7e74f088fbd6138"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f73f521024af0622719eddb00376722" id="r_a2f73f521024af0622719eddb00376722"><td class="memItemLeft" align="right" valign="top"><a id="a2f73f521024af0622719eddb00376722" name="a2f73f521024af0622719eddb00376722"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>historyScrollOffset</b> = 0</td></tr>
+<tr class="separator:a2f73f521024af0622719eddb00376722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee89210a6f350be22286c028bba2ccd" id="r_a4ee89210a6f350be22286c028bba2ccd"><td class="memItemLeft" align="right" valign="top"><a id="a4ee89210a6f350be22286c028bba2ccd" name="a4ee89210a6f350be22286c028bba2ccd"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>maxVisibleMoves</b> = 15</td></tr>
+<tr class="separator:a4ee89210a6f350be22286c028bba2ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae2349307df4b82efb62f122a722222" id="r_acae2349307df4b82efb62f122a722222"><td class="memItemLeft" align="right" valign="top"><a id="acae2349307df4b82efb62f122a722222" name="acae2349307df4b82efb62f122a722222"></a>
+std::vector&lt; sf::FloatRect &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>moveClickAreas</b></td></tr>
+<tr class="separator:acae2349307df4b82efb62f122a722222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac16157ab0ff924983601e0cab53dc043" id="r_ac16157ab0ff924983601e0cab53dc043"><td class="memItemLeft" align="right" valign="top"><a id="ac16157ab0ff924983601e0cab53dc043" name="ac16157ab0ff924983601e0cab53dc043"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>scrollbar</b></td></tr>
+<tr class="separator:ac16157ab0ff924983601e0cab53dc043"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7918012e935691916fec87e96578115e" id="r_a7918012e935691916fec87e96578115e"><td class="memItemLeft" align="right" valign="top"><a id="a7918012e935691916fec87e96578115e" name="a7918012e935691916fec87e96578115e"></a>
+sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>scrollThumb</b></td></tr>
+<tr class="separator:a7918012e935691916fec87e96578115e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03915aa16ea5a9ed1eba3a7d27796258" id="r_a03915aa16ea5a9ed1eba3a7d27796258"><td class="memItemLeft" align="right" valign="top"><a id="a03915aa16ea5a9ed1eba3a7d27796258" name="a03915aa16ea5a9ed1eba3a7d27796258"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDraggingScrollbar</b> = false</td></tr>
+<tr class="separator:a03915aa16ea5a9ed1eba3a7d27796258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff42cd1d05dba97fd9d14b21884eec3a" id="r_aff42cd1d05dba97fd9d14b21884eec3a"><td class="memItemLeft" align="right" valign="top"><a id="aff42cd1d05dba97fd9d14b21884eec3a" name="aff42cd1d05dba97fd9d14b21884eec3a"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>scrollDragStartY</b> = 0.0f</td></tr>
+<tr class="separator:aff42cd1d05dba97fd9d14b21884eec3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3ba0e05895a3b3becb42ed6998212ec" id="r_ab3ba0e05895a3b3becb42ed6998212ec"><td class="memItemLeft" align="right" valign="top"><a id="ab3ba0e05895a3b3becb42ed6998212ec" name="ab3ba0e05895a3b3becb42ed6998212ec"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>scrollStartOffset</b> = 0</td></tr>
+<tr class="separator:ab3ba0e05895a3b3becb42ed6998212ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ab3a1fc5eb6a82f2851a1ca0eb4f7fe" id="r_a3ab3a1fc5eb6a82f2851a1ca0eb4f7fe"><td class="memItemLeft" align="right" valign="top"><a id="a3ab3a1fc5eb6a82f2851a1ca0eb4f7fe" name="a3ab3a1fc5eb6a82f2851a1ca0eb4f7fe"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isViewingHistory</b> = false</td></tr>
+<tr class="separator:a3ab3a1fc5eb6a82f2851a1ca0eb4f7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51c13c4082bbba2304da35bad3e44319" id="r_a51c13c4082bbba2304da35bad3e44319"><td class="memItemLeft" align="right" valign="top"><a id="a51c13c4082bbba2304da35bad3e44319" name="a51c13c4082bbba2304da35bad3e44319"></a>
+GameMode&#160;</td><td class="memItemRight" valign="bottom"><b>gameMode</b> = GameMode::HumanVsHuman</td></tr>
+<tr class="separator:a51c13c4082bbba2304da35bad3e44319"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8303727dcf3d55077617eced6bac65c" id="r_ad8303727dcf3d55077617eced6bac65c"><td class="memItemLeft" align="right" valign="top"><a id="ad8303727dcf3d55077617eced6bac65c" name="ad8303727dcf3d55077617eced6bac65c"></a>
+PlayerSide&#160;</td><td class="memItemRight" valign="bottom"><b>playerSide</b> = PlayerSide::White</td></tr>
+<tr class="separator:ad8303727dcf3d55077617eced6bac65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac926fd623e6ab8a7f0b2fe1fce04e37b" id="r_ac926fd623e6ab8a7f0b2fe1fce04e37b"><td class="memItemLeft" align="right" valign="top"><a id="ac926fd623e6ab8a7f0b2fe1fce04e37b" name="ac926fd623e6ab8a7f0b2fe1fce04e37b"></a>
+<a class="el" href="classJr_1_1AIPlayer.html">AIPlayer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>aiPlayer</b></td></tr>
+<tr class="separator:ac926fd623e6ab8a7f0b2fe1fce04e37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a069eded4cf77971e3c67a8b5c040d587" id="r_a069eded4cf77971e3c67a8b5c040d587"><td class="memItemLeft" align="right" valign="top"><a id="a069eded4cf77971e3c67a8b5c040d587" name="a069eded4cf77971e3c67a8b5c040d587"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>lastMoveCount</b> = 0</td></tr>
+<tr class="separator:a069eded4cf77971e3c67a8b5c040d587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ce5704f2ced7f215423c7e3c4a6e43e" id="r_a8ce5704f2ced7f215423c7e3c4a6e43e"><td class="memItemLeft" align="right" valign="top"><a id="a8ce5704f2ced7f215423c7e3c4a6e43e" name="a8ce5704f2ced7f215423c7e3c4a6e43e"></a>
+std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>aiIsThinking</b> {false}</td></tr>
+<tr class="separator:a8ce5704f2ced7f215423c7e3c4a6e43e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2de7ba491f8675119011f2719ec8b53e" id="r_a2de7ba491f8675119011f2719ec8b53e"><td class="memItemLeft" align="right" valign="top"><a id="a2de7ba491f8675119011f2719ec8b53e" name="a2de7ba491f8675119011f2719ec8b53e"></a>
+std::future&lt; <a class="el" href="structJr_1_1AIMove.html">AIMove</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>aiFuture</b></td></tr>
+<tr class="separator:a2de7ba491f8675119011f2719ec8b53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3530ddc275d29f589a79c26fd298924" id="r_ad3530ddc275d29f589a79c26fd298924"><td class="memItemLeft" align="right" valign="top"><a id="ad3530ddc275d29f589a79c26fd298924" name="ad3530ddc275d29f589a79c26fd298924"></a>
+std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>chessLogicMutex</b></td></tr>
+<tr class="separator:ad3530ddc275d29f589a79c26fd298924"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -202,8 +303,8 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>win
 <div class="textblock"><p>État du jeu représentant une partie d'échecs en cours. </p>
 <p>Cette classe dérive de <a class="el" href="classJr_1_1GameState.html" title="Classe de base abstraite pour tous les états du jeu.">GameState</a> et gère la logique et l'affichage du plateau d'échecs pendant une partie active. Elle coordonne les interactions utilisateur, la mise à jour de la logique de jeu, et le rendu graphique via les gestionnaires de textures et polices. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a17517dc7b598e96d35352c7d997dd03c" name="a17517dc7b598e96d35352c7d997dd03c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17517dc7b598e96d35352c7d997dd03c">&#9670;&#160;</a></span>PlayingState()</h2>
+<a id="acadeb24576fec23972bfcaba2368b96f" name="acadeb24576fec23972bfcaba2368b96f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acadeb24576fec23972bfcaba2368b96f">&#9670;&#160;</a></span>PlayingState()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -230,7 +331,31 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>win
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classJr_1_1FontManager.html">FontManager</a> &amp;&#160;</td>
-          <td class="paramname"><em>fm</em>&#160;</td>
+          <td class="paramname"><em>fm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GameMode&#160;</td>
+          <td class="paramname"><em>mode</em> = <code>GameMode::HumanVsHuman</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PlayerSide&#160;</td>
+          <td class="paramname"><em>side</em> = <code>PlayerSide::White</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>aiDepth</em> = <code>3</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>clockSeconds</em> = <code>600.0f</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -244,10 +369,14 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>win
 <p>Initialise les références aux gestionnaires, crée la logique et le plateau, et prépare l'état pour une nouvelle partie.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">manager</td><td>Référence au <a class="el" href="classJr_1_1StateManager.html" title="Gère la pile des états du jeu (menu, partie, aide, etc.).">StateManager</a> pour gérer les transitions d'état. </td></tr>
+    <tr><td class="paramname">manager</td><td>Référence au <a class="el" href="classJr_1_1StateManager.html">StateManager</a> pour gérer les transitions d'état. </td></tr>
     <tr><td class="paramname">win</td><td>Référence à la fenêtre SFML pour le rendu. </td></tr>
     <tr><td class="paramname">tm</td><td>Référence au gestionnaire de textures. </td></tr>
     <tr><td class="paramname">fm</td><td>Référence au gestionnaire de polices. </td></tr>
+    <tr><td class="paramname">mode</td><td>Mode de jeu (HumanVsHuman, HumanVsAI, AIvsAI). </td></tr>
+    <tr><td class="paramname">side</td><td>Côté du joueur humain. </td></tr>
+    <tr><td class="paramname">aiDepth</td><td>Profondeur de recherche de l'IA. </td></tr>
+    <tr><td class="paramname">clockSeconds</td><td>Temps initial pour chaque joueur. </td></tr>
   </table>
   </dd>
 </dl>

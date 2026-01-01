@@ -103,41 +103,41 @@ $(document).ready(function(){initNavTree('Board_8hpp_source.html',''); initResiz
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;constants.hpp&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;TextureManager.hpp&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;FontManager.hpp&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;ChessLogic.hpp&quot;</span> <span class="comment">// Board a besoin de la logique pour savoir quoi dessiner</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>Jr {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classJr_1_1Board.html">   14</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classJr_1_1Board.html">Board</a> {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="comment">// Références aux managers</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <a class="code hl_class" href="classJr_1_1TextureManager.html">TextureManager</a>&amp; textureManager;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <a class="code hl_class" href="classJr_1_1FontManager.html">FontManager</a>&amp; fontManager;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <a class="code hl_class" href="classJr_1_1ChessLogic.html">ChessLogic</a>&amp; chessLogic; <span class="comment">// Référence au manager de logique</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="comment">// Éléments graphiques statiques (le plateau, les labels)</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        std::array&lt;std::array&lt;sf::RectangleShape, 8&gt;, 8&gt; boxes;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        std::array&lt;sf::Text, 32&gt; labels; <span class="comment">// Pour les coordonnées A-H, 1-8</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="comment">// Éléments graphiques dynamiques (les sprites des pièces, les highlight)</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        std::vector&lt;sf::Sprite&gt; pieceSprites; <span class="comment">// Sprites des pièces actuellement sur le plateau</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="comment">// États graphiques pour l&#39;interaction utilisateur</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordtype">int</span> selectedSquare = -1; <span class="comment">// Case sélectionnée par le joueur</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        std::vector&lt;int&gt; highlightedSquares; <span class="comment">// Cases légales à surligner</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="comment">// Éléments pour la promotion</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        std::vector&lt;sf::Sprite&gt; promotionChoicesSprites;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        sf::RectangleShape promotionFrame;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="comment">// Méthodes privées pour le rendu</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classJr_1_1Board.html#acfbcdfe4eb7054cec5f9ec68a11f9b3a">setupBoardSquares</a>(); <span class="comment">// Configure les sf::RectangleShape pour le plateau</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classJr_1_1Board.html#a9651ca57ec267cb477a2cb2eede262c9">setupLabels</a>(); <span class="comment">// Configure les sf::Text pour les coordonnées</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classJr_1_1Board.html#aa632de5873bbf479e48b99d3c0f39c64">updatePieceSprites</a>(); <span class="comment">// Met à jour pieceSprites en fonction de ChessLogic</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classJr_1_1Board.html#a614a00c6097b6f145ad5ffd81e96bb0a">preparePromotionDisplay</a>(); <span class="comment">// Prépare l&#39;affichage des choix de promotion</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;constants.hpp&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;TextureManager.hpp&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;FontManager.hpp&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;ChessLogic.hpp&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>Jr {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classJr_1_1Board.html">   15</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classJr_1_1Board.html">Board</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="comment">// Références aux managers</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <a class="code hl_class" href="classJr_1_1TextureManager.html">TextureManager</a>&amp; textureManager;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <a class="code hl_class" href="classJr_1_1FontManager.html">FontManager</a>&amp; fontManager;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <a class="code hl_class" href="classJr_1_1ChessLogic.html">ChessLogic</a>&amp; chessLogic; <span class="comment">// Référence au manager de logique</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="comment">// Éléments graphiques statiques (le plateau, les labels)</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        std::array&lt;std::array&lt;sf::RectangleShape, 8&gt;, 8&gt; boxes;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        std::array&lt;sf::Text, 32&gt; labels; <span class="comment">// Pour les coordonnées A-H, 1-8</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="comment">// Éléments graphiques dynamiques (les sprites des pièces, les highlight)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        std::vector&lt;sf::Sprite&gt; pieceSprites; <span class="comment">// Sprites des pièces actuellement sur le plateau</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="comment">// États graphiques pour l&#39;interaction utilisateur</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordtype">int</span> selectedSquare = -1; <span class="comment">// Case sélectionnée par le joueur</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        std::vector&lt;int&gt; highlightedSquares; <span class="comment">// Cases légales à surligner</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="comment">// Éléments pour la promotion</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        std::vector&lt;sf::Sprite&gt; promotionChoicesSprites;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        sf::RectangleShape promotionFrame;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="comment">// Méthodes privées pour le rendu</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classJr_1_1Board.html#acfbcdfe4eb7054cec5f9ec68a11f9b3a">setupBoardSquares</a>();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classJr_1_1Board.html#a9651ca57ec267cb477a2cb2eede262c9">setupLabels</a>();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classJr_1_1Board.html#a614a00c6097b6f145ad5ffd81e96bb0a">preparePromotionDisplay</a>();</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="comment">// Le constructeur prend les références aux managers nécessaires</span></div>
@@ -146,21 +146,23 @@ $(document).ready(function(){initNavTree('Board_8hpp_source.html',''); initResiz
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="comment">// Méthodes publiques d&#39;interaction</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classJr_1_1Board.html#a9b12b7a84385e5c651e84b5e8aac75a5">draw</a>(sf::RenderWindow&amp; window);</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classJr_1_1Board.html#a640b31ec2a6cfd7297e1b75a5a2f9a1e">handleMouseClick</a>(<span class="keywordtype">int</span> mouseX, <span class="keywordtype">int</span> mouseY); <span class="comment">// Gère le clic de souris</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="comment">// Getters pour l&#39;état graphique (si d&#39;autres classes en ont besoin)</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordtype">int</span> getSelectedSquare()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> selectedSquare; }</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">const</span> std::vector&lt;int&gt;&amp; getHighlightedSquares()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> highlightedSquares; }</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    };</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classJr_1_1Board.html#aa632de5873bbf479e48b99d3c0f39c64">updatePieceSprites</a>(); <span class="comment">// Public pour permettre la mise à jour depuis PlayingState</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">void</span> clearSelection(); <span class="comment">// Réinitialise la sélection et les highlights</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="comment">// Getters pour l&#39;état graphique (si d&#39;autres classes en ont besoin)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordtype">int</span> getSelectedSquare()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> selectedSquare; }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keyword">const</span> std::vector&lt;int&gt;&amp; getHighlightedSquares()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> highlightedSquares; }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    };</div>
 </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
-<div class="ttc" id="aclassJr_1_1Board_html"><div class="ttname"><a href="classJr_1_1Board.html">Jr::Board</a></div><div class="ttdoc">Gère l'affichage graphique du plateau d'échecs et les interactions utilisateur.</div><div class="ttdef"><b>Definition</b> Board.hpp:14</div></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
+<div class="ttc" id="aclassJr_1_1Board_html"><div class="ttname"><a href="classJr_1_1Board.html">Jr::Board</a></div><div class="ttdoc">Gère l'affichage graphique du plateau d'échecs et les interactions utilisateur.</div><div class="ttdef"><b>Definition</b> Board.hpp:15</div></div>
 <div class="ttc" id="aclassJr_1_1Board_html_a614a00c6097b6f145ad5ffd81e96bb0a"><div class="ttname"><a href="classJr_1_1Board.html#a614a00c6097b6f145ad5ffd81e96bb0a">Jr::Board::preparePromotionDisplay</a></div><div class="ttdeci">void preparePromotionDisplay()</div><div class="ttdoc">Prépare l'affichage des choix de promotion.</div><div class="ttdef"><b>Definition</b> Board.cpp:107</div></div>
 <div class="ttc" id="aclassJr_1_1Board_html_a640b31ec2a6cfd7297e1b75a5a2f9a1e"><div class="ttname"><a href="classJr_1_1Board.html#a640b31ec2a6cfd7297e1b75a5a2f9a1e">Jr::Board::handleMouseClick</a></div><div class="ttdeci">void handleMouseClick(int mouseX, int mouseY)</div><div class="ttdoc">Gère les clics de souris pour sélectionner ou déplacer une pièce.</div><div class="ttdef"><b>Definition</b> Board.cpp:192</div></div>
 <div class="ttc" id="aclassJr_1_1Board_html_a9651ca57ec267cb477a2cb2eede262c9"><div class="ttname"><a href="classJr_1_1Board.html#a9651ca57ec267cb477a2cb2eede262c9">Jr::Board::setupLabels</a></div><div class="ttdeci">void setupLabels()</div><div class="ttdoc">Ajoute les labels des coordonnées (A-H, 1-8) autour du plateau.</div><div class="ttdef"><b>Definition</b> Board.cpp:43</div></div>
 <div class="ttc" id="aclassJr_1_1Board_html_a9b12b7a84385e5c651e84b5e8aac75a5"><div class="ttname"><a href="classJr_1_1Board.html#a9b12b7a84385e5c651e84b5e8aac75a5">Jr::Board::draw</a></div><div class="ttdeci">void draw(sf::RenderWindow &amp;window)</div><div class="ttdoc">Dessine le plateau, les pièces et les surbrillances.</div><div class="ttdef"><b>Definition</b> Board.cpp:138</div></div>
 <div class="ttc" id="aclassJr_1_1Board_html_aa632de5873bbf479e48b99d3c0f39c64"><div class="ttname"><a href="classJr_1_1Board.html#aa632de5873bbf479e48b99d3c0f39c64">Jr::Board::updatePieceSprites</a></div><div class="ttdeci">void updatePieceSprites()</div><div class="ttdoc">Met à jour les sprites des pièces selon l'état actuel du jeu.</div><div class="ttdef"><b>Definition</b> Board.cpp:81</div></div>
 <div class="ttc" id="aclassJr_1_1Board_html_acfbcdfe4eb7054cec5f9ec68a11f9b3a"><div class="ttname"><a href="classJr_1_1Board.html#acfbcdfe4eb7054cec5f9ec68a11f9b3a">Jr::Board::setupBoardSquares</a></div><div class="ttdeci">void setupBoardSquares()</div><div class="ttdoc">Configure les cases du plateau (taille, position, couleurs alternées).</div><div class="ttdef"><b>Definition</b> Board.cpp:30</div></div>
-<div class="ttc" id="aclassJr_1_1ChessLogic_html"><div class="ttname"><a href="classJr_1_1ChessLogic.html">Jr::ChessLogic</a></div><div class="ttdoc">Gestion complète de la logique d'un jeu d'échecs.</div><div class="ttdef"><b>Definition</b> ChessLogic.hpp:22</div></div>
+<div class="ttc" id="aclassJr_1_1ChessLogic_html"><div class="ttname"><a href="classJr_1_1ChessLogic.html">Jr::ChessLogic</a></div><div class="ttdoc">Gestion complète de la logique d'un jeu d'échecs.</div><div class="ttdef"><b>Definition</b> ChessLogic.hpp:48</div></div>
 <div class="ttc" id="aclassJr_1_1FontManager_html"><div class="ttname"><a href="classJr_1_1FontManager.html">Jr::FontManager</a></div><div class="ttdoc">Gestion centralisée du chargement et du cache des polices.</div><div class="ttdef"><b>Definition</b> FontManager.hpp:15</div></div>
 <div class="ttc" id="aclassJr_1_1TextureManager_html"><div class="ttname"><a href="classJr_1_1TextureManager.html">Jr::TextureManager</a></div><div class="ttdoc">Gestionnaire de textures SFML chargé de gérer le chargement, la mise en cache et la libération des te...</div><div class="ttdef"><b>Definition</b> TextureManager.hpp:17</div></div>
 </div><!-- fragment --></div><!-- contents -->

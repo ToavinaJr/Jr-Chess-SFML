@@ -96,276 +96,54 @@ $(document).ready(function(){initNavTree('classJr_1_1StateManager.html',''); ini
   <div class="headertitle"><div class="title">Jr::StateManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Gère la pile des états du jeu (menu, partie, aide, etc.).  
- <a href="classJr_1_1StateManager.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="StateManager_8hpp_source.html">StateManager.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1df239af44c7301f83a3dbc1247c7c83" id="r_a1df239af44c7301f83a3dbc1247c7c83"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1StateManager.html#a1df239af44c7301f83a3dbc1247c7c83">StateManager</a> (sf::RenderWindow &amp;win)</td></tr>
-<tr class="memdesc:a1df239af44c7301f83a3dbc1247c7c83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur du <a class="el" href="classJr_1_1StateManager.html" title="Gère la pile des états du jeu (menu, partie, aide, etc.).">StateManager</a>.  <br /></td></tr>
+<tr class="memitem:a1df239af44c7301f83a3dbc1247c7c83" id="r_a1df239af44c7301f83a3dbc1247c7c83"><td class="memItemLeft" align="right" valign="top"><a id="a1df239af44c7301f83a3dbc1247c7c83" name="a1df239af44c7301f83a3dbc1247c7c83"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>StateManager</b> (sf::RenderWindow &amp;win)</td></tr>
 <tr class="separator:a1df239af44c7301f83a3dbc1247c7c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fd6881daca6bb7e09c9f6db958ce32a" id="r_a1fd6881daca6bb7e09c9f6db958ce32a"><td class="memTemplParams" colspan="2">template&lt;typename TType , typename... TArgs&gt; </td></tr>
-<tr class="memitem:a1fd6881daca6bb7e09c9f6db958ce32a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classJr_1_1StateManager.html#a1fd6881daca6bb7e09c9f6db958ce32a">pushState</a> (TArgs &amp;&amp;... args)</td></tr>
-<tr class="memdesc:a1fd6881daca6bb7e09c9f6db958ce32a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un nouvel état au sommet de la pile et l'active.  <br /></td></tr>
+<tr class="memitem:a1fd6881daca6bb7e09c9f6db958ce32a" id="r_a1fd6881daca6bb7e09c9f6db958ce32a"><td class="memTemplParams" colspan="2"><a id="a1fd6881daca6bb7e09c9f6db958ce32a" name="a1fd6881daca6bb7e09c9f6db958ce32a"></a>
+template&lt;typename TType , typename... TArgs&gt; </td></tr>
+<tr class="memitem:a1fd6881daca6bb7e09c9f6db958ce32a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>pushState</b> (TArgs &amp;&amp;... args)</td></tr>
 <tr class="separator:a1fd6881daca6bb7e09c9f6db958ce32a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafe997f726df37662ad03b5131358157" id="r_aafe997f726df37662ad03b5131358157"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1StateManager.html#aafe997f726df37662ad03b5131358157">popState</a> ()</td></tr>
-<tr class="memdesc:aafe997f726df37662ad03b5131358157"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime l'état au sommet de la pile.  <br /></td></tr>
+<tr class="memitem:aafe997f726df37662ad03b5131358157" id="r_aafe997f726df37662ad03b5131358157"><td class="memItemLeft" align="right" valign="top"><a id="aafe997f726df37662ad03b5131358157" name="aafe997f726df37662ad03b5131358157"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>popState</b> ()</td></tr>
 <tr class="separator:aafe997f726df37662ad03b5131358157"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4b485ba7ae2231ff192cd07cc2657d0" id="r_ad4b485ba7ae2231ff192cd07cc2657d0"><td class="memTemplParams" colspan="2">template&lt;typename TType , typename... TArgs&gt; </td></tr>
-<tr class="memitem:ad4b485ba7ae2231ff192cd07cc2657d0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classJr_1_1StateManager.html#ad4b485ba7ae2231ff192cd07cc2657d0">changeState</a> (TArgs &amp;&amp;... args)</td></tr>
-<tr class="memdesc:ad4b485ba7ae2231ff192cd07cc2657d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remplace l'état actif actuel par un nouvel état.  <br /></td></tr>
+<tr class="memitem:ad4b485ba7ae2231ff192cd07cc2657d0" id="r_ad4b485ba7ae2231ff192cd07cc2657d0"><td class="memTemplParams" colspan="2"><a id="ad4b485ba7ae2231ff192cd07cc2657d0" name="ad4b485ba7ae2231ff192cd07cc2657d0"></a>
+template&lt;typename TType , typename... TArgs&gt; </td></tr>
+<tr class="memitem:ad4b485ba7ae2231ff192cd07cc2657d0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>changeState</b> (TArgs &amp;&amp;... args)</td></tr>
 <tr class="separator:ad4b485ba7ae2231ff192cd07cc2657d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99b60718e968d357ce901637418fa7ab" id="r_a99b60718e968d357ce901637418fa7ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1StateManager.html#a99b60718e968d357ce901637418fa7ab">handleInput</a> (const sf::Event &amp;event)</td></tr>
-<tr class="memdesc:a99b60718e968d357ce901637418fa7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Délègue la gestion des événements à l'état actif.  <br /></td></tr>
+<tr class="memitem:a99b60718e968d357ce901637418fa7ab" id="r_a99b60718e968d357ce901637418fa7ab"><td class="memItemLeft" align="right" valign="top"><a id="a99b60718e968d357ce901637418fa7ab" name="a99b60718e968d357ce901637418fa7ab"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleInput</b> (const sf::Event &amp;event)</td></tr>
 <tr class="separator:a99b60718e968d357ce901637418fa7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fde9e9f3a6b19fe00a6b448862c1c72" id="r_a4fde9e9f3a6b19fe00a6b448862c1c72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1StateManager.html#a4fde9e9f3a6b19fe00a6b448862c1c72">update</a> (float deltaTime)</td></tr>
-<tr class="memdesc:a4fde9e9f3a6b19fe00a6b448862c1c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour la logique du jeu dans l'état actif.  <br /></td></tr>
+<tr class="memitem:a4fde9e9f3a6b19fe00a6b448862c1c72" id="r_a4fde9e9f3a6b19fe00a6b448862c1c72"><td class="memItemLeft" align="right" valign="top"><a id="a4fde9e9f3a6b19fe00a6b448862c1c72" name="a4fde9e9f3a6b19fe00a6b448862c1c72"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (float deltaTime)</td></tr>
 <tr class="separator:a4fde9e9f3a6b19fe00a6b448862c1c72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b598ca95893fcc2aa0bdb127a44cd2b" id="r_a4b598ca95893fcc2aa0bdb127a44cd2b"><td class="memItemLeft" align="right" valign="top"><a id="a4b598ca95893fcc2aa0bdb127a44cd2b" name="a4b598ca95893fcc2aa0bdb127a44cd2b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()</td></tr>
-<tr class="memdesc:a4b598ca95893fcc2aa0bdb127a44cd2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine l'état actif sur la fenêtre. <br /></td></tr>
 <tr class="separator:a4b598ca95893fcc2aa0bdb127a44cd2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a666e371b1da6cacf4d73c403a2396a05" id="r_a666e371b1da6cacf4d73c403a2396a05"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1StateManager.html#a666e371b1da6cacf4d73c403a2396a05">isEmpty</a> () const</td></tr>
-<tr class="memdesc:a666e371b1da6cacf4d73c403a2396a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indique si la pile d'états est vide.  <br /></td></tr>
+<tr class="memitem:a666e371b1da6cacf4d73c403a2396a05" id="r_a666e371b1da6cacf4d73c403a2396a05"><td class="memItemLeft" align="right" valign="top"><a id="a666e371b1da6cacf4d73c403a2396a05" name="a666e371b1da6cacf4d73c403a2396a05"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEmpty</b> () const</td></tr>
 <tr class="separator:a666e371b1da6cacf4d73c403a2396a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefec1e7041bca6193f95616f1654792d" id="r_aefec1e7041bca6193f95616f1654792d"><td class="memItemLeft" align="right" valign="top"><a id="aefec1e7041bca6193f95616f1654792d" name="aefec1e7041bca6193f95616f1654792d"></a>
+<a class="el" href="classJr_1_1GameState.html">GameState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentState</b> ()</td></tr>
+<tr class="separator:aefec1e7041bca6193f95616f1654792d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85409b544fb5d70852efea62ad8a7a2c" id="r_a85409b544fb5d70852efea62ad8a7a2c"><td class="memItemLeft" align="right" valign="top"><a id="a85409b544fb5d70852efea62ad8a7a2c" name="a85409b544fb5d70852efea62ad8a7a2c"></a>
+std::vector&lt; std::unique_ptr&lt; <a class="el" href="classJr_1_1GameState.html">GameState</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getStates</b> ()</td></tr>
+<tr class="separator:a85409b544fb5d70852efea62ad8a7a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aeac2eae96b8c06d71435f92816b6b513" id="r_aeac2eae96b8c06d71435f92816b6b513"><td class="memItemLeft" align="right" valign="top"><a id="aeac2eae96b8c06d71435f92816b6b513" name="aeac2eae96b8c06d71435f92816b6b513"></a>
 std::vector&lt; std::unique_ptr&lt; <a class="el" href="classJr_1_1GameState.html">GameState</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>states</b></td></tr>
-<tr class="memdesc:aeac2eae96b8c06d71435f92816b6b513"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pile des états actifs, gérés via std::unique_ptr. <br /></td></tr>
 <tr class="separator:aeac2eae96b8c06d71435f92816b6b513"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e1b66326ddbafd219dfd14f5039d1c5" id="r_a6e1b66326ddbafd219dfd14f5039d1c5"><td class="memItemLeft" align="right" valign="top"><a id="a6e1b66326ddbafd219dfd14f5039d1c5" name="a6e1b66326ddbafd219dfd14f5039d1c5"></a>
 sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></td></tr>
-<tr class="memdesc:a6e1b66326ddbafd219dfd14f5039d1c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Référence à la fenêtre SFML de rendu. <br /></td></tr>
 <tr class="separator:a6e1b66326ddbafd219dfd14f5039d1c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Gère la pile des états du jeu (menu, partie, aide, etc.). </p>
-<p>Cette classe maintient une pile d'objets dérivés de <a class="el" href="classJr_1_1GameState.html" title="Classe de base abstraite pour tous les états du jeu.">GameState</a>. Seul l'état au sommet de la pile est actif : il reçoit les entrées, est mis à jour et dessiné. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a1df239af44c7301f83a3dbc1247c7c83" name="a1df239af44c7301f83a3dbc1247c7c83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1df239af44c7301f83a3dbc1247c7c83">&#9670;&#160;</a></span>StateManager()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Jr::StateManager::StateManager </td>
-          <td>(</td>
-          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
-          <td class="paramname"><em>win</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Constructeur du <a class="el" href="classJr_1_1StateManager.html" title="Gère la pile des états du jeu (menu, partie, aide, etc.).">StateManager</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">win</td><td>Référence à la fenêtre SFML utilisée pour le rendu. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad4b485ba7ae2231ff192cd07cc2657d0" name="ad4b485ba7ae2231ff192cd07cc2657d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4b485ba7ae2231ff192cd07cc2657d0">&#9670;&#160;</a></span>changeState()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename TType , typename... TArgs&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Jr::StateManager::changeState </td>
-          <td>(</td>
-          <td class="paramtype">TArgs &amp;&amp;...&#160;</td>
-          <td class="paramname"><em>args</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Remplace l'état actif actuel par un nouvel état. </p>
-<p>Appelle onExit() de l'état actuel puis le supprime, puis pousse le nouvel état et appelle sa méthode onEnter().</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">TType</td><td>Type du nouvel état (doit hériter de <a class="el" href="classJr_1_1GameState.html" title="Classe de base abstraite pour tous les états du jeu.">GameState</a>). </td></tr>
-    <tr><td class="paramname">TArgs</td><td>Types des arguments du constructeur du nouvel état. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">args</td><td>Arguments du constructeur. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a99b60718e968d357ce901637418fa7ab" name="a99b60718e968d357ce901637418fa7ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99b60718e968d357ce901637418fa7ab">&#9670;&#160;</a></span>handleInput()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Jr::StateManager::handleInput </td>
-          <td>(</td>
-          <td class="paramtype">const sf::Event &amp;&#160;</td>
-          <td class="paramname"><em>event</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Délègue la gestion des événements à l'état actif. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">event</td><td>Événement SFML à traiter. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a666e371b1da6cacf4d73c403a2396a05" name="a666e371b1da6cacf4d73c403a2396a05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a666e371b1da6cacf4d73c403a2396a05">&#9670;&#160;</a></span>isEmpty()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Jr::StateManager::isEmpty </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Indique si la pile d'états est vide. </p>
-<dl class="section return"><dt>Returns</dt><dd>true si aucun état n'est présent, false sinon. </dd></dl>
-
-</div>
-</div>
-<a id="aafe997f726df37662ad03b5131358157" name="aafe997f726df37662ad03b5131358157"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aafe997f726df37662ad03b5131358157">&#9670;&#160;</a></span>popState()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Jr::StateManager::popState </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Supprime l'état au sommet de la pile. </p>
-<p>Si la pile devient vide après suppression, le jeu peut se terminer. </p>
-
-</div>
-</div>
-<a id="a1fd6881daca6bb7e09c9f6db958ce32a" name="a1fd6881daca6bb7e09c9f6db958ce32a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1fd6881daca6bb7e09c9f6db958ce32a">&#9670;&#160;</a></span>pushState()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename TType , typename... TArgs&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Jr::StateManager::pushState </td>
-          <td>(</td>
-          <td class="paramtype">TArgs &amp;&amp;...&#160;</td>
-          <td class="paramname"><em>args</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Ajoute un nouvel état au sommet de la pile et l'active. </p>
-<p>Si un état est déjà actif, sa méthode onExit() est appelée avant de pousser le nouvel état. Le nouvel état appelle sa méthode onEnter().</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">TType</td><td>Type de l'état à créer (doit hériter de <a class="el" href="classJr_1_1GameState.html" title="Classe de base abstraite pour tous les états du jeu.">GameState</a>). </td></tr>
-    <tr><td class="paramname">TArgs</td><td>Types des arguments à passer au constructeur de l'état. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">args</td><td>Arguments du constructeur du nouvel état. </td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt; Notifie l'état actuel qu'il quitte l'activation</p>
-<p>&lt; Notifie le nouvel état qu'il est activé</p>
-
-</div>
-</div>
-<a id="a4fde9e9f3a6b19fe00a6b448862c1c72" name="a4fde9e9f3a6b19fe00a6b448862c1c72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fde9e9f3a6b19fe00a6b448862c1c72">&#9670;&#160;</a></span>update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Jr::StateManager::update </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>deltaTime</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Met à jour la logique du jeu dans l'état actif. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">deltaTime</td><td>Temps écoulé depuis la dernière mise à jour (en secondes). </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="StateManager_8hpp_source.html">StateManager.hpp</a></li>
+<li>include/<a class="el" href="StateManager_8inl_source.html">StateManager.inl</a></li>
 <li>source/<b>StateManager.cpp</b></li>
 </ul>
 </div><!-- contents -->

@@ -147,6 +147,48 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a10c6ebea5a9efe93a887fcfc31dc7650" id="r_a10c6ebea5a9efe93a887fcfc31dc7650"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, <a class="el" href="structJr_1_1Piece.html">Piece</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#a10c6ebea5a9efe93a887fcfc31dc7650">getCurrentBoardState</a> () const</td></tr>
 <tr class="memdesc:a10c6ebea5a9efe93a887fcfc31dc7650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère l'état complet du plateau sous forme de map case -&gt; pièce.  <br /></td></tr>
 <tr class="separator:a10c6ebea5a9efe93a887fcfc31dc7650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf60e8e8c977e1b4da98424a1e6ebfa4" id="r_aaf60e8e8c977e1b4da98424a1e6ebfa4"><td class="memItemLeft" align="right" valign="top">ChessGameStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#aaf60e8e8c977e1b4da98424a1e6ebfa4">getGameState</a> () const</td></tr>
+<tr class="memdesc:aaf60e8e8c977e1b4da98424a1e6ebfa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si le jeu est terminé (échec, pat, etc.).  <br /></td></tr>
+<tr class="separator:aaf60e8e8c977e1b4da98424a1e6ebfa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f992522dea5ba44b99f839356df4f83" id="r_a3f992522dea5ba44b99f839356df4f83"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#a3f992522dea5ba44b99f839356df4f83">isStalemate</a> () const</td></tr>
+<tr class="memdesc:a3f992522dea5ba44b99f839356df4f83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si la partie est un match nul par pat (stalemate).  <br /></td></tr>
+<tr class="separator:a3f992522dea5ba44b99f839356df4f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d4a612b69f640ce82998c957183c1c9" id="r_a0d4a612b69f640ce82998c957183c1c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#a0d4a612b69f640ce82998c957183c1c9">isInsufficientMaterial</a> () const</td></tr>
+<tr class="memdesc:a0d4a612b69f640ce82998c957183c1c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si la partie est un match nul par matériel insuffisant.  <br /></td></tr>
+<tr class="separator:a0d4a612b69f640ce82998c957183c1c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22f2ef871ab03cb649074d3fcefb2ff5" id="r_a22f2ef871ab03cb649074d3fcefb2ff5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#a22f2ef871ab03cb649074d3fcefb2ff5">is50MoveRuleDraw</a> () const</td></tr>
+<tr class="memdesc:a22f2ef871ab03cb649074d3fcefb2ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si la partie est un match nul par la règle des 50 coups sans capture ni mouvement de pion.  <br /></td></tr>
+<tr class="separator:a22f2ef871ab03cb649074d3fcefb2ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9222446b34ffaf4dff45d44c06c57a50" id="r_a9222446b34ffaf4dff45d44c06c57a50"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#a9222446b34ffaf4dff45d44c06c57a50">isThreeFoldRepetitionDraw</a> () const</td></tr>
+<tr class="memdesc:a9222446b34ffaf4dff45d44c06c57a50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si la partie est un match nul par répétition de position.  <br /></td></tr>
+<tr class="separator:a9222446b34ffaf4dff45d44c06c57a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f21a6cb5abfc2c622028dcc69129a61" id="r_a9f21a6cb5abfc2c622028dcc69129a61"><td class="memItemLeft" align="right" valign="top"><a id="a9f21a6cb5abfc2c622028dcc69129a61" name="a9f21a6cb5abfc2c622028dcc69129a61"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>noLegalMovesAvailable</b> (bool whiteToMove) const</td></tr>
+<tr class="separator:a9f21a6cb5abfc2c622028dcc69129a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7ebe16842226c78b06e8b03747f0e45" id="r_ab7ebe16842226c78b06e8b03747f0e45"><td class="memItemLeft" align="right" valign="top"><a id="ab7ebe16842226c78b06e8b03747f0e45" name="ab7ebe16842226c78b06e8b03747f0e45"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isCheckmate</b> (bool whiteToMove) const</td></tr>
+<tr class="separator:ab7ebe16842226c78b06e8b03747f0e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f75c5545e07b160c9b5c7c6deee7224" id="r_a9f75c5545e07b160c9b5c7c6deee7224"><td class="memItemLeft" align="right" valign="top"><a id="a9f75c5545e07b160c9b5c7c6deee7224" name="a9f75c5545e07b160c9b5c7c6deee7224"></a>
+const std::vector&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMoveHistory</b> () const</td></tr>
+<tr class="separator:a9f75c5545e07b160c9b5c7c6deee7224"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9865a9b72e3a4d533b58af0db20b6c0b" id="r_a9865a9b72e3a4d533b58af0db20b6c0b"><td class="memItemLeft" align="right" valign="top"><a id="a9865a9b72e3a4d533b58af0db20b6c0b" name="a9865a9b72e3a4d533b58af0db20b6c0b"></a>
+const std::vector&lt; <a class="el" href="structJr_1_1Piece.html">Piece</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCapturedByWhite</b> () const</td></tr>
+<tr class="separator:a9865a9b72e3a4d533b58af0db20b6c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eca85a5a6e014a5d88508acce634b84" id="r_a4eca85a5a6e014a5d88508acce634b84"><td class="memItemLeft" align="right" valign="top"><a id="a4eca85a5a6e014a5d88508acce634b84" name="a4eca85a5a6e014a5d88508acce634b84"></a>
+const std::vector&lt; <a class="el" href="structJr_1_1Piece.html">Piece</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCapturedByBlack</b> () const</td></tr>
+<tr class="separator:a4eca85a5a6e014a5d88508acce634b84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a367afe71b334d0b0b48328df0bd2cdf5" id="r_a367afe71b334d0b0b48328df0bd2cdf5"><td class="memItemLeft" align="right" valign="top"><a id="a367afe71b334d0b0b48328df0bd2cdf5" name="a367afe71b334d0b0b48328df0bd2cdf5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getSnapshotCount</b> () const</td></tr>
+<tr class="separator:a367afe71b334d0b0b48328df0bd2cdf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a235f30310c388a927148b7ea2ab8d37b" id="r_a235f30310c388a927148b7ea2ab8d37b"><td class="memItemLeft" align="right" valign="top"><a id="a235f30310c388a927148b7ea2ab8d37b" name="a235f30310c388a927148b7ea2ab8d37b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentSnapshotIndex</b> () const</td></tr>
+<tr class="separator:a235f30310c388a927148b7ea2ab8d37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae85979ea1581e8fea6336787c3f632d5" id="r_ae85979ea1581e8fea6336787c3f632d5"><td class="memItemLeft" align="right" valign="top"><a id="ae85979ea1581e8fea6336787c3f632d5" name="ae85979ea1581e8fea6336787c3f632d5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>restoreSnapshot</b> (int index)</td></tr>
+<tr class="separator:ae85979ea1581e8fea6336787c3f632d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae402c5cbaa4ecc44610506ddea09f8db" id="r_ae402c5cbaa4ecc44610506ddea09f8db"><td class="memItemLeft" align="right" valign="top"><a id="ae402c5cbaa4ecc44610506ddea09f8db" name="ae402c5cbaa4ecc44610506ddea09f8db"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaterialScoreDifference</b> () const</td></tr>
+<tr class="separator:ae402c5cbaa4ecc44610506ddea09f8db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -159,6 +201,21 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:aa7c5db1773724ef1ea7529daefbb71fb" id="r_aa7c5db1773724ef1ea7529daefbb71fb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJr_1_1ChessLogic.html#aa7c5db1773724ef1ea7529daefbb71fb">getRawMoves</a> (const <a class="el" href="structJr_1_1Piece.html">Piece</a> &amp;piece, int from) const</td></tr>
 <tr class="memdesc:aa7c5db1773724ef1ea7529daefbb71fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère les déplacements "bruts" possibles pour une pièce à une case donnée.  <br /></td></tr>
 <tr class="separator:aa7c5db1773724ef1ea7529daefbb71fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3f16a597f05a914fd3d0ba9eeb56468" id="r_ab3f16a597f05a914fd3d0ba9eeb56468"><td class="memItemLeft" align="right" valign="top"><a id="ab3f16a597f05a914fd3d0ba9eeb56468" name="ab3f16a597f05a914fd3d0ba9eeb56468"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>generateZobristKeys</b> ()</td></tr>
+<tr class="separator:ab3f16a597f05a914fd3d0ba9eeb56468"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c114ae073d2285ed352509e0d849408" id="r_a2c114ae073d2285ed352509e0d849408"><td class="memItemLeft" align="right" valign="top"><a id="a2c114ae073d2285ed352509e0d849408" name="a2c114ae073d2285ed352509e0d849408"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>calculateZobristHash</b> () const</td></tr>
+<tr class="separator:a2c114ae073d2285ed352509e0d849408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a1a62ccedd946582c6f84915612b733" id="r_a5a1a62ccedd946582c6f84915612b733"><td class="memItemLeft" align="right" valign="top"><a id="a5a1a62ccedd946582c6f84915612b733" name="a5a1a62ccedd946582c6f84915612b733"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateZobristHashForMove</b> (const <a class="el" href="structJr_1_1Piece.html">Piece</a> &amp;movingPiece, int from, int to, const <a class="el" href="structJr_1_1Piece.html">Piece</a> &amp;capturedPiece, int capturedPawnSq, bool isCastling, int rookFrom=-1, int rookTo=-1, PieceType promotionType=PieceType::None)</td></tr>
+<tr class="separator:a5a1a62ccedd946582c6f84915612b733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe9a39bf9dc19d15bf3bad05ee376e1e" id="r_abe9a39bf9dc19d15bf3bad05ee376e1e"><td class="memItemLeft" align="right" valign="top"><a id="abe9a39bf9dc19d15bf3bad05ee376e1e" name="abe9a39bf9dc19d15bf3bad05ee376e1e"></a>
+<a class="el" href="structJr_1_1Snapshot.html">Snapshot</a>&#160;</td><td class="memItemRight" valign="bottom"><b>createSnapshot</b> () const</td></tr>
+<tr class="separator:abe9a39bf9dc19d15bf3bad05ee376e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a132d6e05d7474788d7f473324d0f9c39" id="r_a132d6e05d7474788d7f473324d0f9c39"><td class="memItemLeft" align="right" valign="top"><a id="a132d6e05d7474788d7f473324d0f9c39" name="a132d6e05d7474788d7f473324d0f9c39"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>generatePGNMove</b> (int from, int to, const <a class="el" href="structJr_1_1Piece.html">Piece</a> &amp;movingPiece, bool isCapture, bool isCheck, bool isCheckmate) const</td></tr>
+<tr class="separator:a132d6e05d7474788d7f473324d0f9c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -214,6 +271,42 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>promotionWhite</b> = 
 int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = -1</td></tr>
 <tr class="memdesc:a57c4bec58b26aaed18110c963c280d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Case où la promotion doit avoir lieu (index), -1 si aucune promotion en attente. <br /></td></tr>
 <tr class="separator:a57c4bec58b26aaed18110c963c280d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3db80ac44ad5b94e2bdf6e541b6d5d86" id="r_a3db80ac44ad5b94e2bdf6e541b6d5d86"><td class="memItemLeft" align="right" valign="top"><a id="a3db80ac44ad5b94e2bdf6e541b6d5d86" name="a3db80ac44ad5b94e2bdf6e541b6d5d86"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>fiftyMoveCounter</b></td></tr>
+<tr class="separator:a3db80ac44ad5b94e2bdf6e541b6d5d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32ec321d2473fca170edd1c28282add8" id="r_a32ec321d2473fca170edd1c28282add8"><td class="memItemLeft" align="right" valign="top"><a id="a32ec321d2473fca170edd1c28282add8" name="a32ec321d2473fca170edd1c28282add8"></a>
+std::vector&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>positionHistory</b></td></tr>
+<tr class="separator:a32ec321d2473fca170edd1c28282add8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3353b8c0751236937b4ec7e5f7afb945" id="r_a3353b8c0751236937b4ec7e5f7afb945"><td class="memItemLeft" align="right" valign="top"><a id="a3353b8c0751236937b4ec7e5f7afb945" name="a3353b8c0751236937b4ec7e5f7afb945"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>currentZobristHash</b></td></tr>
+<tr class="separator:a3353b8c0751236937b4ec7e5f7afb945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1028aa66d36d9fe95d0b45606e04408" id="r_aa1028aa66d36d9fe95d0b45606e04408"><td class="memItemLeft" align="right" valign="top"><a id="aa1028aa66d36d9fe95d0b45606e04408" name="aa1028aa66d36d9fe95d0b45606e04408"></a>
+std::map&lt; std::string, uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ZobristPieceKeys</b> [64]</td></tr>
+<tr class="separator:aa1028aa66d36d9fe95d0b45606e04408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae02d729fcd6ee193fc86bfc762358a8e" id="r_ae02d729fcd6ee193fc86bfc762358a8e"><td class="memItemLeft" align="right" valign="top"><a id="ae02d729fcd6ee193fc86bfc762358a8e" name="ae02d729fcd6ee193fc86bfc762358a8e"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>ZobristSideToMoveKey</b></td></tr>
+<tr class="separator:ae02d729fcd6ee193fc86bfc762358a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae56c70986363458731631892aaf323dc" id="r_ae56c70986363458731631892aaf323dc"><td class="memItemLeft" align="right" valign="top"><a id="ae56c70986363458731631892aaf323dc" name="ae56c70986363458731631892aaf323dc"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>ZobristCastlingKeys</b> [16]</td></tr>
+<tr class="separator:ae56c70986363458731631892aaf323dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac498c141d64500d711dbca8cfb2e64e2" id="r_ac498c141d64500d711dbca8cfb2e64e2"><td class="memItemLeft" align="right" valign="top"><a id="ac498c141d64500d711dbca8cfb2e64e2" name="ac498c141d64500d711dbca8cfb2e64e2"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>ZobristEnPassantKeys</b> [8]</td></tr>
+<tr class="separator:ac498c141d64500d711dbca8cfb2e64e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab550168171c6a640f96138bca5663792" id="r_ab550168171c6a640f96138bca5663792"><td class="memItemLeft" align="right" valign="top"><a id="ab550168171c6a640f96138bca5663792" name="ab550168171c6a640f96138bca5663792"></a>
+std::vector&lt; <a class="el" href="structJr_1_1Snapshot.html">Snapshot</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>snapshots</b></td></tr>
+<tr class="separator:ab550168171c6a640f96138bca5663792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea5bcbcb8caac42d9da9db3c73139427" id="r_aea5bcbcb8caac42d9da9db3c73139427"><td class="memItemLeft" align="right" valign="top"><a id="aea5bcbcb8caac42d9da9db3c73139427" name="aea5bcbcb8caac42d9da9db3c73139427"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>currentSnapshotIndex</b> = 0</td></tr>
+<tr class="separator:aea5bcbcb8caac42d9da9db3c73139427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a436dcece7f4ce74ce52127fd4c658710" id="r_a436dcece7f4ce74ce52127fd4c658710"><td class="memItemLeft" align="right" valign="top"><a id="a436dcece7f4ce74ce52127fd4c658710" name="a436dcece7f4ce74ce52127fd4c658710"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>moveHistory</b></td></tr>
+<tr class="separator:a436dcece7f4ce74ce52127fd4c658710"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2f2a9104c7274b48ca916b6e4f34a5" id="r_a8a2f2a9104c7274b48ca916b6e4f34a5"><td class="memItemLeft" align="right" valign="top"><a id="a8a2f2a9104c7274b48ca916b6e4f34a5" name="a8a2f2a9104c7274b48ca916b6e4f34a5"></a>
+std::vector&lt; <a class="el" href="structJr_1_1Piece.html">Piece</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>capturedByWhite</b></td></tr>
+<tr class="separator:a8a2f2a9104c7274b48ca916b6e4f34a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82bf8adfba2f35fa0603411da088d3fe" id="r_a82bf8adfba2f35fa0603411da088d3fe"><td class="memItemLeft" align="right" valign="top"><a id="a82bf8adfba2f35fa0603411da088d3fe" name="a82bf8adfba2f35fa0603411da088d3fe"></a>
+std::vector&lt; <a class="el" href="structJr_1_1Piece.html">Piece</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>capturedByBlack</b></td></tr>
+<tr class="separator:a82bf8adfba2f35fa0603411da088d3fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Gestion complète de la logique d'un jeu d'échecs. </p>
@@ -262,6 +355,27 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>promotionSquare</b> = 
 <dl class="section return"><dt>Returns</dt><dd>Map des cases (0-63) associées à la pièce présente.</dd>
 <dd>
 Une std::map&lt;int, Piece&gt; où la clé est l'index de la case (0-63) et la valeur est l'objet <a class="el" href="structJr_1_1Piece.html" title="Structure représentant une pièce d&#39;échecs logique (sans aspects graphiques).">Piece</a>. </dd></dl>
+
+</div>
+</div>
+<a id="aaf60e8e8c977e1b4da98424a1e6ebfa4" name="aaf60e8e8c977e1b4da98424a1e6ebfa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf60e8e8c977e1b4da98424a1e6ebfa4">&#9670;&#160;</a></span>getGameState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChessGameStatus Jr::ChessLogic::getGameState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie si le jeu est terminé (échec, pat, etc.). </p>
+<p>Cette méthode évalue l'état du jeu pour déterminer s'il y a un gagnant, un match nul, ou si le jeu continue.</p>
+<dl class="section return"><dt>Returns</dt><dd>L'état actuel du jeu (en cours, échec et mat, pat, etc.). </dd></dl>
 
 </div>
 </div>
@@ -502,6 +616,26 @@ Une std::map&lt;int, Piece&gt; où la clé est l'index de la case (0-63) et la v
 
 </div>
 </div>
+<a id="a22f2ef871ab03cb649074d3fcefb2ff5" name="a22f2ef871ab03cb649074d3fcefb2ff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22f2ef871ab03cb649074d3fcefb2ff5">&#9670;&#160;</a></span>is50MoveRuleDraw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Jr::ChessLogic::is50MoveRuleDraw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie si la partie est un match nul par la règle des 50 coups sans capture ni mouvement de pion. </p>
+<dl class="section return"><dt>Returns</dt><dd>True si c'est un draw par 50 coups, False sinon. </dd></dl>
+
+</div>
+</div>
 <a id="a174fc9bcebb4078dea570be8ffd8dbb7" name="a174fc9bcebb4078dea570be8ffd8dbb7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a174fc9bcebb4078dea570be8ffd8dbb7">&#9670;&#160;</a></span>isEmpty()</h2>
 
@@ -600,6 +734,26 @@ Une std::map&lt;int, Piece&gt; où la clé est l'index de la case (0-63) et la v
 
 </div>
 </div>
+<a id="a0d4a612b69f640ce82998c957183c1c9" name="a0d4a612b69f640ce82998c957183c1c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d4a612b69f640ce82998c957183c1c9">&#9670;&#160;</a></span>isInsufficientMaterial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Jr::ChessLogic::isInsufficientMaterial </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie si la partie est un match nul par matériel insuffisant. </p>
+<dl class="section return"><dt>Returns</dt><dd>True si c'est un draw par matériel, False sinon. </dd></dl>
+
+</div>
+</div>
 <a id="ab91c428d04308450340957bf716c8df7" name="ab91c428d04308450340957bf716c8df7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab91c428d04308450340957bf716c8df7">&#9670;&#160;</a></span>isKingInCheck()</h2>
 
@@ -660,6 +814,46 @@ Une std::map&lt;int, Piece&gt; où la clé est l'index de la case (0-63) et la v
 
 <p>Indique si une promotion est en attente de choix. </p>
 <dl class="section return"><dt>Returns</dt><dd>true si une promotion est en attente, false sinon. </dd></dl>
+
+</div>
+</div>
+<a id="a3f992522dea5ba44b99f839356df4f83" name="a3f992522dea5ba44b99f839356df4f83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f992522dea5ba44b99f839356df4f83">&#9670;&#160;</a></span>isStalemate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Jr::ChessLogic::isStalemate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie si la partie est un match nul par pat (stalemate). </p>
+<dl class="section return"><dt>Returns</dt><dd>True si c'est un pat, False sinon. </dd></dl>
+
+</div>
+</div>
+<a id="a9222446b34ffaf4dff45d44c06c57a50" name="a9222446b34ffaf4dff45d44c06c57a50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9222446b34ffaf4dff45d44c06c57a50">&#9670;&#160;</a></span>isThreeFoldRepetitionDraw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Jr::ChessLogic::isThreeFoldRepetitionDraw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie si la partie est un match nul par répétition de position. </p>
+<dl class="section return"><dt>Returns</dt><dd>True si c'est un draw par répétition, False sinon. </dd></dl>
 
 </div>
 </div>

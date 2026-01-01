@@ -89,20 +89,13 @@ void PlayingState::onEnter() {
     // Si mode AI vs AI ou (Humain vs IA et humain joue noirs), l'IA commence
     if (gameMode == GameMode::AIvsAI || 
         (gameMode == GameMode::HumanVsAI && playerSide == PlayerSide::Black)) {
-        // L'IA doit jouer en premier
+        // L'IA doit jouer en premier - de manière asynchrone
         aiIsThinking = true;
         std::cout << "IA réfléchit (profondeur " << aiPlayer.getDepth() << ")..." << std::endl;
-        AIMove aiMove = aiPlayer.findBestMove(chessLogic);
-        std::cout << "IA joue: " << aiMove.from << " -> " << aiMove.to << std::endl;
-        if (aiMove.from != -1) {
-            chessLogic.makeMove(aiMove.from, aiMove.to);
-            if (chessLogic.isPromotionPending()) {
-                chessLogic.promotePawn(chessLogic.getPromotionSquare(), PieceType::Queen);
-            }
-            board.updatePieceSprites();;
-            lastMoveCount = static_cast<int>(chessLogic.getMoveHistory().size());
-        }
-        aiIsThinking = false;
+        ChessLogic logicCopy = chessLogic;
+        aiFuture = std::async(std::launch::async, [this, logicCopy]() {
+            return aiPlayer.findBestMove(logicCopy);
+        });
     }
     
     std::cout << "Entering PlayingState." << std::endl;
