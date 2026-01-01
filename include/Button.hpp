@@ -12,6 +12,7 @@ private:
     sf::Color normalColor;
     sf::Color hoverColor;
     sf::Color pressedColor;
+    bool selected = false;
 
 public:
     // Constructeur
@@ -35,6 +36,10 @@ public:
 
     // Accesseur pour les limites globales du bouton (utile pour le clic)
     sf::FloatRect getGlobalBounds() const;
+
+    // Gère l'état de sélection pour les boutons d'options
+    void setSelected(bool isSelected);
+    bool isSelected() const;
 };
 
 } // namespace Jr

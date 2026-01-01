@@ -1,5 +1,5 @@
 #include "../include/MenuState.hpp"
-#include "../include/PlayingState.hpp"
+#include "../include/GameConfigState.hpp"
 #include "../include/HelpState.hpp"
 #include "../include/AboutState.hpp"
 #include "../include/StateManager.hpp"
@@ -77,7 +77,7 @@ void MenuState::handleInput(const sf::Event& event) {
                 switch (i) { // Utilise l'index comme identifiant du bouton
                     case 0: // Jouer
                         std::cout << "Option 'Jouer' clicked." << std::endl;
-                        stateManager.pushState<PlayingState>(textureManager, fontManager);
+                        stateManager.pushState<GameConfigState>(fontManager, textureManager);
                         break;
                     case 1: // Aide
                         std::cout << "Option 'Aide' clicked." << std::endl;

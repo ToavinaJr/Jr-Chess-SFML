@@ -26,6 +26,8 @@ set(SOURCES
     source/AboutState.cpp
     source/Button.cpp
     source/GameOverState.cpp
+    source/AIPlayer.cpp
+    source/GameConfigState.cpp
 )
 
 # Créer l'exécutable avec toutes les sources définies

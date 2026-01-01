@@ -242,4 +242,9 @@ void Board::handleMouseClick(int mouseX, int mouseY) {
     }
 }
 
+void Board::clearSelection() {
+    selectedSquare = -1;
+    highlightedSquares.clear();
+}
+
 } // namespace Jr

@@ -2,19 +2,33 @@
 #include "../include/StateManager.hpp"
 #include "../include/ChessLogic.hpp"
 #include "../include/GameOverState.hpp"
+#include "../include/AIPlayer.hpp"
 
 #include <iostream>
+#include <random>
 
 namespace Jr {
 
-PlayingState::PlayingState(StateManager& manager, sf::RenderWindow& win, TextureManager& tm, FontManager& fm)
+PlayingState::PlayingState(StateManager& manager, sf::RenderWindow& win, TextureManager& tm, FontManager& fm,
+                           GameMode mode, PlayerSide side, int aiDepth, float clockSeconds)
     : GameState(manager, win),
-      textureManager(tm), // Références aux managers globaux
+      textureManager(tm),
       fontManager(fm),
-      chessLogic(), // Initialise la logique du jeu pour cette partie
-      board(textureManager, fontManager, chessLogic) // Le board est construit avec les managers et la logique
+      chessLogic(),
+      board(textureManager, fontManager, chessLogic),
+      whiteTimeLeft(clockSeconds),
+      blackTimeLeft(clockSeconds),
+      gameMode(mode),
+      playerSide(side),
+      aiPlayer(aiDepth),
+      lastMoveCount(0),
+      aiIsThinking(false)
 {
-    // Le constructeur ne fait pas le setup complet, on le fait dans onEnter.
+    std::cout << "[PlayingState] Constructor called with:" << std::endl;
+    std::cout << "  - Mode: " << static_cast<int>(mode) << std::endl;
+    std::cout << "  - Side: " << static_cast<int>(side) << std::endl;
+    std::cout << "  - AI Depth: " << aiDepth << std::endl;
+    std::cout << "  - Clock: " << clockSeconds << "s" << std::endl;
 }
 
 void PlayingState::onEnter() {
@@ -61,6 +75,36 @@ void PlayingState::onEnter() {
     navButtonForward.setOutlineColor(ACCENT_COLOR);
     navButtonForward.setOutlineThickness(1);
     
+    // Initialiser lastMoveCount
+    lastMoveCount = static_cast<int>(chessLogic.getMoveHistory().size());
+    
+    // Si playerSide == Random, choisir aléatoirement
+    if (playerSide == PlayerSide::Random) {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<int> d(0, 1);
+        playerSide = d(gen) == 0 ? PlayerSide::White : PlayerSide::Black;
+    }
+    
+    // Si mode AI vs AI ou (Humain vs IA et humain joue noirs), l'IA commence
+    if (gameMode == GameMode::AIvsAI || 
+        (gameMode == GameMode::HumanVsAI && playerSide == PlayerSide::Black)) {
+        // L'IA doit jouer en premier
+        aiIsThinking = true;
+        std::cout << "IA réfléchit (profondeur " << aiPlayer.getDepth() << ")..." << std::endl;
+        AIMove aiMove = aiPlayer.findBestMove(chessLogic);
+        std::cout << "IA joue: " << aiMove.from << " -> " << aiMove.to << std::endl;
+        if (aiMove.from != -1) {
+            chessLogic.makeMove(aiMove.from, aiMove.to);
+            if (chessLogic.isPromotionPending()) {
+                chessLogic.promotePawn(chessLogic.getPromotionSquare(), PieceType::Queen);
+            }
+            board.updatePieceSprites();;
+            lastMoveCount = static_cast<int>(chessLogic.getMoveHistory().size());
+        }
+        aiIsThinking = false;
+    }
+    
     std::cout << "Entering PlayingState." << std::endl;
 }
 
@@ -70,11 +114,50 @@ void PlayingState::handleInput(const sf::Event& event) {
         float mx = event.mouseButton.x;
         float my = event.mouseButton.y;
         
+        // Vérifier si on clique sur le thumb du scrollbar
+        if (scrollThumb.getGlobalBounds().contains(mx, my)) {
+            isDraggingScrollbar = true;
+            scrollDragStartY = my;
+            scrollStartOffset = historyScrollOffset;
+            return;
+        }
+        
+        // Vérifier si on clique sur la piste du scrollbar
+        if (scrollbar.getGlobalBounds().contains(mx, my)) {
+            const auto& moves = chessLogic.getMoveHistory();
+            int maxScroll = std::max(0, static_cast<int>(moves.size()) - maxVisibleMoves);
+            if (maxScroll > 0) {
+                float scrollbarHeight = historyPanel.getSize().y - 40;
+                float thumbHeight = std::max(20.0f, scrollbarHeight * maxVisibleMoves / moves.size());
+                float clickY = my - scrollbar.getPosition().y;
+                float ratio = clickY / scrollbarHeight;
+                historyScrollOffset = static_cast<int>(ratio * maxScroll);
+                historyScrollOffset = std::max(0, std::min(historyScrollOffset, maxScroll));
+            }
+            return;
+        }
+        
+        // Vérifier si on clique sur un coup dans l'historique
+        for (size_t i = 0; i < moveClickAreas.size(); ++i) {
+            if (moveClickAreas[i].contains(mx, my)) {
+                // Cliquer sur le coup i signifie aller au snapshot i+1
+                int targetSnapshot = static_cast<int>(i) + 1;
+                if (targetSnapshot < chessLogic.getSnapshotCount()) {
+                    chessLogic.restoreSnapshot(targetSnapshot);
+                    board.clearSelection(); // Réinitialiser la sélection
+                    board.updatePieceSprites();
+                    isViewingHistory = (targetSnapshot < chessLogic.getSnapshotCount() - 1);
+                }
+                return;
+            }
+        }
+        
         // Bouton retour
         if (navButtonBack.getGlobalBounds().contains(mx, my)) {
             int idx = chessLogic.getCurrentSnapshotIndex();
             if (idx > 0) {
                 chessLogic.restoreSnapshot(idx - 1);
+                board.clearSelection(); // Réinitialiser la sélection
                 board.updatePieceSprites();
                 isViewingHistory = (idx - 1 < chessLogic.getSnapshotCount() - 1);
             }
@@ -86,15 +169,49 @@ void PlayingState::handleInput(const sf::Event& event) {
             int idx = chessLogic.getCurrentSnapshotIndex();
             if (idx + 1 < chessLogic.getSnapshotCount()) {
                 chessLogic.restoreSnapshot(idx + 1);
+                board.clearSelection(); // Réinitialiser la sélection
                 board.updatePieceSprites();
                 isViewingHistory = (idx + 1 < chessLogic.getSnapshotCount() - 1);
             }
             return;
         }
         
-        // Clic sur le plateau (seulement si on est à la position actuelle)
-        if (!isViewingHistory) {
+        // Clic sur le plateau (seulement si on est à la position actuelle et pas en train de penser)
+        if (!isViewingHistory && !aiIsThinking) {
             board.handleMouseClick(event.mouseButton.x, event.mouseButton.y);
+        }
+    }
+    
+    if (event.type == sf::Event::MouseButtonReleased &&
+        event.mouseButton.button == sf::Mouse::Left) {
+        isDraggingScrollbar = false;
+    }
+    
+    if (event.type == sf::Event::MouseMoved && isDraggingScrollbar) {
+        float my = event.mouseMove.y;
+        float deltaY = my - scrollDragStartY;
+        
+        const auto& moves = chessLogic.getMoveHistory();
+        int maxScroll = std::max(0, static_cast<int>(moves.size()) - maxVisibleMoves);
+        
+        if (maxScroll > 0) {
+            float scrollbarHeight = historyPanel.getSize().y - 40;
+            float thumbHeight = std::max(20.0f, scrollbarHeight * maxVisibleMoves / moves.size());
+            float maxThumbTravel = scrollbarHeight - thumbHeight;
+            
+            float deltaScroll = (deltaY / maxThumbTravel) * maxScroll;
+            historyScrollOffset = scrollStartOffset + static_cast<int>(deltaScroll);
+            historyScrollOffset = std::max(0, std::min(historyScrollOffset, maxScroll));
+        }
+    }
+    
+    // Scroll de la molette pour l'historique
+    if (event.type == sf::Event::MouseWheelScrolled) {
+        if (historyPanel.getGlobalBounds().contains(event.mouseWheelScroll.x, event.mouseWheelScroll.y)) {
+            historyScrollOffset -= static_cast<int>(event.mouseWheelScroll.delta * 2);
+            const auto& moves = chessLogic.getMoveHistory();
+            int maxScroll = std::max(0, static_cast<int>(moves.size()) - maxVisibleMoves);
+            historyScrollOffset = std::max(0, std::min(historyScrollOffset, maxScroll));
         }
     }
     
@@ -104,6 +221,7 @@ void PlayingState::handleInput(const sf::Event& event) {
             int idx = chessLogic.getCurrentSnapshotIndex();
             if (idx > 0) {
                 chessLogic.restoreSnapshot(idx - 1);
+                board.clearSelection(); // Réinitialiser la sélection
                 board.updatePieceSprites();
                 isViewingHistory = (idx - 1 < chessLogic.getSnapshotCount() - 1);
             }
@@ -111,6 +229,7 @@ void PlayingState::handleInput(const sf::Event& event) {
             int idx = chessLogic.getCurrentSnapshotIndex();
             if (idx + 1 < chessLogic.getSnapshotCount()) {
                 chessLogic.restoreSnapshot(idx + 1);
+                board.clearSelection(); // Réinitialiser la sélection
                 board.updatePieceSprites();
                 isViewingHistory = (idx + 1 < chessLogic.getSnapshotCount() - 1);
             }
@@ -140,6 +259,65 @@ void PlayingState::update(float deltaTime) {
                 stateManager.changeState<GameOverState>(fontManager, textureManager, "Temps écoulé ! Les Blancs gagnent !");
                 return;
             }
+        }
+    }
+    
+    // Auto-scroll vers le bas quand on est à la position actuelle
+    if (!isViewingHistory) {
+        const auto& moves = chessLogic.getMoveHistory();
+        int maxScroll = std::max(0, static_cast<int>(moves.size()) - maxVisibleMoves);
+        historyScrollOffset = maxScroll;
+    }
+    
+    // Détecter si un nouveau coup a été joué et faire jouer l'IA si nécessaire
+    int currentMoveCount = static_cast<int>(chessLogic.getMoveHistory().size());
+    if (!isViewingHistory && !aiIsThinking && currentMoveCount > lastMoveCount) {
+        lastMoveCount = currentMoveCount;
+        
+        // Déterminer si l'IA doit jouer
+        bool aiShouldPlay = false;
+        
+        if (gameMode == GameMode::HumanVsAI) {
+            // Humain contre IA
+            if (playerSide == PlayerSide::White) {
+                // Humain joue les blancs, IA joue les noirs
+                aiShouldPlay = !chessLogic.getWhiteTurn();
+            } else {
+                // Humain joue les noirs, IA joue les blancs
+                aiShouldPlay = chessLogic.getWhiteTurn();
+            }
+        } else if (gameMode == GameMode::AIvsAI) {
+            // Les deux côtés sont joués par l'IA
+            aiShouldPlay = true;
+        }
+        
+        if (aiShouldPlay) {
+            aiIsThinking = true;
+            std::cout << "IA commence à réfléchir (depth=" << aiPlayer.getDepth() << ")..." << std::endl;
+            
+            // Lancer l'IA dans un thread séparé
+            ChessLogic logicCopy = chessLogic;
+            aiFuture = std::async(std::launch::async, [this, logicCopy]() {
+                return aiPlayer.findBestMove(logicCopy);
+            });
+        }
+    }
+    
+    // Vérifier si l'IA a terminé sa réflexion
+    if (aiIsThinking && aiFuture.valid()) {
+        if (aiFuture.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
+            AIMove best = aiFuture.get();
+            std::cout << "IA a trouvé: " << best.from << " -> " << best.to << " (score=" << best.score << ")" << std::endl;
+            
+            if (best.from != -1) {
+                chessLogic.makeMove(best.from, best.to);
+                if (chessLogic.isPromotionPending()) {
+                    chessLogic.promotePawn(chessLogic.getPromotionSquare(), PieceType::Queen);
+                }
+                board.updatePieceSprites();
+                lastMoveCount = static_cast<int>(chessLogic.getMoveHistory().size());
+            }
+            aiIsThinking = false;
         }
     }
 
@@ -286,10 +464,32 @@ void PlayingState::draw() {
     const auto& moves = chessLogic.getMoveHistory();
     int currentIdx = chessLogic.getCurrentSnapshotIndex();
     
-    float hy = 345;
-    int displayStart = std::max(0, static_cast<int>(moves.size()) - 12);
+    // Effacer les zones cliquables précédentes
+    moveClickAreas.clear();
     
-    for (size_t i = displayStart; i < moves.size() && i < displayStart + 12; ++i) {
+    // Créer une zone de clip pour l'historique (pour éviter le débordement)
+    sf::View historyView = window.getView();
+    sf::FloatRect historyViewport(
+        (BOARD_WIDTH + 10.0f) / WINDOW_WIDTH,
+        320.0f / WINDOW_HEIGHT,
+        (SIDEBAR_WIDTH - 20.0f) / WINDOW_WIDTH,
+        (WINDOW_HEIGHT - 370.0f) / WINDOW_HEIGHT
+    );
+    historyView.setViewport(historyViewport);
+    historyView.setCenter(
+        BOARD_WIDTH + SIDEBAR_WIDTH / 2.0f,
+        320.0f + (WINDOW_HEIGHT - 370.0f) / 2.0f
+    );
+    historyView.setSize(SIDEBAR_WIDTH - 20.0f, WINDOW_HEIGHT - 370.0f);
+    
+    // Appliquer la vue pour le clipping
+    window.setView(historyView);
+    
+    float hy = 345;
+    int startIdx = historyScrollOffset;
+    int endIdx = std::min(static_cast<int>(moves.size()), startIdx + maxVisibleMoves);
+    
+    for (int i = startIdx; i < endIdx; ++i) {
         sf::Text moveText;
         moveText.setFont(font);
         moveText.setCharacterSize(14);
@@ -299,7 +499,14 @@ void PlayingState::draw() {
         moveText.setPosition(BOARD_WIDTH + 25, hy);
         
         // Highlight le coup actuel
-        if (static_cast<int>(i) == currentIdx - 1) {
+        if (i == currentIdx - 1) {
+            // Dessiner un rectangle de fond pour le coup sélectionné
+            sf::RectangleShape highlight;
+            highlight.setSize(sf::Vector2f(SIDEBAR_WIDTH - 50, 20));
+            highlight.setPosition(BOARD_WIDTH + 20, hy - 2);
+            highlight.setFillColor(sf::Color(80, 120, 60, 100));
+            window.draw(highlight);
+            
             moveText.setFillColor(ACCENT_COLOR);
             moveText.setStyle(sf::Text::Bold);
         } else {
@@ -307,7 +514,35 @@ void PlayingState::draw() {
         }
         
         window.draw(moveText);
+        
+        // Enregistrer la zone cliquable (en coordonnées globales)
+        sf::FloatRect clickArea(BOARD_WIDTH + 20, hy - 2, SIDEBAR_WIDTH - 50, 20);
+        moveClickAreas.push_back(clickArea);
+        
         hy += 22;
+    }
+    
+    // Restaurer la vue par défaut
+    window.setView(window.getDefaultView());
+    
+    // Dessiner une scrollbar si nécessaire
+    if (static_cast<int>(moves.size()) > maxVisibleMoves) {
+        float scrollbarHeight = historyPanel.getSize().y - 40;
+        float scrollbarThumbHeight = std::max(20.0f, scrollbarHeight * maxVisibleMoves / moves.size());
+        int maxScroll = std::max(1, static_cast<int>(moves.size()) - maxVisibleMoves);
+        float scrollbarY = 345 + (scrollbarHeight - scrollbarThumbHeight) * historyScrollOffset / maxScroll;
+        
+        // Piste du scrollbar
+        scrollbar.setSize(sf::Vector2f(10, scrollbarHeight));
+        scrollbar.setPosition(BOARD_WIDTH + SIDEBAR_WIDTH - 30, 345);
+        scrollbar.setFillColor(sf::Color(60, 60, 60, 150));
+        window.draw(scrollbar);
+        
+        // Thumb du scrollbar (draggable)
+        scrollThumb.setSize(sf::Vector2f(10, scrollbarThumbHeight));
+        scrollThumb.setPosition(BOARD_WIDTH + SIDEBAR_WIDTH - 30, scrollbarY);
+        scrollThumb.setFillColor(isDraggingScrollbar ? sf::Color(100, 180, 100) : ACCENT_COLOR);
+        window.draw(scrollThumb);
     }
     
     // Boutons de navigation

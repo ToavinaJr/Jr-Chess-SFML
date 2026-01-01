@@ -33,6 +33,9 @@ public:
     bool isEmpty() const;
 
     GameState* getCurrentState();
+    
+    // Accès aux états (pour configuration avancée)
+    std::vector<std::unique_ptr<GameState>>& getStates() { return states; }
 };
 
 } // namespace Jr

@@ -58,7 +58,12 @@ void Button::centerText() {
  * @param mousePos Position actuelle de la souris.
  */
 void Button::update(const sf::Vector2f& mousePos) {
-    shape.setFillColor(shape.getGlobalBounds().contains(mousePos) ? hoverColor : normalColor);
+    // Si le bouton est sélectionné, garder la couleur de sélection sauf en cas de survol
+    if (selected) {
+        shape.setFillColor(shape.getGlobalBounds().contains(mousePos) ? hoverColor : pressedColor);
+    } else {
+        shape.setFillColor(shape.getGlobalBounds().contains(mousePos) ? hoverColor : normalColor);
+    }
 }
 
 /**
@@ -98,6 +103,27 @@ void Button::draw(sf::RenderWindow& window) const {
  */
 sf::FloatRect Button::getGlobalBounds() const {
     return shape.getGlobalBounds();
+}
+
+/**
+ * @brief Définit l'état de sélection du bouton (modifie la couleur de fond).
+ * @param isSelected true si le bouton doit être marqué comme sélectionné.
+ */
+void Button::setSelected(bool isSelected) {
+    selected = isSelected;
+    if (selected) {
+        shape.setFillColor(pressedColor); // Utilise la couleur pressée pour indiquer la sélection
+    } else {
+        shape.setFillColor(normalColor);
+    }
+}
+
+/**
+ * @brief Retourne si le bouton est actuellement sélectionné.
+ * @return true si le bouton est sélectionné.
+ */
+bool Button::isSelected() const {
+    return selected;
 }
 
 } // namespace Jr
