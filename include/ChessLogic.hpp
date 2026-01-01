@@ -28,6 +28,23 @@ namespace Jr {
         DrawRepetition,
         DrawMaterial
     };
+
+    // Structure pour sauvegarder un état complet du jeu
+    struct Snapshot {
+        std::map<std::string, uint64_t> bitboards;
+        uint64_t bitboardPieces;
+        bool whiteTurn;
+        int enPassantSquare;
+        bool whiteKingMoved;
+        bool whiteRookKingsideMoved;
+        bool whiteRookQueensideMoved;
+        bool blackKingMoved;
+        bool blackRookKingsideMoved;
+        bool blackRookQueensideMoved;
+        int fiftyMoveCounter;
+        uint64_t currentZobristHash;
+    };
+
     class ChessLogic {
     private:
         /// Bitboards représentant la position de chaque type de pièce, identifiées par une chaîne (ex: "wP" pour pions blancs)
@@ -108,6 +125,16 @@ namespace Jr {
         uint64_t ZobristSideToMoveKey; // hash pour le trait (blanc/noir)
         uint64_t ZobristCastlingKeys[16]; // hash pour les droits de roque (4 bits, 16 combinaisons)
         uint64_t ZobristEnPassantKeys[8]; // hash pour la colonne de prise en passant (8 colonnes)
+
+        // Historique et captures
+        std::vector<Snapshot> snapshots;
+        int currentSnapshotIndex = 0;
+        std::vector<std::string> moveHistory; // Notation PGN/SAN
+        std::vector<Piece> capturedByWhite;   // Pièces noires capturées
+        std::vector<Piece> capturedByBlack;   // Pièces blanches capturées
+
+        Snapshot createSnapshot() const;
+        std::string generatePGNMove(int from, int to, const Piece& movingPiece, bool isCapture, bool isCheck, bool isCheckmate) const;
 
     public:
         /**
@@ -253,5 +280,14 @@ namespace Jr {
 
         bool noLegalMovesAvailable(bool whiteToMove) const;
         bool isCheckmate(bool whiteToMove) const;
+
+        // API pour l'historique, captures et navigation
+        const std::vector<std::string>& getMoveHistory() const { return moveHistory; }
+        const std::vector<Piece>& getCapturedByWhite() const { return capturedByWhite; }
+        const std::vector<Piece>& getCapturedByBlack() const { return capturedByBlack; }
+        int getSnapshotCount() const { return static_cast<int>(snapshots.size()); }
+        int getCurrentSnapshotIndex() const { return currentSnapshotIndex; }
+        bool restoreSnapshot(int index);
+        int getMaterialScoreDifference() const;
     };
 }

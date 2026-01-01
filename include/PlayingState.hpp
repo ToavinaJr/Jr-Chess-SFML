@@ -31,6 +31,21 @@ private:
     /// Instance du plateau graphique associé à la partie
     Board board;
 
+    // Horloges
+    float whiteTimeLeft = 600.0f;  // 10 minutes par défaut
+    float blackTimeLeft = 600.0f;
+    bool clockRunning = false;
+
+    // UI Elements
+    sf::RectangleShape sidebarBg;
+    sf::RectangleShape capturePanel;
+    sf::RectangleShape clockPanel;
+    sf::RectangleShape historyPanel;
+    sf::RectangleShape navButtonBack;
+    sf::RectangleShape navButtonForward;
+    
+    bool isViewingHistory = false; // True si on regarde un coup passé
+
 public:
     /**
      * @brief Constructeur de PlayingState.

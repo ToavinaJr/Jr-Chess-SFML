@@ -91,6 +91,14 @@ namespace Jr {
         positionHistory.clear();    // Efface l'historique des positions
         currentZobristHash = calculateZobristHash(); // Calcule le hash initial
         positionHistory.push_back(currentZobristHash);
+        
+        // Initialisation de l'historique et des captures
+        moveHistory.clear();
+        capturedByWhite.clear();
+        capturedByBlack.clear();
+        snapshots.clear();
+        currentSnapshotIndex = 0;
+        snapshots.push_back(createSnapshot()); // Snapshot initial
     }
 
     /**
@@ -576,6 +584,33 @@ namespace Jr {
                           // Ceci devrait normalement être intercepté par `isValidMove`.
         }
 
+        // Détecter capture avant modification
+        Piece capturedPiece;
+        bool isCapture = false;
+        bool isEnPassantCapture = false;
+        
+        // Capture normale
+        if ((bitboardPieces & (1ULL << to)) != 0) {
+            capturedPiece = getPieceAtSquare(to);
+            isCapture = true;
+        }
+        // Prise en passant
+        else if (movingPiece.type == PieceType::Pawn && to == enPassantSquare) {
+            int capturedPawnSquare = (movingPiece.color == PieceColor::White) ? (to - 8) : (to + 8);
+            capturedPiece = getPieceAtSquare(capturedPawnSquare);
+            isCapture = true;
+            isEnPassantCapture = true;
+        }
+        
+        // Enregistrer la capture
+        if (isCapture && !capturedPiece.isEmpty()) {
+            if (movingPiece.color == PieceColor::White) {
+                capturedByWhite.push_back(capturedPiece);
+            } else {
+                capturedByBlack.push_back(capturedPiece);
+            }
+        }
+
         // --- Gérer la capture ---
         // Parcourt tous les bitboards pour voir si une pièce est sur la case cible (`to`).
         for (auto& pair : bitboards) {
@@ -673,6 +708,25 @@ namespace Jr {
         for (const auto& pair : bitboards) {
             bitboardPieces |= pair.second;
         }
+        
+        // Vérifier échec et échec et mat pour la notation
+        bool isCheck = isKingInCheck(!whiteTurn); // Le joueur qui vient de jouer peut mettre en échec
+        bool isCheckmate = false;
+        if (isCheck && !promotionPending) {
+            isCheckmate = noLegalMovesAvailable(!whiteTurn);
+        }
+        
+        // Enregistrer le coup en notation PGN/SAN
+        std::string pgnMove = generatePGNMove(from, to, movingPiece, isCapture, isCheck, isCheckmate);
+        moveHistory.push_back(pgnMove);
+        
+        // Créer et enregistrer le snapshot de la position actuelle
+        // Si on était revenu en arrière, on tronque l'historique futur
+        if (currentSnapshotIndex < static_cast<int>(snapshots.size()) - 1) {
+            snapshots.erase(snapshots.begin() + currentSnapshotIndex + 1, snapshots.end());
+        }
+        snapshots.push_back(createSnapshot());
+        currentSnapshotIndex = static_cast<int>(snapshots.size()) - 1;
         
         return true; // Le coup a été effectué avec succès.
     }
@@ -1051,6 +1105,112 @@ bool ChessLogic::noLegalMovesAvailable(bool whiteToMove) const {
         if (!moves.empty()) return false;
     }
     return true;
+}
+
+// Helper pour convertir un index de case en notation algébrique (ex: 0 -> "a1", 63 -> "h8")
+static std::string squareToAlgebraic(int sq) {
+    if (sq < 0 || sq >= 64) return "??";
+    int file = sq % 8;
+    int rank = sq / 8;
+    return std::string(1, 'a' + file) + std::string(1, '1' + rank);
+}
+
+// Crée un snapshot de l'état actuel
+Snapshot ChessLogic::createSnapshot() const {
+    Snapshot s;
+    s.bitboards = bitboards;
+    s.bitboardPieces = bitboardPieces;
+    s.whiteTurn = whiteTurn;
+    s.enPassantSquare = enPassantSquare;
+    s.whiteKingMoved = whiteKingMoved;
+    s.whiteRookKingsideMoved = whiteRookKingsideMoved;
+    s.whiteRookQueensideMoved = whiteRookQueensideMoved;
+    s.blackKingMoved = blackKingMoved;
+    s.blackRookKingsideMoved = blackRookKingsideMoved;
+    s.blackRookQueensideMoved = blackRookQueensideMoved;
+    s.fiftyMoveCounter = fiftyMoveCounter;
+    s.currentZobristHash = currentZobristHash;
+    return s;
+}
+
+// Restaure un snapshot précédent
+bool ChessLogic::restoreSnapshot(int index) {
+    if (index < 0 || index >= static_cast<int>(snapshots.size())) return false;
+    const Snapshot& s = snapshots[index];
+    bitboards = s.bitboards;
+    bitboardPieces = s.bitboardPieces;
+    whiteTurn = s.whiteTurn;
+    enPassantSquare = s.enPassantSquare;
+    whiteKingMoved = s.whiteKingMoved;
+    whiteRookKingsideMoved = s.whiteRookKingsideMoved;
+    whiteRookQueensideMoved = s.whiteRookQueensideMoved;
+    blackKingMoved = s.blackKingMoved;
+    blackRookKingsideMoved = s.blackRookKingsideMoved;
+    blackRookQueensideMoved = s.blackRookQueensideMoved;
+    fiftyMoveCounter = s.fiftyMoveCounter;
+    currentZobristHash = s.currentZobristHash;
+    currentSnapshotIndex = index;
+    return true;
+}
+
+// Génère la notation PGN/SAN pour un coup
+std::string ChessLogic::generatePGNMove(int from, int to, const Piece& movingPiece, bool isCapture, bool isCheck, bool isCheckmate) const {
+    std::string move;
+    
+    // Roque spécial
+    if (movingPiece.type == PieceType::King && std::abs((from % 8) - (to % 8)) == 2) {
+        if (to % 8 == 6) return isCheckmate ? "O-O#" : (isCheck ? "O-O+" : "O-O");
+        else return isCheckmate ? "O-O-O#" : (isCheck ? "O-O-O+" : "O-O-O");
+    }
+    
+    // Lettre de la pièce (sauf pion)
+    if (movingPiece.type != PieceType::Pawn) {
+        switch (movingPiece.type) {
+            case PieceType::Knight: move += "N"; break;
+            case PieceType::Bishop: move += "B"; break;
+            case PieceType::Rook:   move += "R"; break;
+            case PieceType::Queen:  move += "Q"; break;
+            case PieceType::King:   move += "K"; break;
+            default: break;
+        }
+    } else if (isCapture) {
+        // Pour pion qui capture, on indique la colonne de départ
+        move += squareToAlgebraic(from)[0];
+    }
+    
+    // Capture
+    if (isCapture) move += "x";
+    
+    // Case de destination
+    move += squareToAlgebraic(to);
+    
+    // Échec et mat
+    if (isCheckmate) move += "#";
+    else if (isCheck) move += "+";
+    
+    return move;
+}
+
+// Calcule la différence de score matériel
+int ChessLogic::getMaterialScoreDifference() const {
+    auto valueOf = [](PieceType t) -> int {
+        switch (t) {
+            case PieceType::Pawn:   return 1;
+            case PieceType::Knight: return 3;
+            case PieceType::Bishop: return 3;
+            case PieceType::Rook:   return 5;
+            case PieceType::Queen:  return 9;
+            default: return 0;
+        }
+    };
+    
+    int whiteScore = 0;
+    for (const Piece& p : capturedByWhite) whiteScore += valueOf(p.type);
+    
+    int blackScore = 0;
+    for (const Piece& p : capturedByBlack) blackScore += valueOf(p.type);
+    
+    return whiteScore - blackScore;
 }
 
 

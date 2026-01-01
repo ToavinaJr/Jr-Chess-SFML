@@ -37,7 +37,6 @@ namespace Jr {
         // Méthodes privées pour le rendu
         void setupBoardSquares();
         void setupLabels();
-        void updatePieceSprites();
         void preparePromotionDisplay();
 
     public:
@@ -47,6 +46,7 @@ namespace Jr {
         // Méthodes publiques d'interaction
         void draw(sf::RenderWindow& window);
         void handleMouseClick(int mouseX, int mouseY); // Gère le clic de souris
+        void updatePieceSprites(); // Public pour permettre la mise à jour depuis PlayingState
 
         // Getters pour l'état graphique (si d'autres classes en ont besoin)
         int getSelectedSquare() const { return selectedSquare; }
