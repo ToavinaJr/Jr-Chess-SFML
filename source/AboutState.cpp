@@ -60,7 +60,7 @@ void AboutState::onEnter() {
     centerText(footer2, startY + 50);
 
     footer3.setFont(fontManager.getFont(FONT_PATH));
-    footer3.setString("Email : toavina@gmail.com");
+    footer3.setString("Email : toavinasylvianno14@gmail.com");
     footer3.setCharacterSize(16);
     footer3.setFillColor(sf::Color(200, 200, 200));
     centerText(footer3, startY + 100);
